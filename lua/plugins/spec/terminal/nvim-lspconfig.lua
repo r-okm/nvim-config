@@ -61,40 +61,14 @@ return {
             },
           },
           on_attach = function(_, bufnr)
-            local vtsls = require("vtsls")
             vim.keymap.set("n", "go", function()
+              local vtsls = require("vtsls")
               vtsls.commands.add_missing_imports(bufnr)
               vtsls.commands.organize_imports(bufnr)
             end, { buffer = bufnr })
-            vim.keymap.set("n", "gf", function()
-              vim.lsp.buf.format({
-                async = true,
-                bufnr = bufnr,
-                filter = function(format_client)
-                  return format_client.name == "null-ls"
-                end,
-              })
-            end, { buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = vim.api.nvim_create_augroup("PreWriteVtsls" .. bufnr, {}),
-              buffer = bufnr,
-              callback = function()
-                pcall(function()
-                  vim.cmd("EslintFixAll")
-                end)
-                vim.lsp.buf.format({
-                  async = false,
-                  bufnr = bufnr,
-                  filter = function(format_client)
-                    return format_client.name == "null-ls"
-                  end,
-                })
-              end,
-            })
           end,
         })
       end,
-      ["jdtls"] = function() end,
       ["sqls"] = function()
         lspconfig.sqls.setup({
           capabilities = capabilities,

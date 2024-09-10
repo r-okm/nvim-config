@@ -1,5 +1,6 @@
 require("settings.keymaps")
 require("settings.options")
-require("plugins")
 require("settings.autocmd")
+require("plugins")
+require("lsp")
 require("settings.usercommand")
