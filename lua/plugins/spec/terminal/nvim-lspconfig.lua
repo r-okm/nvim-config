@@ -4,7 +4,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "zapling/mason-lock.nvim",
+    "r-okm/mason-lock.nvim",
     "yioneko/nvim-vtsls",
     "b0o/schemastore.nvim",
     "mfussenegger/nvim-jdtls",
