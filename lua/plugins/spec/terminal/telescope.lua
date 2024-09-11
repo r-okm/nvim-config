@@ -3,11 +3,10 @@ local getVisualSelection = require("utils.buffer").getVisualSelection
 
 return {
   "nvim-telescope/telescope.nvim",
-  commit = "fac83a556e7b710dc31433dec727361ca062dbe9",
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope-fzy-native.nvim",
-    "nvim-tree/nvim-web-devicons",
+    { "nvim-lua/plenary.nvim" },
+    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "nvim-tree/nvim-web-devicons" },
   },
   keys = {
     { "zp", mode = { "n" } },
@@ -77,13 +76,14 @@ return {
         grep_string = { initial_mode = "normal" },
       },
       extensions = {
-        fzy_native = {
-          override_generic_sorter = false,
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
           override_file_sorter = true,
         },
       },
     })
-    telescope.load_extension("fzy_native")
+    telescope.load_extension("fzf")
 
     local my_git_status = function(opts)
       opts = opts or {}
