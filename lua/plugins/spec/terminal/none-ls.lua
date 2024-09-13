@@ -3,7 +3,7 @@ return {
   dependencies = {
     "jay-babu/mason-null-ls.nvim",
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPost" },
   config = function()
     local nls = require("null-ls")
     local formatting = nls.builtins.formatting

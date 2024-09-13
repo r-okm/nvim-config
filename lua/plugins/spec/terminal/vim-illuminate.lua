@@ -5,7 +5,7 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
   },
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost" },
   config = function()
     require("illuminate").configure({
       filetypes_denylist = const.HIGHLIGHT_DISABLED_FILETYPES,

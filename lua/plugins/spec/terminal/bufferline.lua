@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  event = { "BufReadPost", "BufNewFile" },
+  event = { "BufReadPost" },
   init = function()
     vim.opt.sessionoptions:append("globals")
   end,

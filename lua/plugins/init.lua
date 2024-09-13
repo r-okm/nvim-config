@@ -21,4 +21,7 @@ require("lazy").setup({
   defaults = {
     version = "*",
   },
+  install = {
+    missing = false,
+  },
 })
