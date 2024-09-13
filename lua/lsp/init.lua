@@ -17,6 +17,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
         end,
       })
     end
+    local format_callback = function()
+      vim.lsp.buf.format({
+        async = true,
+        bufnr = bufnr,
+        filter = function(format_client)
+          return format_client.name == client.name
+        end,
+      })
+    end
 
     local lsp_configs = require("lsp/lsp_configs")
     for lsp_name, config in pairs(lsp_configs) do
@@ -73,15 +82,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set_buf_key({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>")
     -- format
     if format_enable then
-      set_buf_key("n", "gf", function()
-        vim.lsp.buf.format({
-          async = true,
-          bufnr = bufnr,
-          filter = function(format_client)
-            return format_client.name == client.name
-          end,
-        })
-      end)
+      set_buf_key("n", "gf", format_callback)
     end
     if buf_write_pre_enable then
       vim.api.nvim_create_autocmd("BufWritePre", {
