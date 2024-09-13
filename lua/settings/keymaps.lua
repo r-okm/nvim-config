@@ -1,8 +1,3 @@
-local utils = require("utils.setKeymap")
-local keymapVsc = utils.keymapVsc
-local keymapVscVisual = utils.keymapVscVisual
-local opts = { noremap = true, silent = true }
-
 -- キーマップの無効
 vim.keymap.set({ "" }, "<Space>", "")
 vim.keymap.set({ "n" }, "gh", "")
@@ -15,14 +10,19 @@ vim.keymap.set({ "x" }, "y", "mzy`z")
 vim.keymap.set({ "x" }, "<", "<gv")
 vim.keymap.set({ "x" }, ">", ">gv")
 
+-- `a"` を `2i"` にマッピング
+-- https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features#%E5%BC%95%E7%94%A8%E7%AC%A6%E3%81%A7%E5%9B%B2%E3%81%BE%E3%82%8C%E3%81%9F%E7%AE%87%E6%89%80%E5%85%A8%E4%BD%93%E3%82%92%E9%81%B8%E6%8A%9E%E3%81%99%E3%82%8B
 for _, quote in ipairs({ '"', "'", "`" }) do
   local lhs = "a" .. quote
   local rhs = "2i" .. quote
-  vim.keymap.set({ "x", "o" }, lhs, rhs, opts)
+  vim.keymap.set({ "x", "o" }, lhs, rhs, { noremap = true, silent = true })
 end
 
 -- vscode
 if vim.g.vscode then
+  local keymapVsc = require("utils.setKeymap").keymapVsc
+  local keymapVscVisual = require("utils.setKeymap").keymapVscVisual
+
   -- save
   keymapVsc("n", "<Space>s", "workbench.action.files.save")
   keymapVsc("n", "<Space>S", "workbench.action.files.saveWithoutFormatting")
@@ -61,24 +61,9 @@ if vim.g.vscode then
 else
   vim.keymap.set({ "n" }, "<C-q>", "<C-w>w")
 
-  vim.keymap.set({ "n" }, "<Space>s", ":<C-u>write<CR>")
-  vim.keymap.set({ "n" }, "<Space>S", ":<C-u>noa write<CR>")
+  vim.keymap.set({ "n" }, "<Space>s", ":<C-u>write<CR>", { silent = true })
+  vim.keymap.set({ "n" }, "<Space>S", ":<C-u>noa write<CR>", { silent = true })
   -- terminal-job モードへ切り替える
-  vim.keymap.set({ "t" }, "<C-k><C-n>", "<C-\\><C-n>")
-  vim.keymap.set({ "n" }, "<C-k><C-n>", ":<C-u>terminal<CR>")
-
-  local function saveSession()
-    local session_file_name = os.getenv("NEOVIM_SESSION_FILE_NAME") or ".session.vim"
-    vim.cmd("mksession! " .. session_file_name)
-    vim.schedule(function()
-      vim.print("session file saved: " .. session_file_name)
-    end)
-  end
-  local function saveSessionAndQuit()
-    saveSession()
-    vim.cmd("quitall")
-  end
-
-  vim.keymap.set("ca", "ms", saveSession)
-  vim.keymap.set("ca", "qq", saveSessionAndQuit)
+  vim.keymap.set({ "t" }, "<C-k><C-n>", "<C-\\><C-n>", { silent = true })
+  vim.keymap.set({ "n" }, "<C-k><C-n>", ":<C-u>terminal<CR>", { silent = true })
 end
