@@ -52,18 +52,6 @@ local function getRhsFromVsVisualCmd(cmd, vs_args)
   return rhs
 end
 
----vim,neovim コマンドのキーマップを設定する
----@param modeStr string コマンドを有効化するモード
----@param lhs string コマンドを発火させるキー
----@param rhs string|function コマンドの実行内容
----@param opts? table オプション
-function M.keymap(modeStr, lhs, rhs, opts)
-  local _modes = getModesTableFromStr(modeStr)
-  local _opts = appendCommonOpts(opts)
-
-  vim.keymap.set(_modes, lhs, rhs, _opts)
-end
-
 ---vscode コマンドのキーマップを設定する
 ---@param modeStr string コマンドを有効化するモード
 ---@param lhs string コマンドを発火させるキー

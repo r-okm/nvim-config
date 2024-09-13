@@ -1,5 +1,3 @@
-local keymap = require("utils.setKeymap").keymap
-
 return {
   "kevinhwang91/nvim-hlslens",
   dependencies = { "haya14busa/vim-asterisk" },
@@ -16,8 +14,16 @@ return {
     })
   end,
   config = function()
-    keymap("nx", "*", [[<Plug>(asterisk-gz*)<Cmd>lua require("hlslens").start()<CR>]])
-    keymap("n", "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]])
-    keymap("n", "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]])
+    vim.keymap.set({ "n", "x" }, "*", [[<Plug>(asterisk-gz*)<Cmd>lua require("hlslens").start()<CR>]])
+    vim.keymap.set(
+      { "n" },
+      "n",
+      [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]]
+    )
+    vim.keymap.set(
+      { "n" },
+      "N",
+      [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]]
+    )
   end,
 }

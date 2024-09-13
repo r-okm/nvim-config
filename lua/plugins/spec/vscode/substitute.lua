@@ -1,5 +1,3 @@
-local keymap = require("utils.setKeymap").keymap
-
 return {
   "gbprod/substitute.nvim",
   keys = {
@@ -12,7 +10,7 @@ return {
         enabled = false,
       },
     })
-    keymap("nx", ",", function()
+    vim.keymap.set({ "n", "x" }, ",", function()
       substitute.operator()
     end)
   end,

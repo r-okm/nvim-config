@@ -1,4 +1,3 @@
-local keymap = require("utils.setKeymap").keymap
 local getVisualSelection = require("utils.buffer").getVisualSelection
 
 return {
@@ -96,11 +95,11 @@ return {
       builtin.git_status(opts)
     end
 
-    keymap("n", "zp", builtin.find_files)
-    keymap("n", "zf", builtin.live_grep)
-    keymap("n", "zo", my_git_status)
-    keymap("n", "#", builtin.grep_string)
-    keymap("x", "#", function()
+    vim.keymap.set({ "n" }, "zp", builtin.find_files)
+    vim.keymap.set({ "n" }, "zf", builtin.live_grep)
+    vim.keymap.set({ "n" }, "zo", my_git_status)
+    vim.keymap.set({ "n" }, "#", builtin.grep_string)
+    vim.keymap.set({ "x" }, "#", function()
       local text = getVisualSelection()
       builtin.grep_string({ search = text })
     end)

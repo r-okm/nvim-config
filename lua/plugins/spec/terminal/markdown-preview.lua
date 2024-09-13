@@ -1,5 +1,3 @@
-local keymap = require("utils.setKeymap").keymap
-
 return {
   "iamcco/markdown-preview.nvim",
   build = function()
@@ -12,6 +10,6 @@ return {
     vim.g.mkdp_filetypes = { "markdown" }
   end,
   config = function()
-    keymap("n", "<C-k><C-v>", ":<C-u>MarkdownPreviewToggle<CR>")
+    vim.keymap.set({ "n" }, "<c-k><c-v>", ":<c-u>MarkdownPreviewToggle<cr>", { silent = true })
   end,
 }

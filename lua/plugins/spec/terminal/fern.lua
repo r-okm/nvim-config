@@ -1,5 +1,3 @@
-local keymap = require("utils.setKeymap").keymap
-
 return {
   "lambdalisue/fern.vim",
   dependencies = {
@@ -13,7 +11,7 @@ return {
     { "<Space>e", mode = { "n" } },
   },
   config = function()
-    keymap("n", "<Space>e", ":<C-u>Fern . -reveal=% -drawer -width=60<CR>")
+    vim.keymap.set({ "n" }, "<Space>e", ":<C-u>Fern . -reveal=% -drawer -width=60<CR>", { silent = true })
     vim.g["fern#default_hidden"] = 1
     vim.g["fern#renderer"] = "nvim-web-devicons"
     vim.cmd([[

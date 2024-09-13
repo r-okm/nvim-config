@@ -1,5 +1,3 @@
-local keymap = require("utils.setKeymap").keymap
-
 return {
   "sindrets/diffview.nvim",
   dependencies = {
@@ -12,9 +10,9 @@ return {
   },
   cmd = { "DiffviewFileHistory" },
   config = function()
-    keymap("n", "zh", ":<C-u>DiffviewFileHistory %<CR>")
-    keymap("x", "zh", ":'<,'>DiffviewFileHistory<CR>")
-    keymap("n", "zl", ":<C-u>DiffviewFileHistory<CR>")
+    vim.keymap.set({ "n" }, "zh", ":<C-u>DiffviewFileHistory %<CR>", { silent = true })
+    vim.keymap.set({ "x" }, "zh", ":'<,'>DiffviewFileHistory<CR>", { silent = true })
+    vim.keymap.set({ "n" }, "zl", ":<C-u>DiffviewFileHistory<CR>", { silent = true })
 
     require("diffview").setup({
       keymaps = {
