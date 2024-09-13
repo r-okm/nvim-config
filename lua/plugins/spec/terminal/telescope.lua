@@ -55,11 +55,10 @@ return {
           "--glob",
           "!**/package-lock.json",
         },
-        path_display = {
-          filename_first = {
-            reverse_directories = true,
-          },
-        },
+        path_display = function(_opts, path)
+          local tail = require("telescope.utils").path_tail(path)
+          return string.format("%s (%s)", tail, path)
+        end,
       },
       pickers = {
         find_files = {
