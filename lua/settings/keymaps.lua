@@ -1,17 +1,19 @@
 local utils = require("utils.setKeymap")
-local keymap = utils.keymap
 local keymapVsc = utils.keymapVsc
 local keymapVscVisual = utils.keymapVscVisual
 local opts = { noremap = true, silent = true }
 
--- map prefix
-keymap("", "<Space>", "")
+-- キーマップの無効
+vim.keymap.set({ "" }, "<Space>", "")
+vim.keymap.set({ "n" }, "gh", "")
 
-keymap("nxo", "gh", "^")
-keymap("nxo", "gl", "$")
-keymap("n", "gn", ":<C-u>noh<CR>")
-keymap("n", "gs", ":<C-u><CR>:%s/", { silent = false })
-keymap("n", "<CR>", "o<ESC>")
+-- Normal Mode の Enter で改行
+vim.keymap.set({ "n" }, "<CR>", "o<ESC>")
+-- Visual Mode の yank 時にカーソル位置を記憶
+vim.keymap.set({ "x" }, "y", "mzy`z")
+-- Visual Mode のインデント調整後に Visual Mode を維持
+vim.keymap.set({ "x" }, "<", "<gv")
+vim.keymap.set({ "x" }, ">", ">gv")
 
 for _, quote in ipairs({ '"', "'", "`" }) do
   local lhs = "a" .. quote
@@ -57,13 +59,13 @@ if vim.g.vscode then
   -- find_files
   keymapVsc("n", "zf", "workbench.action.findInFiles")
 else
-  keymap("n", "<C-q>", "<C-w>w")
+  vim.keymap.set({ "n" }, "<C-q>", "<C-w>w")
 
-  keymap("n", "<Space>s", ":<C-u>write<CR>")
-  keymap("n", "<Space>S", ":<C-u>noa write<CR>")
+  vim.keymap.set({ "n" }, "<Space>s", ":<C-u>write<CR>")
+  vim.keymap.set({ "n" }, "<Space>S", ":<C-u>noa write<CR>")
   -- terminal-job モードへ切り替える
-  keymap("t", "<C-k><C-n>", "<C-\\><C-n>")
-  keymap("n", "<C-k><C-n>", ":<C-u>terminal<CR>")
+  vim.keymap.set({ "t" }, "<C-k><C-n>", "<C-\\><C-n>")
+  vim.keymap.set({ "n" }, "<C-k><C-n>", ":<C-u>terminal<CR>")
 
   local function saveSession()
     local session_file_name = os.getenv("NEOVIM_SESSION_FILE_NAME") or ".session.vim"
