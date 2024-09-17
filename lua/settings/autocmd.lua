@@ -12,10 +12,32 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("VimEnter", {
   nested = true,
   callback = function()
-    local session_file = os.getenv("NEOVIM_SESSION_FILE_NAME") or ".session.vim"
+    local is_session_enable = require("utils.os").is_session_enable()
+    if not is_session_enable then
+      return true
+    end
+
+    local session_file = require("utils.os").get_session_file_name()
     if vim.fn.filereadable(session_file) == 1 then
       vim.cmd("source " .. session_file)
     end
+
+    return true
+  end,
+})
+
+-- neovim 終了時にセッションファイルを保存
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  nested = true,
+  callback = function()
+    local is_session_enable = require("utils.os").is_session_enable()
+    if not is_session_enable then
+      return true
+    end
+
+    local session_file = require("utils.os").get_session_file_name()
+    vim.cmd("mksession! " .. session_file)
+
     return true
   end,
 })
