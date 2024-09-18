@@ -8,18 +8,27 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
--- neovim 起動時にセッションファイルを読み込む
+local session_file_name = require("utils.const").SESSION_FILE_NAME
+
+-- セッションファイルを指定して neovim 起動時にセッションファイルを読み込む
 vim.api.nvim_create_autocmd("VimEnter", {
   nested = true,
+  pattern = session_file_name,
   callback = function()
-    local is_session_enable = require("utils.os").is_session_enable()
-    if not is_session_enable then
-      return true
-    end
+    if vim.fn.filereadable(session_file_name) == 1 then
+      vim.cmd("SessionLoad")
 
-    local session_file = require("utils.os").get_session_file_name()
-    if vim.fn.filereadable(session_file) == 1 then
-      vim.cmd("source " .. session_file)
+      -- バッファの .session.vim を閉じる
+      local buffers = vim.api.nvim_list_bufs()
+      for _, buf in ipairs(buffers) do
+        if vim.api.nvim_buf_is_loaded(buf) then
+          local buf_name = vim.api.nvim_buf_get_name(buf)
+          if buf_name:match(session_file_name) then
+            vim.api.nvim_buf_delete(buf, { force = true })
+            break
+          end
+        end
+      end
     end
 
     return true
@@ -30,13 +39,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("VimLeavePre", {
   nested = true,
   callback = function()
-    local is_session_enable = require("utils.os").is_session_enable()
-    if not is_session_enable then
-      return true
+    if SessionLoaded then
+      vim.cmd("SessionSave")
     end
-
-    local session_file = require("utils.os").get_session_file_name()
-    vim.cmd("mksession! " .. session_file)
 
     return true
   end,
