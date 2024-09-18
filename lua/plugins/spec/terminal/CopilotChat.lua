@@ -36,6 +36,10 @@ return {
       -- highlight を無効にするため、何もしない
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/362#issuecomment-2241158016
     end
+    prompts.CommitEditmsg = {
+      prompt = prompts.CommitStaged.prompt,
+      selection = select.buffer,
+    }
 
     chat.setup({
       prompts = prompts,
