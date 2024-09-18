@@ -32,6 +32,10 @@ return {
 
     prompts.CommitStaged.prompt = prompts.CommitStaged.prompt
       .. "* コードの変更内容は箇条書きで記述する"
+    prompts.Review.callback = function(_, _)
+      -- highlight を無効にするため、何もしない
+      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/362#issuecomment-2241158016
+    end
 
     chat.setup({
       prompts = prompts,
