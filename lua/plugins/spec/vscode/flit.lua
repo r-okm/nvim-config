@@ -9,7 +9,6 @@ return {
       opts = {
         safe_labels = {
           "s",
-          "f",
           "n",
           "j",
           "k",
@@ -26,7 +25,6 @@ return {
           "v",
           "r",
           "g",
-          "t",
           "c",
           "x",
           "/",
