@@ -1,8 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  dependencies = {
-    { "nvim-treesitter/nvim-treesitter-textobjects" },
-  },
+  -- dependencies = {
+  --   { "nvim-treesitter/nvim-treesitter-textobjects" },
+  -- },
   build = { ":TSUpdate" },
   event = { "BufReadPost" },
   config = function()
@@ -43,7 +43,7 @@ return {
           return vim.api.nvim_buf_line_count(bufnr) > 5000
         end,
       },
-      textobjects = {
+      --[[ textobjects = {
         select = {
           enable = true,
           lookahead = true,
@@ -68,7 +68,7 @@ return {
             ["<Space>A"] = "@parameter.inner",
           },
         },
-      },
+      }, ]]
     })
 
     vim.cmd([[
