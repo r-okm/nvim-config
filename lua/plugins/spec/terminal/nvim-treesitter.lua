@@ -1,7 +1,10 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { "BufReadPost" },
+  dependencies = {
+    { "nvim-treesitter/nvim-treesitter-textobjects" },
+  },
   build = { ":TSUpdate" },
+  event = { "BufReadPost" },
   config = function()
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -40,7 +43,34 @@ return {
           return vim.api.nvim_buf_line_count(bufnr) > 5000
         end,
       },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+            ["ap"] = "@parameter.outer",
+            ["ip"] = "@parameter.inner",
+          },
+          selection_modes = {
+            ["@function.outer"] = "V",
+          },
+        },
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<Space>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<Space>A"] = "@parameter.inner",
+          },
+        },
+      },
     })
+
     vim.cmd([[
       set nofoldenable
       set foldmethod=expr
