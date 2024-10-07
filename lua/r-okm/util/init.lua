@@ -1,6 +1,58 @@
 local M = {}
 
-local function getModesTableFromStr(modeStr)
+---テーブルを再帰的に結合する.
+---@param t1 table 上書きされるテーブル
+---@param t2 table 上書きするテーブル
+---@return table 結合されたテーブル
+function M.deep_table_concat(t1, t2)
+  local result = {}
+
+  -- t1の要素をresultにコピー
+  for k, v in pairs(t1) do
+    if type(v) == "table" and type(t2[k]) == "table" then
+      result[k] = M.deep_table_concat(v, t2[k])
+    else
+      result[k] = v
+    end
+  end
+
+  -- t2の要素をresultにコピー
+  for k, v in pairs(t2) do
+    if type(v) == "table" and type(result[k]) == "table" then
+      result[k] = M.deep_table_concat(result[k], v)
+    else
+      result[k] = v
+    end
+  end
+
+  return result
+end
+
+---通常 visual モード時の選択範囲のテキストを取得する
+---@return string|nil selected_text 選択範囲のテキスト
+function M.getVisualSelection()
+  -- Visualモードの確認
+  local mode = vim.fn.mode()
+
+  if mode ~= "v" then
+    return nil
+  else
+    -- ヤンク前のテキスト
+    local previous_register = vim.fn.getreg("z")
+    -- Visualモードで選択された範囲をzレジスタにヤンク
+    vim.cmd('noautocmd normal! "zy')
+    -- zレジスタからテキストを取得
+    local selected_text = vim.fn.getreg("z")
+    -- 改行コードを取り除く
+    selected_text = string.gsub(selected_text, "\n", "")
+    -- zレジストの内容をリセット
+    vim.fn.setreg("z", previous_register)
+
+    return selected_text
+  end
+end
+
+local function _getModesTableFromStr(modeStr)
   -- 文字列を1字ずつ分割し配列に変換
   -- ex) "nx" => {"n", "x"}
   local modes = {}
@@ -15,7 +67,7 @@ local function getModesTableFromStr(modeStr)
   return modes
 end
 
-local function appendCommonOpts(opts)
+local function _appendCommonOpts(opts)
   local _opts = opts or {}
 
   if _opts.noremap == nil then
@@ -28,7 +80,7 @@ local function appendCommonOpts(opts)
   return _opts
 end
 
-local function getRhsFromVsCmd(cmd, vs_args)
+local function _getRhsFromVsCmd(cmd, vs_args)
   local rhs
   if vs_args ~= nil then
     rhs = string.format("<Cmd> call VSCodeNotify('%s', %s)<Cr>", cmd, vs_args)
@@ -39,7 +91,7 @@ local function getRhsFromVsCmd(cmd, vs_args)
   return rhs
 end
 
-local function getRhsFromVsVisualCmd(cmd, vs_args)
+local function _getRhsFromVsVisualCmd(cmd, vs_args)
   local rhs
   if vs_args ~= nil then
     -- <Cmd> call VSCodeNotifyVisual()<Cr> の後に <Esc> を追記することでコマンド実行後にノーマルモードに移行する
@@ -59,9 +111,9 @@ end
 ---@param vs_args? string vscode コマンドの引数
 ---@param opts? table オプション
 function M.keymapVsc(modeStr, lhs, cmd, vs_args, opts)
-  local _modes = getModesTableFromStr(modeStr)
-  local _rhs = getRhsFromVsCmd(cmd, vs_args)
-  local _opts = appendCommonOpts(opts)
+  local _modes = _getModesTableFromStr(modeStr)
+  local _rhs = _getRhsFromVsCmd(cmd, vs_args)
+  local _opts = _appendCommonOpts(opts)
 
   vim.keymap.set(_modes, lhs, _rhs, _opts)
 end
@@ -73,9 +125,9 @@ end
 ---@param vs_args? string vscode コマンドの引数
 ---@param opts? table オプション
 function M.keymapVscVisual(modeStr, lhs, cmd, vs_args, opts)
-  local _modes = getModesTableFromStr(modeStr)
-  local _rhs = getRhsFromVsVisualCmd(cmd, vs_args)
-  local _opts = appendCommonOpts(opts)
+  local _modes = _getModesTableFromStr(modeStr)
+  local _rhs = _getRhsFromVsVisualCmd(cmd, vs_args)
+  local _opts = _appendCommonOpts(opts)
 
   vim.keymap.set(_modes, lhs, _rhs, _opts)
 end

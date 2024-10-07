@@ -4,6 +4,7 @@ vim.keymap.set({ "n" }, "gh", "")
 
 -- Normal Mode の Enter で改行
 vim.keymap.set({ "n" }, "<CR>", "o<ESC>")
+vim.keymap.set({ "n" }, "<S-CR>", "O<ESC>")
 -- Visual Mode の yank 時にカーソル位置を記憶
 vim.keymap.set({ "x" }, "y", "mzy`z")
 -- Visual Mode のインデント調整後に Visual Mode を維持
@@ -22,8 +23,8 @@ end
 
 -- vscode
 if vim.g.vscode then
-  local keymapVsc = require("utils.setKeymap").keymapVsc
-  local keymapVscVisual = require("utils.setKeymap").keymapVscVisual
+  local keymapVsc = require("r-okm.util").keymapVsc
+  local keymapVscVisual = require("r-okm.util").keymapVscVisual
 
   -- save
   keymapVsc("n", "<Space>s", "workbench.action.files.save")

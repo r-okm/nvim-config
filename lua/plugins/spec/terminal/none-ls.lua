@@ -1,7 +1,6 @@
 return {
   "nvimtools/none-ls.nvim",
   dependencies = {
-    { "jay-babu/mason-null-ls.nvim" },
     { "davidmh/cspell.nvim" },
     { "Joakker/lua-json5", name = "json5", build = "./install.sh" },
   },

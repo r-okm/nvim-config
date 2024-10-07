@@ -1,4 +1,4 @@
-local getVisualSelection = require("utils.buffer").getVisualSelection
+local getVisualSelection = require("r-okm.util").getVisualSelection
 
 return {
   "nvim-telescope/telescope.nvim",

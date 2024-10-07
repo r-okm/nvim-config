@@ -1,3 +1,9 @@
+-- LspAttach
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("r-okm.LspAttach", {}),
+  callback = require("r-okm.lsp.handler").on_lsp_attach,
+})
+
 -- terminal モードで nonumber
 vim.api.nvim_create_autocmd("TermOpen", {
   pattern = "*",
@@ -8,7 +14,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end,
 })
 
-local session_file_name = require("utils.const").SESSION_FILE_NAME
+local session_file_name = require("r-okm.types.const").SESSION_FILE_NAME
 
 -- セッションファイルを指定して neovim 起動時にセッションファイルを読み込む
 vim.api.nvim_create_autocmd("VimEnter", {

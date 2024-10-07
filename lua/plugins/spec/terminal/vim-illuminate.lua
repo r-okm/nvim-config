@@ -1,4 +1,4 @@
-local const = require("utils.const")
+local const = require("r-okm.types.const")
 
 return {
   "RRethy/vim-illuminate",
