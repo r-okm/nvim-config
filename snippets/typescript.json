@@ -2,7 +2,7 @@
   "console.log": {
     "prefix": "clg",
     "body": [
-      "console.log(\"$1:\", $0)"
+      "console.log($0)"
     ]
   },
   "import": {
@@ -12,7 +12,7 @@
     ]
   },
   "useEffect": {
-    "prefix": "usef",
+    "prefix": "usf",
     "body": [
       "useEffect(() => {",
       "  $0",
