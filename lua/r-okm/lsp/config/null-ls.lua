@@ -1,5 +1,6 @@
+local SERVER_NAME = "null-ls"
+local default_config = require("r-okm.lsp.config").get_default_config(SERVER_NAME)
 local deep_table_concat = require("r-okm.util").deep_table_concat
-local default_config = require("r-okm.lsp.config").get_default_config("null-ls")
 
 local null_ls_ft_configs = {
   ["css"] = {
@@ -48,25 +49,25 @@ return deep_table_concat(default_config, {
   -- null-ls は lspconfig.setup で設定しない
   setup_args = {},
   buffer_config = {
-  format_enable = function(bufnr)
-    local result = false
-    for ft, config in pairs(null_ls_ft_configs) do
-      if vim.bo[bufnr].filetype == ft then
-        result = config.format_enable
-        break
+    format_enable = function(bufnr)
+      local result = false
+      for ft, config in pairs(null_ls_ft_configs) do
+        if vim.bo[bufnr].filetype == ft then
+          result = config.format_enable
+          break
+        end
       end
-    end
-    return result
-  end,
-  buf_write_pre_enable = function(bufnr)
-    local result = false
-    for ft, config in pairs(null_ls_ft_configs) do
-      if vim.bo[bufnr].filetype == ft then
-        result = config.buf_write_pre_enable
-        break
+      return result
+    end,
+    buf_write_pre_enable = function(bufnr)
+      local result = false
+      for ft, config in pairs(null_ls_ft_configs) do
+        if vim.bo[bufnr].filetype == ft then
+          result = config.buf_write_pre_enable
+          break
+        end
       end
-    end
-    return result
-  end,
+      return result
+    end,
   },
 })

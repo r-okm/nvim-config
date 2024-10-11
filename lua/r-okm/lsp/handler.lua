@@ -4,34 +4,26 @@ local M = {}
 function M.setup_nvim_lspconfig()
   require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
-  local configured_servers = {
-    "bashls",
-    "cssls",
-    "docker_compose_language_service",
-    "dockerls",
-    "eslint",
-    "jdtls",
-    "jsonls",
-    "lemminx",
-    "lua_ls",
-    "rust_analyzer",
-    "sqls",
-    "vtsls",
-    "yamlls",
-  }
-
-  for _, server_name in ipairs(configured_servers) do
-    -- null-ls は lspconfig.setup で設定しない
-    if server_name ~= "null-ls" then
-      local module_name = "r-okm.lsp.config." .. server_name
-      local ok, config = pcall(require, module_name)
-      if not ok then
-        vim.notify("[r-okm.lsp.handler] Failed to load config " .. module_name, vim.log.levels.ERROR)
-        return
-      end
-      require("lspconfig")[server_name].setup(config.setup_args)
+  local LSP_CONFIG_MODULE = "r-okm.lsp.config"
+  require("lazy.core.util").lsmod(LSP_CONFIG_MODULE, function(mod_name, _)
+    if mod_name == LSP_CONFIG_MODULE then
+      return
     end
-  end
+
+    local server_name = mod_name:sub(LSP_CONFIG_MODULE:len() + 2)
+
+    -- null-ls は lspconfig.setup で設定しない
+    if server_name == "null-ls" then
+      return
+    end
+
+    local ok, config = pcall(require, mod_name)
+    if not ok then
+      vim.notify("[r-okm.lsp.handler] Failed to load config " .. mod_name, vim.log.levels.ERROR)
+      return
+    end
+    require("lspconfig")[server_name].setup(config.setup_args)
+  end)
 end
 
 ---LspAttach イベントハンドラー.
