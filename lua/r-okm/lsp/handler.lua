@@ -1,6 +1,6 @@
 local M = {}
 
----各言語サーバーの nvim-lspconfig.setup をで実行する.
+---各言語サーバーの nvim-lspconfig.setup を実行する.
 function M.setup_nvim_lspconfig()
   require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
