@@ -26,18 +26,16 @@ return {
       English = "Translate the provided Japanese sentence into English.",
     }
     for prompt_title, config in pairs(default_config.prompts) do
-      config.prompt = config.prompt .. additional_prompt
       prompts[prompt_title] = config
+      prompts[prompt_title].prompt = config.prompt .. additional_prompt
     end
 
-    prompts.CommitStaged.prompt = prompts.CommitStaged.prompt
-      .. "* コードの変更内容は箇条書きで記述する"
     prompts.Review.callback = function(_, _)
       -- highlight を無効にするため、何もしない
       -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/362#issuecomment-2241158016
     end
     prompts.CommitEditmsg = {
-      prompt = prompts.CommitStaged.prompt,
+      prompt = "Write commit message for the change with commitizen convention. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit.",
       selection = select.buffer,
     }
 
