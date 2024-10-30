@@ -45,14 +45,10 @@ for type, icon in pairs(signs) do
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 
-local function diagnostic_formatter(diagnostic)
-  return string.format("[%s] %s (%s)", diagnostic.message, diagnostic.source, diagnostic.code)
-end
 vim.diagnostic.config({
   virtual_text = false,
   severity_sort = true,
   underline = true,
   signs = true,
   update_in_insert = false,
-  float = { format = diagnostic_formatter },
 })

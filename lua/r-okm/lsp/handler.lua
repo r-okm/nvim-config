@@ -28,8 +28,6 @@ end
 
 ---LspAttach イベントハンドラー.
 function M.on_lsp_attach(args)
-  local tb = require("telescope.builtin")
-
   local bufnr = args.buf
   local client = vim.lsp.get_client_by_id(args.data.client_id)
 
@@ -57,13 +55,19 @@ function M.on_lsp_attach(args)
   end
 
   -- diagnostic
-  set_buf_key("n", "g.", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-  set_buf_key("n", "g,", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+  local tb = require("telescope.builtin")
+
+  set_buf_key("n", "g.", function()
+    vim.cmd("Lspsaga diagnostic_jump_next")
+  end)
+  set_buf_key("n", "g,", function()
+    vim.cmd("Lspsaga diagnostic_jump_prev")
+  end)
   set_buf_key("n", "gw", function()
     tb.diagnostics({ bufnr = 0 })
   end)
   set_buf_key("n", "gW", function()
-    tb.diagnostics({ bufnr = nil })
+    vim.cmd("Lspsaga show_workspace_diagnostics")
   end)
   -- code navigation
   set_buf_key("n", "gd", function()
@@ -80,12 +84,18 @@ function M.on_lsp_attach(args)
   end)
   -- hover document
   if client.supports_method("textDocument/hover") then
-    set_buf_key("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+    set_buf_key("n", "K", function()
+      vim.cmd("Lspsaga hover_doc")
+    end)
   end
   -- symbol rename
-  set_buf_key("n", "grn", "<cmd>Lspsaga rename<CR>")
+  set_buf_key("n", "grn", function()
+    vim.cmd("Lspsaga rename")
+  end)
   -- code action
-  set_buf_key({ "n", "v" }, "ga", "<cmd>Lspsaga code_action<CR>")
+  set_buf_key({ "n", "v" }, "ga", function()
+    vim.cmd("Lspsaga code_action")
+  end)
   -- format
   if format_enable then
     set_buf_key("n", "gf", format_callback)

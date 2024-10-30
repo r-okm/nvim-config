@@ -1,18 +1,19 @@
 return {
   "nvimdev/lspsaga.nvim",
   cmd = { "Lspsaga" },
-  config = function()
-    require("lspsaga").setup({
-      breadcrumbs = { enable = false },
-      lightbulb = { enable = false },
-      rename = {
-        in_select = false,
-      },
-      symbol_in_winbar = { enable = false },
-      ui = {
-        border = "rounded",
-        kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-      },
-    })
-  end,
+  opts = {
+    breadcrumbs = { enable = false },
+    code_action = {
+      show_server_name = true,
+      extend_gitsings = true,
+    },
+    lightbulb = { enable = false },
+    rename = {
+      in_select = false,
+    },
+    symbol_in_winbar = { enable = false },
+    ui = {
+      border = "rounded",
+    },
+  },
 }
