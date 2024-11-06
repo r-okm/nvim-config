@@ -26,6 +26,7 @@ return {
           },
           i = {
             ["<esc>"] = actions.close,
+            ["<C-p>"] = actions.cycle_history_prev,
           },
         },
         layout_config = {
