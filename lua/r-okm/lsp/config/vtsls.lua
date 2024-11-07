@@ -24,23 +24,11 @@ return deep_table_concat(default_config, {
       vim.keymap.set("n", "go", function()
         local vtsls = require("vtsls")
         vtsls.commands.add_missing_imports(bufnr)
-        vtsls.commands.organize_imports(bufnr)
       end, { buffer = bufnr })
     end,
   },
   buffer_config = {
     format_enable = false,
-    buf_write_pre_enable = true,
-    buf_write_pre_callback = function()
-      pcall(function()
-        vim.cmd("EslintFixAll")
-      end)
-      vim.lsp.buf.format({
-        async = false,
-        filter = function(format_client)
-          return format_client.name == "null-ls"
-        end,
-      })
-    end,
+    buf_write_pre_enable = false,
   },
 })

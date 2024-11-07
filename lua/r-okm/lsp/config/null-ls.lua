@@ -13,11 +13,11 @@ local null_ls_ft_configs = {
   },
   ["javascript"] = {
     format_enable = true,
-    buf_write_pre_enable = false,
+    buf_write_pre_enable = true,
   },
   ["javascriptreact"] = {
     format_enable = true,
-    buf_write_pre_enable = false,
+    buf_write_pre_enable = true,
   },
   ["json"] = {
     format_enable = true,
@@ -33,11 +33,11 @@ local null_ls_ft_configs = {
   },
   ["typescript"] = {
     format_enable = true,
-    buf_write_pre_enable = false,
+    buf_write_pre_enable = true,
   },
   ["typescriptreact"] = {
     format_enable = true,
-    buf_write_pre_enable = false,
+    buf_write_pre_enable = true,
   },
   ["yaml"] = {
     format_enable = true,
@@ -50,24 +50,24 @@ return deep_table_concat(default_config, {
   setup_args = {},
   buffer_config = {
     format_enable = function(bufnr)
-      local result = false
+      local enable = false
       for ft, config in pairs(null_ls_ft_configs) do
         if vim.bo[bufnr].filetype == ft then
-          result = config.format_enable
+          enable = config.format_enable
           break
         end
       end
-      return result
+      return enable
     end,
     buf_write_pre_enable = function(bufnr)
-      local result = false
+      local enable = false
       for ft, config in pairs(null_ls_ft_configs) do
         if vim.bo[bufnr].filetype == ft then
-          result = config.buf_write_pre_enable
+          enable = config.buf_write_pre_enable
           break
         end
       end
-      return result
+      return enable
     end,
   },
 })
