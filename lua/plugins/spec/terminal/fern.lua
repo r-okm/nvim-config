@@ -31,6 +31,9 @@ return {
         nmap <silent> <buffer> <C-v> <Plug>(fern-action-preview:auto:toggle)
         nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
         nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+
+        setlocal nonumber
+        setlocal norelativenumber
       endfunction
 
       augroup fern-custom
