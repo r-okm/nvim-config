@@ -1,7 +1,3 @@
-local SERVER_NAME = "null-ls"
-local default_config = require("r-okm.lsp.config").get_default_config(SERVER_NAME)
-local deep_table_concat = require("r-okm.util").deep_table_concat
-
 local null_ls_ft_configs = {
   ["css"] = {
     format_enable = true,
@@ -45,7 +41,7 @@ local null_ls_ft_configs = {
   },
 }
 
-return deep_table_concat(default_config, {
+return {
   -- null-ls は lspconfig.setup で設定しない
   setup_args = {},
   buffer_config = {
@@ -70,4 +66,4 @@ return deep_table_concat(default_config, {
       return enable
     end,
   },
-})
+}

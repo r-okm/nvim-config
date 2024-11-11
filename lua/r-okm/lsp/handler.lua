@@ -1,29 +1,18 @@
 local M = {}
 
+local _lsp_configs = require("r-okm.lsp.config")
+
 ---各言語サーバーの nvim-lspconfig.setup を実行する.
 function M.setup_nvim_lspconfig()
   require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
-  local LSP_CONFIG_MODULE = "r-okm.lsp.config"
-  require("lazy.core.util").lsmod(LSP_CONFIG_MODULE, function(mod_name, _)
-    if mod_name == LSP_CONFIG_MODULE then
-      return
-    end
-
-    local server_name = mod_name:sub(LSP_CONFIG_MODULE:len() + 2)
-
-    -- null-ls は lspconfig.setup で設定しない
+  for server_name, config in pairs(_lsp_configs) do
     if server_name == "null-ls" then
-      return
-    end
-
-    local ok, config = pcall(require, mod_name)
-    if not ok then
-      vim.notify("[r-okm.lsp.handler] Failed to load config " .. mod_name, vim.log.levels.ERROR)
-      return
+      goto continue
     end
     require("lspconfig")[server_name].setup(config.setup_args)
-  end)
+    ::continue::
+  end
 end
 
 ---LspAttach イベントハンドラー.
@@ -35,16 +24,9 @@ function M.on_lsp_attach(args)
     return
   end
 
-  local module_name = "r-okm.lsp.config." .. client.name
-  local ok, config = pcall(require, module_name)
-  if not ok then
-    vim.notify("[r-okm.lsp.handler] Failed to load config " .. module_name, vim.log.levels.ERROR)
-    return
-  end
+  local config = _lsp_configs[client.name]
 
   local bc = config.buffer_config
-  local format_callback = bc.format_callback
-  local buf_write_pre_callback = bc.buf_write_pre_callback
   local format_enable = type(bc.format_enable) == "function" and bc.format_enable(bufnr) or bc.format_enable
   local buf_write_pre_enable = type(bc.buf_write_pre_enable) == "function" and bc.buf_write_pre_enable(bufnr)
     or bc.buf_write_pre_enable
@@ -98,13 +80,13 @@ function M.on_lsp_attach(args)
   end)
   -- format
   if format_enable then
-    set_buf_key("n", "gf", format_callback)
+    set_buf_key("n", "gf", config.buffer_config.format_callback)
   end
   if buf_write_pre_enable then
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("PreWrite" .. client.name .. bufnr, {}),
       buffer = bufnr,
-      callback = buf_write_pre_callback,
+      callback = config.buffer_config.buf_write_pre_callback,
     })
   end
 end

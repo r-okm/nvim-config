@@ -1,33 +1,5 @@
 local M = {}
 
----テーブルを再帰的に結合する.
----@param t1 table 上書きされるテーブル
----@param t2 table 上書きするテーブル
----@return table 結合されたテーブル
-function M.deep_table_concat(t1, t2)
-  local result = {}
-
-  -- t1の要素をresultにコピー
-  for k, v in pairs(t1) do
-    if type(v) == "table" and type(t2[k]) == "table" then
-      result[k] = M.deep_table_concat(v, t2[k])
-    else
-      result[k] = v
-    end
-  end
-
-  -- t2の要素をresultにコピー
-  for k, v in pairs(t2) do
-    if type(v) == "table" and type(result[k]) == "table" then
-      result[k] = M.deep_table_concat(result[k], v)
-    else
-      result[k] = v
-    end
-  end
-
-  return result
-end
-
 ---通常 visual モード時の選択範囲のテキストを取得する
 ---@return string|nil selected_text 選択範囲のテキスト
 function M.getVisualSelection()
