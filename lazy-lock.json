@@ -43,6 +43,7 @@
   "nvim-vtsls": { "branch": "main", "commit": "45c6dfea9f83a126e9bfc5dd63430562b3f8af16" },
   "nvim-web-devicons": { "branch": "master", "commit": "5b9067899ee6a2538891573500e8fd6ff008440f" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
+  "qfscope.nvim": { "branch": "main", "commit": "c858a51ffcb658a0d8f1b1a270338f1cc545558d" },
   "quick-scope": { "branch": "master", "commit": "472f1c9bcce2f9611dad473c0d945e2b32db1ff0" },
   "schemastore.nvim": { "branch": "main", "commit": "ce624332e6ba5a9a0c8f311a114ac179c5e72f62" },
   "sqls.nvim": { "branch": "main", "commit": "4b1274b5b44c48ce784aac23747192f5d9d26207" },

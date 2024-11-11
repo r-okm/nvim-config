@@ -6,6 +6,7 @@ return {
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-tree/nvim-web-devicons" },
+    { "atusy/qfscope.nvim" },
   },
   keys = {
     { "zp", mode = { "n" } },
@@ -17,6 +18,7 @@ return {
     local actions = require("telescope.actions")
     local builtin = require("telescope.builtin")
     local previewers = require("telescope.previewers")
+    local qfs_actions = require("qfscope.actions")
 
     telescope.setup({
       defaults = {
@@ -27,6 +29,10 @@ return {
           i = {
             ["<esc>"] = actions.close,
             ["<C-p>"] = actions.cycle_history_prev,
+            ["<C-G><C-G>"] = qfs_actions.qfscope_search_filename,
+            ["<C-G><C-F>"] = qfs_actions.qfscope_grep_filename,
+            ["<C-G><C-L>"] = qfs_actions.qfscope_grep_line,
+            ["<C-G><C-T>"] = qfs_actions.qfscope_grep_text,
           },
         },
         layout_config = {
