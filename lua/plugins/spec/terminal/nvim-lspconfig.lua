@@ -1,5 +1,5 @@
 return {
-  "r-okm/nvim-lspconfig",
+  "neovim/nvim-lspconfig",
   branch = "master",
   dependencies = {
     { "yioneko/nvim-vtsls" },
