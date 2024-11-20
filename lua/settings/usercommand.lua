@@ -12,18 +12,3 @@ local function printPlugins()
 end
 vim.api.nvim_create_user_command("PrintPlugins", printPlugins, {})
 vim.keymap.set("ca", "PP", "PrintPlugins")
-
--- セッションを読み込む
-local function sessionLoad()
-  vim.cmd("source " .. require("r-okm.types.const").SESSION_FILE_NAME)
-  SessionLoaded = true
-end
-vim.api.nvim_create_user_command("SessionLoad", sessionLoad, {})
-vim.keymap.set("ca", "sl", "SessionLoad")
-
--- セッションを保存する
-local function sessionSave()
-  vim.cmd("mksession! " .. require("r-okm.types.const").SESSION_FILE_NAME)
-end
-vim.api.nvim_create_user_command("SessionSave", sessionSave, {})
-vim.keymap.set("ca", "ss", "SessionSave")

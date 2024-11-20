@@ -1,7 +1,8 @@
 return {
   "akinsho/bufferline.nvim",
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    { "nvim-tree/nvim-web-devicons" },
+    { "famiu/bufdelete.nvim" },
   },
   event = { "BufReadPost" },
   init = function()
