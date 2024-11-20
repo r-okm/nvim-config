@@ -1,5 +1,29 @@
+local request = require("r-okm.lsp.request")
+
 return {
   setup_args = {
+    commands = {
+      EslintTestSync = {
+        function()
+          request.execute_command({
+            command = "eslint.applyAllFixes",
+            client = "eslint",
+            sync = true,
+          })
+        end,
+        description = "Run eslint --fix on the current buffer",
+      },
+      EslintTestAsync = {
+        function()
+          request.execute_command({
+            command = "eslint.applyAllFixes",
+            client = "eslint",
+            sync = false,
+          })
+        end,
+        description = "Run eslint --fix on the current buffer",
+      },
+    },
     on_attach = function(_, bufnr)
       vim.keymap.set("n", "ge", function()
         vim.cmd.EslintFixAllAsync()
