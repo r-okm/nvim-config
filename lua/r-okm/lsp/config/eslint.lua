@@ -3,7 +3,7 @@ local request = require("r-okm.lsp.request")
 return {
   setup_args = {
     commands = {
-      EslintTestSync = {
+      EslintFixAllSync = {
         function()
           request.execute_command({
             command = "eslint.applyAllFixes",
@@ -13,7 +13,7 @@ return {
         end,
         description = "Run eslint --fix on the current buffer",
       },
-      EslintTestAsync = {
+      EslintFixAllAsync = {
         function()
           request.execute_command({
             command = "eslint.applyAllFixes",

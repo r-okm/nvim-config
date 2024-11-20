@@ -9,6 +9,32 @@ local function _validate_bufnr(bufnr)
   return require("lspconfig.util").validate_bufnr(bufnr)
 end
 
+local function _default_code_action_handler(err, actions, ctx, config)
+  config = config or {}
+  if err then
+    error(err)
+  end
+  if not actions or #actions == 0 then
+    return
+  end
+
+  local function on_action(action)
+    if not action then
+      return
+    end
+    local client = vim.lsp.get_client_by_id(ctx.client_id)
+    if action.edit then
+      vim.lsp.util.apply_workspace_edit(action.edit, client.offset_encoding)
+    else
+      client.request("codeAction/resolve", action, _default_code_action_handler, ctx.bufnr)
+    end
+  end
+
+  if #actions == 1 then
+    on_action(actions[1])
+  end
+end
+
 --- send `textDocument/codeAction` request to LSP server
 --- @param opts CodeActionOpts options
 function M.code_action(opts)
@@ -18,6 +44,10 @@ function M.code_action(opts)
 
   if type(kinds) == "string" then
     kinds = { kinds }
+  end
+
+  if type(client) == "string" then
+    client = _get_active_client_by_name(bufnr, client)
   end
 
   local text_document = vim.lsp.util.make_text_document_params(bufnr)
@@ -44,6 +74,7 @@ function M.code_action(opts)
     }
   end, diagnostics)
 
+  bufnr = _validate_bufnr(bufnr)
   client.request("textDocument/codeAction", {
     textDocument = text_document,
     range = {
@@ -61,7 +92,7 @@ function M.code_action(opts)
       triggerKind = 1, -- vim.lsp.protocol.CodeActionTriggerKind.Invoked
       diagnostics = lsp_diagnostics,
     },
-  }, bufnr)
+  }, _default_code_action_handler, bufnr)
 end
 
 --- send `workspace/executeCommand` request to LSP server

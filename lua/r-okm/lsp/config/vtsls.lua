@@ -1,3 +1,5 @@
+local request = require("r-okm.lsp.request")
+
 return {
   setup_args = {
     settings = {
@@ -20,6 +22,20 @@ return {
       vim.keymap.set("n", "go", function()
         local vtsls = require("vtsls")
         vtsls.commands.add_missing_imports(bufnr)
+      end, { buffer = bufnr })
+      vim.keymap.set("n", "gO", function()
+        --[[ request.code_action({
+          kinds = { "source.addMissingImports.ts" },
+          sync = true,
+          client = "vtsls",
+          bufnr = bufnr,
+        }) ]]
+        request.code_action({
+          kinds = { "source.organizeImports" },
+          sync = true,
+          client = "vtsls",
+          bufnr = bufnr,
+        })
       end, { buffer = bufnr })
     end,
   },
