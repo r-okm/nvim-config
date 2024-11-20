@@ -1,3 +1,5 @@
+local vtsls = require("vtsls")
+
 return {
   setup_args = {
     settings = {
@@ -18,7 +20,10 @@ return {
     },
     on_attach = function(_, bufnr)
       vim.keymap.set("n", "go", function()
-        local vtsls = require("vtsls")
+        vtsls.commands.organize_imports(bufnr)
+      end, { buffer = bufnr })
+      vim.keymap.set("n", "ge", function()
+        vim.cmd.EslintFixAll()
         vtsls.commands.add_missing_imports(bufnr)
       end, { buffer = bufnr })
     end,
