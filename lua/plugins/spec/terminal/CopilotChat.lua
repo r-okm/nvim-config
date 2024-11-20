@@ -48,6 +48,7 @@ return {
           insert = "<S-Tab>",
         },
       },
+      log_level = "warn",
     })
 
     vim.keymap.set({ "n" }, "zu", function()
