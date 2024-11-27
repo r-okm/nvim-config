@@ -10,10 +10,16 @@ return {
       chunk = {
         enable = true,
         use_treesitter = true,
+        exclude_filetypes = {
+          dockerfile = true,
+        },
       },
       indent = {
         enable = true,
         use_treesitter = true,
+        exclude_filetypes = {
+          dockerfile = true,
+        },
       },
       line_num = {
         enable = false,
