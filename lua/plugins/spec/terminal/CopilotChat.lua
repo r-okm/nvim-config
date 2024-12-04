@@ -5,7 +5,7 @@ return {
     "nvim-lua/plenary.nvim",
     "github/copilot.vim",
   },
-  branch = "canary",
+  branch = "main",
   cond = os.getenv("GITHUB_COPILOT_ENABLED") == "1",
   config = function()
     local chat = require("CopilotChat")
