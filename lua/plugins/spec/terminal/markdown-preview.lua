@@ -1,8 +1,6 @@
 return {
   "iamcco/markdown-preview.nvim",
-  build = function()
-    vim.fn["mkdp#util#install"]()
-  end,
+  build = "cd app && yarn install --frozen-lockfile",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { "markdown" },
   init = function()
