@@ -25,3 +25,5 @@ require("lazy").setup({
     missing = false,
   },
 })
+
+vim.keymap.set("ca", "lz", "Lazy")
