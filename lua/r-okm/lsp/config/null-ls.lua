@@ -8,12 +8,12 @@ local null_ls_ft_configs = {
     buf_write_pre_enable = true,
   },
   ["javascript"] = {
-    format_enable = true,
-    buf_write_pre_enable = true,
+    format_enable = false,
+    buf_write_pre_enable = false,
   },
   ["javascriptreact"] = {
-    format_enable = true,
-    buf_write_pre_enable = true,
+    format_enable = false,
+    buf_write_pre_enable = false,
   },
   ["json"] = {
     format_enable = true,
@@ -28,12 +28,12 @@ local null_ls_ft_configs = {
     buf_write_pre_enable = true,
   },
   ["typescript"] = {
-    format_enable = true,
-    buf_write_pre_enable = true,
+    format_enable = false,
+    buf_write_pre_enable = false,
   },
   ["typescriptreact"] = {
-    format_enable = true,
-    buf_write_pre_enable = true,
+    format_enable = false,
+    buf_write_pre_enable = false,
   },
   ["yaml"] = {
     format_enable = true,
