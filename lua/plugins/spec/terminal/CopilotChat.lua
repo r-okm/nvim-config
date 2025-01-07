@@ -8,6 +8,9 @@ return {
   branch = "main",
   cond = os.getenv("GITHUB_COPILOT_ENABLED") == "1",
   event = { "BufReadPost" },
+  keys = {
+    { "zu", mode = { "n" } },
+  },
   config = function()
     local chat = require("CopilotChat")
     local select = require("CopilotChat.select")
