@@ -1,15 +1,14 @@
 return {
   "j-hui/fidget.nvim",
-  init = function()
-    require("fidget").setup({
-      progress = {
-        ignore = { "null-ls" },
+  event = { "BufReadPost" },
+  opts = {
+    progress = {
+      ignore = { "null-ls" },
+    },
+    notification = {
+      window = {
+        winblend = 0,
       },
-      notification = {
-        window = {
-          winblend = 0,
-        },
-      },
-    })
-  end,
+    },
+  },
 }

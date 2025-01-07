@@ -1,7 +1,7 @@
 return {
   "luukvbaal/statuscol.nvim",
+  event = { "BufReadPre" },
   config = function()
-    local builtin = require("statuscol.builtin")
     require("statuscol").setup({
       bt_ignore = { "terminal", "nofile", "fern" },
 
@@ -22,7 +22,7 @@ return {
           },
         },
         { text = { " " } },
-        { text = { builtin.lnumfunc } },
+        { text = { require("statuscol.builtin").lnumfunc } },
         { text = { " " } },
       },
     })

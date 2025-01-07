@@ -1,8 +1,8 @@
 return {
   "ggandor/leap.nvim",
-  init = function()
-    vim.keymap.set({ "n", "x", "o" }, "m", "<Plug>(leap)")
-  end,
+  keys = {
+    { "m", "<Plug>(leap)", mode = { "n", "x", "o" } },
+  },
   config = function()
     local leap = require("leap")
     leap.opts.safe_labels = {}

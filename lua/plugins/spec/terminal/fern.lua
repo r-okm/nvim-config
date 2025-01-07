@@ -6,7 +6,6 @@ return {
     "yuki-yano/fern-preview.vim",
     "lambdalisue/fern-hijack.vim",
   },
-  event = { "CmdlineEnter", "BufReadPost" },
   keys = {
     { "<Space>e", mode = { "n" } },
   },

@@ -1,7 +1,7 @@
 return {
   "tyru/columnskip.vim",
-  init = function()
-    vim.keymap.set({ "n", "x", "o" }, "zj", "<Plug>(columnskip:nonblank:next)")
-    vim.keymap.set({ "n", "x", "o" }, "zk", "<Plug>(columnskip:nonblank:prev)")
-  end,
+  keys = {
+    { "zj", "<Plug>(columnskip:nonblank:next)", mode = { "n", "x", "o" } },
+    { "zk", "<Plug>(columnskip:nonblank:prev)", mode = { "n", "x", "o" } },
+  },
 }

@@ -4,7 +4,7 @@ return {
     { "nvim-tree/nvim-web-devicons" },
     { "famiu/bufdelete.nvim" },
   },
-  event = { "BufReadPost" },
+  event = { "BufReadPre" },
   init = function()
     vim.opt.sessionoptions:append("globals")
   end,

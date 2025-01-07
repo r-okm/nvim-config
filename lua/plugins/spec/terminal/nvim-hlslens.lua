@@ -6,14 +6,12 @@ return {
     { "n", mode = { "n" } },
     { "N", mode = { "n" } },
   },
-  init = function()
+  config = function()
     require("hlslens").setup({
       calm_down = true,
       nearest_only = true,
       nearest_float_when = "never",
     })
-  end,
-  config = function()
     vim.keymap.set({ "n", "x" }, "*", [[<Plug>(asterisk-gz*)<Cmd>lua require("hlslens").start()<CR>]])
     vim.keymap.set(
       { "n" },

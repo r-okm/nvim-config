@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
   },
-  event = { "UIEnter" },
+  event = { "BufReadPre" },
   config = function()
     require("hlchunk").setup({
       chunk = {
