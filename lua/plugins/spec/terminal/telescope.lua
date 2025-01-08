@@ -3,7 +3,7 @@ local getVisualSelection = require("r-okm.util").getVisualSelection
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    { "nvim-lua/plenary.nvim" },
+    { "nvim-lua/plenary.nvim", branch = "master" },
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-tree/nvim-web-devicons" },
     { "atusy/qfscope.nvim" },

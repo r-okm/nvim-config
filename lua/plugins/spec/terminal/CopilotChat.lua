@@ -1,9 +1,9 @@
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   dependencies = {
-    "nvim-telescope/telescope.nvim",
-    "nvim-lua/plenary.nvim",
-    "github/copilot.vim",
+    { "nvim-telescope/telescope.nvim" },
+    { "nvim-lua/plenary.nvim", branch = "master" },
+    { "github/copilot.vim" },
   },
   branch = "main",
   cond = os.getenv("GITHUB_COPILOT_ENABLED") == "1",
