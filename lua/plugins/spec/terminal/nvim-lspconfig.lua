@@ -7,7 +7,7 @@ return {
     { "mfussenegger/nvim-jdtls" }, -- ftplugin/java で使用
     { "nanotee/sqls.nvim" },
   },
-  event = { "BufReadPost" },
+  lazy = false,
   config = function()
     require("r-okm.lsp.handler").setup_nvim_lspconfig()
   end,

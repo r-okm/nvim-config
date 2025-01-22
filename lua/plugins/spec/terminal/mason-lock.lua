@@ -1,5 +1,5 @@
 return {
   "r-okm/mason-lock.nvim",
-  event = { "VeryLazy" },
+  lazy = false,
   opts = {},
 }
