@@ -2,13 +2,14 @@ return {
   "hrsh7th/nvim-cmp",
   branch = "main",
   dependencies = {
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-path",
-    "hrsh7th/vim-vsnip",
-    "hrsh7th/cmp-vsnip",
-    "hrsh7th/cmp-nvim-lua",
+    { "hrsh7th/cmp-buffer" },
+    { "hrsh7th/cmp-cmdline" },
+    { "hrsh7th/cmp-nvim-lsp" },
+    { "hrsh7th/cmp-path" },
+    { "hrsh7th/vim-vsnip" },
+    { "hrsh7th/cmp-vsnip" },
+    { "hrsh7th/cmp-nvim-lua" },
+    { "rinx/cmp-skkeleton" },
   },
   event = { "CmdlineEnter", "InsertEnter" },
   config = function()
@@ -24,6 +25,8 @@ return {
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "vsnip" },
+      }, {
+        { name = "skkeleton" },
       }, {
         { name = "buffer" },
       }),
@@ -47,6 +50,8 @@ return {
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
+        { name = "skkeleton" },
+      }, {
         { name = "buffer" },
       }),
     })
@@ -57,20 +62,17 @@ return {
         { name = "path" },
       }, {
         { name = "cmdline" },
+      }, {
+        { name = "skkeleton" },
       }),
     })
 
-    vim.cmd([[
-      " Jump forward or backward
-      imap <expr> <C-j>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
-      smap <expr> <C-j>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-j>'
-      imap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
-      smap <expr> <C-k> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-k>'
-      let g:vsnip_snippet_dir = '$HOME/.config/nvim/snippets'
-      " If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
-      let g:vsnip_filetypes = {}
-      let g:vsnip_filetypes.javascriptreact = ['javascript']
-      let g:vsnip_filetypes.typescriptreact = ['typescript']
-    ]])
+    vim.keymap.set({ "i", "s" }, "<C-w>", "<Plug>(vsnip-jump-next)", { noremap = true })
+    vim.keymap.set({ "i", "s" }, "<C-b>", "<Plug>(vsnip-jump-prev)", { noremap = true })
+    vim.g["vsnip_snippet_dir"] = "$HOME/.config/nvim/snippets"
+    vim.g["vsnip_filetypes"] = {
+      javascriptreact = { "javascript" },
+      typescriptreact = { "typescript" },
+    }
   end,
 }
