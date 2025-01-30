@@ -12,6 +12,8 @@ return {
         use_treesitter = true,
         exclude_filetypes = {
           dockerfile = true,
+          gitcommit = true,
+          ["copilot-chat"] = true,
         },
       },
       indent = {
@@ -19,6 +21,8 @@ return {
         use_treesitter = true,
         exclude_filetypes = {
           dockerfile = true,
+          gitcommit = true,
+          ["copilot-chat"] = true,
         },
       },
       line_num = {
