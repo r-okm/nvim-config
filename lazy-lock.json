@@ -13,6 +13,8 @@
   "columnskip.vim": { "branch": "master", "commit": "1c7ec7a8ca9eea0cfe41ac3150904b5df9a4743d" },
   "copilot.vim": { "branch": "release", "commit": "87038123804796ca7af20d1b71c3428d858a9124" },
   "cspell.nvim": { "branch": "main", "commit": "be04e47348c04f89614d99cf73a7ce1165a2e3ec" },
+  "denops-shared-server.vim": { "branch": "main", "commit": "11ea193c2b52e9428efe094c12535713af5d6b9b" },
+  "denops.vim": { "branch": "main", "commit": "e3fd5039040e3061db3b951f4448c92cbbc3375e" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fidget.nvim": { "branch": "main", "commit": "9238947645ce17d96f30842e61ba81147185b657" },
   "flit.nvim": { "branch": "main", "commit": "1ef72de6a02458d31b10039372c8a15ab8989e0d" },
@@ -53,6 +55,8 @@
   "toggleterm.nvim": { "branch": "main", "commit": "50ea089fc548917cc3cc16b46a8211833b9e3c7c" },
   "vim-asterisk": { "branch": "master", "commit": "b10b7e589efe99445c9d4e917ac3f23e9d48a218" },
   "vim-illuminate": { "branch": "master", "commit": "5eeb7951fc630682c322e88a9bbdae5c224ff0aa" },
+  "vim-kensaku": { "branch": "main", "commit": "67727c8cc81f45b3c3abc600ecfef6fba620eb88" },
+  "vim-kensaku-command": { "branch": "main", "commit": "d14e13d67e53b597806951f7ccabc40fe6a574fb" },
   "vim-sandwich": { "branch": "master", "commit": "785fb39d79bb843b545f1d8a9265bd8f2e2285f8" },
   "vim-vsnip": { "branch": "master", "commit": "02a8e79295c9733434aab4e0e2b8c4b7cea9f3a9" },
   "wb-only-current-line.nvim": { "branch": "main", "commit": "7580a58ee6b9df554e274ac7fc64b077cd3fb0f4" }
