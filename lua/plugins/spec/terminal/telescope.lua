@@ -28,7 +28,6 @@ return {
           },
           i = {
             ["<esc>"] = actions.close,
-            ["<C-p>"] = actions.cycle_history_prev,
             ["<C-G><C-G>"] = qfs_actions.qfscope_search_filename,
             ["<C-G><C-F>"] = qfs_actions.qfscope_grep_filename,
             ["<C-G><C-L>"] = qfs_actions.qfscope_grep_line,
