@@ -26,8 +26,6 @@ return {
         { name = "nvim_lsp" },
         { name = "vsnip" },
       }, {
-        { name = "skkeleton" },
-      }, {
         { name = "buffer" },
       }),
       mapping = cmp.mapping.preset.insert({
@@ -50,8 +48,6 @@ return {
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = cmp.config.sources({
-        { name = "skkeleton" },
-      }, {
         { name = "buffer" },
       }),
     })
@@ -62,8 +58,6 @@ return {
         { name = "path" },
       }, {
         { name = "cmdline" },
-      }, {
-        { name = "skkeleton" },
       }),
     })
 

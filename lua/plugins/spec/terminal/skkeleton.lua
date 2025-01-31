@@ -5,6 +5,7 @@ return {
     { "skk-dev/dict", lazy = true },
     { "delphinus/skkeleton_indicator.nvim", opts = {} },
   },
+  cond = false,
   lazy = false,
   init = function()
     vim.api.nvim_create_autocmd({ "User" }, {
