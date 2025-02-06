@@ -62,11 +62,8 @@ if vim.g.vscode then
   -- find_files
   keymapVsc("n", "zf", "workbench.action.findInFiles")
 else
-  vim.keymap.set({ "n" }, "<C-q>", "<C-w>w")
+  vim.keymap.set({ "n" }, "<C-j>", "<C-w>w")
 
   vim.keymap.set({ "n" }, "<Space>s", ":<C-u>write<CR>", { silent = true })
   vim.keymap.set({ "n" }, "<Space>S", ":<C-u>noa write<CR>", { silent = true })
-  -- terminal-job モードへ切り替える
-  vim.keymap.set({ "t" }, "<C-k><C-n>", "<C-\\><C-n>", { silent = true })
-  vim.keymap.set({ "n" }, "<C-k><C-n>", ":<C-u>terminal<CR>", { silent = true })
 end
