@@ -26,5 +26,13 @@ return {
       close_on_exit = true,
       auto_scroll = true,
     })
+    local function set_terminal_keymaps()
+      local opts = { buffer = 0 }
+      vim.keymap.set("t", [[<C-\>]], [[<C-\><C-n>]], opts)
+    end
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "term://*",
+      callback = set_terminal_keymaps,
+    })
   end,
 }
