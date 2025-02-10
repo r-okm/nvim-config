@@ -11,12 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local notVscode = not vim.g.vscode
 require("lazy").setup({
   spec = {
-    { import = "plugins.spec.terminal", cond = notVscode },
-    { import = "plugins.spec.theme", cond = notVscode },
-    { import = "plugins.spec.vscode" },
+    { import = "plugins.spec.core" },
+    { import = "plugins.spec.theme" },
   },
   defaults = {
     version = "*",
