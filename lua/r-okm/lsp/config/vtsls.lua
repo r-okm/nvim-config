@@ -23,7 +23,7 @@ return {
         vtsls.commands.organize_imports(bufnr)
       end, { buffer = bufnr })
       vim.keymap.set("n", "ge", function()
-        vim.cmd.EslintFixAll()
+        pcall(vim.cmd, "EslintFixAll")
         vtsls.commands.add_missing_imports(bufnr)
       end, { buffer = bufnr })
     end,
@@ -40,7 +40,7 @@ return {
       })
     end,
     buf_write_pre_callback = function()
-      vim.cmd.EslintFixAll()
+      pcall(vim.cmd, "EslintFixAll")
       vim.lsp.buf.format({
         async = false,
         filter = function(format_client)
