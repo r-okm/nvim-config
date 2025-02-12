@@ -15,7 +15,7 @@ return {
     local chat = require("CopilotChat")
     local select = require("CopilotChat.select")
     local actions = require("CopilotChat.actions")
-    local default_config = require("CopilotChat.config")
+    local default_prompts = require("CopilotChat.config.prompts")
     local telescope = require("CopilotChat.integrations.telescope")
 
     local additional_prompt = [[ Your answer must be JAPANESE.
@@ -29,9 +29,11 @@ return {
       Japanese = "Translate the provided English sentence into Japanese.",
       English = "Translate the provided Japanese sentence into English.",
     }
-    for prompt_title, config in pairs(default_config.prompts) do
+    for prompt_title, config in pairs(default_prompts) do
       prompts[prompt_title] = config
-      prompts[prompt_title].prompt = config.prompt .. additional_prompt
+      if config.prompt ~= nil then
+        prompts[prompt_title].prompt = config.prompt .. additional_prompt
+      end
     end
 
     prompts.Review.callback = function(_, _)
