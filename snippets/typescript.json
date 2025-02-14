@@ -40,5 +40,11 @@
     "body": [
       "const [$1, set${1/(.*)/${1:/capitalize}/}] = useState($0)"
     ]
+  },
+  "const { }": {
+    "prefix": "co",
+    "body": [
+      "const { $0 } = $1"
+    ]
   }
 }
