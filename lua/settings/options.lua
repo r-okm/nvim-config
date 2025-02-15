@@ -18,8 +18,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.splitright = true
 
 -- os のクリップボードと同期
-local yank_command = "xclip -selection clipboard"
-local paste_command = "xclip -selection clipboard -out"
+local yank_command = "clipboard --yank"
+local paste_command = "clipboard --put"
 vim.g.clipboard = {
   name = "osClipboard",
   copy = {
