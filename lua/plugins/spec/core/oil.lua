@@ -22,12 +22,12 @@ return {
       },
     })
     vim.keymap.set({ "n" }, "<space>e", function()
-      oil.open_float(nil, {
+      oil.open(nil, {
         preview = { vertical = true },
       })
     end)
     vim.keymap.set({ "n" }, "<space>E", function()
-      oil.open_float()
+      oil.open()
     end)
     vim.keymap.set("ca", "os", "e oil-ssh://")
   end,
