@@ -10,7 +10,8 @@ return {
           url = "",
         },
         schemas = require("schemastore").yaml.schemas(),
-        customTags = {
+        -- CloudFormatino CustomTags
+        --[[ customTags = {
           "!Base64 scalar",
           "!Cidr scalar",
           "!And sequence",
@@ -30,7 +31,7 @@ return {
           "!Sub scalar",
           "!Transform mapping",
           "!Ref scalar",
-        },
+        }, ]]
       },
     },
   },
