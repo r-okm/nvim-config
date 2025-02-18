@@ -6,7 +6,6 @@ return {
     { "github/copilot.vim" },
   },
   branch = "main",
-  cond = os.getenv("GITHUB_COPILOT_ENABLED") == "1",
   event = { "BufReadPost" },
   keys = {
     { "zu", mode = { "n" } },

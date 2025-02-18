@@ -1,6 +1,5 @@
 return {
   "github/copilot.vim",
-  cond = os.getenv("GITHUB_COPILOT_ENABLED") == "1",
   event = { "BufReadPost", "CmdlineEnter" },
   config = function()
     vim.keymap.set({ "i" }, "<Tab>", "copilot#Accept('<Tab>')", {
