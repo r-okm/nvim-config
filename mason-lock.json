@@ -18,6 +18,7 @@
   "shfmt": "v3.10.0",
   "sqls": "v0.2.28",
   "stylua": "v2.0.2",
+  "taplo": "0.9.3",
   "terraform-ls": "v0.36.4",
   "vtsls": "0.2.8",
   "yaml-language-server": "1.16.0"
