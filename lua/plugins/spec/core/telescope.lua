@@ -28,6 +28,8 @@ return {
           },
           i = {
             ["<esc>"] = actions.close,
+            ["<C-o>"] = actions.cycle_history_prev,
+            ["<C-i>"] = actions.cycle_history_next,
             ["<C-G><C-G>"] = qfs_actions.qfscope_search_filename,
             ["<C-G><C-F>"] = qfs_actions.qfscope_grep_filename,
             ["<C-G><C-L>"] = qfs_actions.qfscope_grep_line,

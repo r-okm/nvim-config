@@ -4,7 +4,11 @@ return {
     { "junegunn/fzf" },
   },
   ft = { "qf" },
-  opts = {
-    auto_resize_height = true,
-  },
+  config = function()
+    require("bqf").setup({
+      func_map = {
+        vsplit = "",
+      },
+    })
+  end,
 }
