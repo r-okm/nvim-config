@@ -16,6 +16,7 @@ vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
 vim.opt.signcolumn = "yes"
 vim.opt.splitright = true
+vim.opt.swapfile = false
 
 -- os のクリップボードと同期
 local yank_command = "clipboard --yank"
