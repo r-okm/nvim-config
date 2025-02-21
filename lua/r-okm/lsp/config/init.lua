@@ -20,7 +20,10 @@ require("lazy.core.util").lsmod(_lsp_config_module, function(mod_name, _)
     return
   end
 
-  local server_name = mod_name:sub(_lsp_config_module:len() + 2)
+  -- 例) "r-okm.lsp.config.lua_ls" から "lua_ls" を取り出す
+  -- "r-okm.lsp.config" の文字列長 +2 番目からサーバ名が始まる
+  local DELIMITER_OFFSET = 2
+  local server_name = mod_name:sub(_lsp_config_module:len() + DELIMITER_OFFSET)
   local _, server_config = pcall(require, mod_name)
 
   local buffer_config = {

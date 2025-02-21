@@ -20,7 +20,7 @@ return {
     prompts.Japanese = "Translate the provided English sentence into Japanese."
     prompts.English = "Translate the provided Japanese sentence into English."
     prompts.CommitEditmsg = {
-      prompt = "Write commit message for the change. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Proper nouns should be enclosed in backquotes. Use bullet points for descrptions. Summay must begin with a simple topic name followed by a colon.",
+      prompt = "Write commit message for the change. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Proper nouns should be enclosed in backquotes. Use bullet points for descriptions. Summary must begin with a simple topic name followed by a colon.",
       selection = select.buffer,
     }
 
