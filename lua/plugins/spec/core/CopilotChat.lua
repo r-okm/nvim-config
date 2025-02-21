@@ -45,6 +45,7 @@ return {
     }
 
     chat.setup({
+      model = "o3-mini",
       prompts = prompts,
       mappings = {
         complete = {
