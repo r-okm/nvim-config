@@ -3,9 +3,10 @@ return {
   dependencies = {
     { "nvim-telescope/telescope.nvim" },
     { "nvim-lua/plenary.nvim", branch = "master" },
-    { "github/copilot.vim" },
+    { "zbirenbaum/copilot.lua" },
   },
   branch = "main",
+  build = "make tiktoken",
   event = { "BufReadPost" },
   keys = {
     { "zu", mode = { "n" } },
@@ -30,7 +31,7 @@ return {
     end
 
     chat.setup({
-      model = "o3-mini",
+      model = "claude-3.7-sonnet",
       prompts = prompts,
       question_header = "#  User ",
       answer_header = "#  Copilot ",

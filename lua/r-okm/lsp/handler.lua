@@ -20,7 +20,7 @@ function M.on_lsp_attach(args)
   local bufnr = args.buf
   local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-  if client.name == "GitHub Copilot" then
+  if client.name == "copilot" then
     return
   end
 

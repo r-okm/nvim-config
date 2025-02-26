@@ -1,12 +1,49 @@
 return {
-  "github/copilot.vim",
-  event = { "BufReadPost", "CmdlineEnter" },
+  "zbirenbaum/copilot.lua",
+  cmd = { "Copilot" },
+  event = { "InsertEnter" },
   config = function()
-    vim.keymap.set({ "i" }, "<Tab>", "copilot#Accept('<Tab>')", {
-      expr = true,
-      replace_keycodes = false,
+    require("copilot").setup({
+      panel = {
+        auto_refresh = true,
+        layout = {
+          position = "vertical",
+          ratio = 0.5,
+        },
+      },
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = false,
+          next = false,
+          prev = false,
+        },
+      },
     })
-    local cwd = vim.fn.getcwd()
-    vim.g.copilot_workspace_folders = { cwd }
+
+    -- disalbe when popup is visible
+    require("cmp").event:on("menu_opened", function()
+      vim.b.copilot_suggestion_hidden = true
+    end)
+    require("cmp").event:on("menu_closed", function()
+      vim.b.copilot_suggestion_hidden = false
+    end)
+
+    -- tab keymap
+    -- https://github.com/zbirenbaum/copilot.lua/issues/91#issuecomment-1345190310
+    local accept_or_feedkey = function(key)
+      if require("copilot.suggestion").is_visible() then
+        require("copilot.suggestion").accept()
+      else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, false, true), "n", false)
+      end
+    end
+    vim.keymap.set("i", "<Tab>", function()
+      accept_or_feedkey("<Tab>")
+    end, { noremap = true, silent = true })
+
+    vim.keymap.set("i", "<C-k>", function()
+      require("copilot.panel").open()
+    end, { noremap = true, silent = true })
   end,
 }

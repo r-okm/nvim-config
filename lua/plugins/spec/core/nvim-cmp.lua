@@ -9,7 +9,6 @@ return {
     { "hrsh7th/vim-vsnip" },
     { "hrsh7th/cmp-vsnip" },
     { "hrsh7th/cmp-nvim-lua" },
-    { "rinx/cmp-skkeleton" },
   },
   event = { "CmdlineEnter", "InsertEnter" },
   config = function()
