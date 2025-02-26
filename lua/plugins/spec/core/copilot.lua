@@ -5,6 +5,7 @@ return {
   config = function()
     require("copilot").setup({
       panel = {
+        enabled = false,
         auto_refresh = true,
         layout = {
           position = "vertical",
@@ -15,7 +16,7 @@ return {
         auto_trigger = true,
         keymap = {
           accept = false,
-          next = false,
+          next = "<C-k>",
           prev = false,
         },
       },
@@ -42,8 +43,8 @@ return {
       accept_or_feedkey("<Tab>")
     end, { noremap = true, silent = true })
 
-    vim.keymap.set("i", "<C-k>", function()
+    --[[ vim.keymap.set("i", "<C-k>", function()
       require("copilot.panel").open()
-    end, { noremap = true, silent = true })
+    end, { noremap = true, silent = true }) ]]
   end,
 }
