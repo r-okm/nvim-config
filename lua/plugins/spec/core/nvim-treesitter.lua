@@ -28,6 +28,7 @@ return {
         "markdown",
         "markdown_inline",
         "proto",
+        "python",
         "rust",
         "scss",
         "terraform",

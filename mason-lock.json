@@ -13,6 +13,7 @@
   "lua-language-server": "3.13.6",
   "markdownlint": "0.44.0",
   "prettierd": "0.26.1",
+  "pyright": "1.1.394",
   "rust-analyzer": "2025-02-24",
   "shellcheck": "v0.10.0",
   "shfmt": "v3.10.0",
