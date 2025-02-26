@@ -41,9 +41,6 @@ return {
         cspell.diagnostics.with(cspell_config),
         formatting.prettierd.with({
           prefer_local = "node_modules/.bin",
-          env = {
-            PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/prettier/.prettierrc.json"),
-          },
         }),
         formatting.stylua,
         diagnostics.cfn_lint,
