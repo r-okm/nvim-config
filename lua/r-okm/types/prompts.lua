@@ -11,7 +11,7 @@ Keep your answers short and impersonal.
 The user works in an IDE called Neovim which has a concept for editors with open files, integrated unit test support, an output pane that shows the output of running the code as well as an integrated terminal.
 The user is working on a %s machine. Please respond with system specific commands if applicable.
 
-Respond in Japansese.
+Respond in Japanese.
 ]],
   vim.uv.os_uname().sysname
 )
@@ -120,6 +120,57 @@ return {
 
   Review = {
     prompt = "> /COPILOT_REVIEW\n\nReview the selected code.",
+    callback = function(response, source)
+      local diagnostics = {}
+      for line in response:gmatch("[^\r\n]+") do
+        if line:find("^line=") then
+          local start_line = nil
+          local end_line = nil
+          local message = nil
+          local single_match, message_match = line:match("^line=(%d+): (.*)$")
+          if not single_match then
+            local start_match, end_match, m_message_match = line:match("^line=(%d+)-(%d+): (.*)$")
+            if start_match and end_match then
+              start_line = tonumber(start_match)
+              end_line = tonumber(end_match)
+              message = m_message_match
+            end
+          else
+            start_line = tonumber(single_match)
+            end_line = start_line
+            message = message_match
+          end
+
+          if start_line and end_line then
+            table.insert(diagnostics, {
+              lnum = start_line - 1,
+              end_lnum = end_line - 1,
+              col = 0,
+              message = message,
+              severity = vim.diagnostic.severity.WARN,
+              source = "Copilot Review",
+            })
+          end
+        end
+      end
+
+      local ns = vim.api.nvim_create_namespace("copilot-chat-diagnostics")
+      vim.diagnostic.set(ns, source.bufnr, diagnostics)
+
+      --- 診断（diagnostics）をリセットする
+      --- @param bufnr number|nil バッファ番号（nilの場合は現在のバッファ）
+      local function reset_diagnostics(bufnr)
+        bufnr = bufnr or vim.api.nvim_get_current_buf()
+        vim.diagnostic.reset(ns, bufnr)
+      end
+
+      -- CopilotChatResetDiagnostics ユーザーコマンドを作成
+      vim.api.nvim_create_user_command("CopilotChatResetDiagnostics", function()
+        reset_diagnostics(source.bufnr)
+      end, {
+        desc = "Reset Copilot Chat diagnostics for the current buffer",
+      })
+    end,
   },
 
   Fix = {
