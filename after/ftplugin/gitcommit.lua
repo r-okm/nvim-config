@@ -1,7 +1,7 @@
 local ok, _ = pcall(require, "CopilotChat")
 if ok then
   vim.schedule(function()
-    vim.cmd.CopilotChatCommitEditmsg()
+    vim.cmd.CopilotChatCommit()
   end)
   vim.api.nvim_create_autocmd("QuitPre", {
     command = "CopilotChatClose",

@@ -12,27 +12,13 @@ return {
     { "zu", mode = { "n" } },
   },
   config = function()
-    local chat = require("CopilotChat")
     local select = require("CopilotChat.select")
     local actions = require("CopilotChat.actions")
-    local prompts = require("CopilotChat.config.prompts")
     local telescope = require("CopilotChat.integrations.telescope")
 
-    prompts.Japanese = "Translate the provided English sentence into Japanese."
-    prompts.English = "Translate the provided Japanese sentence into English."
-    prompts.CommitEditmsg = {
-      prompt = "Write commit message for the change. Make sure the title has maximum 50 characters and message is wrapped at 72 characters. Wrap the whole message in code block with language gitcommit. Proper nouns should be enclosed in backquotes. Use bullet points for descriptions. Summary must begin with a simple topic name followed by a colon.",
-      selection = select.buffer,
-    }
-
-    prompts.Review.callback = function(_, _)
-      -- highlight を無効にするため、何もしない
-      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/issues/362#issuecomment-2241158016
-    end
-
-    chat.setup({
+    require("CopilotChat").setup({
       model = "claude-3.7-sonnet",
-      prompts = prompts,
+      prompts = require("r-okm.types.prompts"),
       question_header = "#  User ",
       answer_header = "#  Copilot ",
       error_header = "#  Error ",
