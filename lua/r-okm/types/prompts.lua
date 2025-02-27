@@ -122,6 +122,8 @@ return {
     prompt = "> /COPILOT_REVIEW\n\nReview the selected code.",
     callback = function(response, source)
       local diagnostics = {}
+      local ns = vim.api.nvim_create_namespace("copilot-chat-diagnostics")
+
       for line in response:gmatch("[^\r\n]+") do
         if line:find("^line=") then
           local start_line = nil
@@ -154,19 +156,11 @@ return {
         end
       end
 
-      local ns = vim.api.nvim_create_namespace("copilot-chat-diagnostics")
       vim.diagnostic.set(ns, source.bufnr, diagnostics)
 
-      --- 診断（diagnostics）をリセットする
-      --- @param bufnr number|nil バッファ番号（nilの場合は現在のバッファ）
-      local function reset_diagnostics(bufnr)
-        bufnr = bufnr or vim.api.nvim_get_current_buf()
-        vim.diagnostic.reset(ns, bufnr)
-      end
-
-      -- CopilotChatResetDiagnostics ユーザーコマンドを作成
+      -- 診断をリセットする関数と関連コマンドの定義
       vim.api.nvim_create_user_command("CopilotChatResetDiagnostics", function()
-        reset_diagnostics(source.bufnr)
+        vim.diagnostic.reset(ns, source.bufnr)
       end, {
         desc = "Reset Copilot Chat diagnostics for the current buffer",
       })
