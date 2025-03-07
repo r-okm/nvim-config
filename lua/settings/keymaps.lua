@@ -21,6 +21,7 @@ for _, quote in ipairs({ '"', "'", "`" }) do
   vim.keymap.set({ "x", "o" }, lhs, rhs, { noremap = true, silent = true })
 end
 
-vim.keymap.set({ "n" }, "<C-j>", "<C-w>w")
+vim.keymap.set({ "n" }, "gh", "<C-w>h")
+vim.keymap.set({ "n" }, "gl", "<C-w>l")
 vim.keymap.set({ "n" }, "<Space>s", ":<C-u>write<CR>", { silent = true })
 vim.keymap.set({ "n" }, "<Space>S", ":<C-u>noa write<CR>", { silent = true })
