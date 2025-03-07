@@ -40,7 +40,6 @@ return {
       })
     end,
     buf_write_pre_callback = function()
-      pcall(vim.cmd, "EslintFixAll")
       vim.lsp.buf.format({
         async = false,
         filter = function(format_client)
