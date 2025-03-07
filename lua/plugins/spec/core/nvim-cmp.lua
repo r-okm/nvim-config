@@ -9,6 +9,7 @@ return {
     { "hrsh7th/vim-vsnip" },
     { "hrsh7th/cmp-vsnip" },
     { "hrsh7th/cmp-nvim-lua" },
+    { "zbirenbaum/copilot.lua" },
   },
   event = { "CmdlineEnter", "InsertEnter" },
   config = function()
@@ -33,6 +34,15 @@ return {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
+        -- https://github.com/zbirenbaum/copilot.lua/issues/91#issuecomment-1345190310
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if require("copilot.suggestion").is_visible() then
+            cmp.abort()
+            require("copilot.suggestion").accept()
+          elseif not cmp.abort() then
+            fallback()
+          end
+        end),
       }),
       window = {
         completion = {
