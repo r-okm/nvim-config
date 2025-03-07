@@ -59,6 +59,8 @@ return {
           "--ignore-file",
           ".nvim/.rgignore",
           "--glob",
+          "!.git",
+          "--glob",
           "!*.svg",
           "--glob",
           "!**/package-lock.json",
