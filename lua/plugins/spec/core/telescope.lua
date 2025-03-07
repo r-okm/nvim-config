@@ -7,6 +7,16 @@ return {
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "nvim-tree/nvim-web-devicons" },
     { "atusy/qfscope.nvim" },
+    {
+      "Allianaab2m/telescope-kensaku.nvim",
+      dependencies = {
+        { "vim-denops/denops.vim", lazy = false },
+        { "lambdalisue/vim-kensaku", lazy = false },
+      },
+      config = function()
+        require("telescope").load_extension("kensaku") -- :Telescope kensaku
+      end,
+    },
   },
   keys = {
     { "zp", mode = { "n" } },
@@ -17,7 +27,6 @@ return {
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     local builtin = require("telescope.builtin")
-    local previewers = require("telescope.previewers")
     local qfs_actions = require("qfscope.actions")
 
     telescope.setup({
@@ -95,24 +104,16 @@ return {
         },
       },
     })
+
     telescope.load_extension("fzf")
 
-    local my_git_status = function(opts)
-      opts = opts or {}
-      opts.previewer = previewers.new_termopen_previewer({
-        get_command = function(entry)
-          return { "git", "-c", "delta.side-by-side=true", "diff", entry.value }
-        end,
-      })
-
-      builtin.git_status(opts)
+    local keymap = function(mode, lhs, rhs)
+      vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true })
     end
-
-    vim.keymap.set({ "n" }, "zp", builtin.find_files)
-    vim.keymap.set({ "n" }, "zf", builtin.live_grep)
-    vim.keymap.set({ "n" }, "zo", my_git_status)
-    vim.keymap.set({ "n" }, "#", builtin.grep_string)
-    vim.keymap.set({ "x" }, "#", function()
+    keymap({ "n" }, "zp", builtin.find_files)
+    keymap({ "n" }, "zf", ":<C-u>Telescope kensaku<CR>")
+    keymap({ "n" }, "#", builtin.grep_string)
+    keymap({ "x" }, "#", function()
       local text = getVisualSelection()
       builtin.grep_string({ search = text })
     end)

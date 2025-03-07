@@ -1,10 +1,9 @@
 return {
   "lambdalisue/vim-kensaku-command",
   dependencies = {
-    { "vim-denops/denops.vim" },
-    { "lambdalisue/vim-kensaku" },
+    { "vim-denops/denops.vim", lazy = false },
+    { "lambdalisue/vim-kensaku", lazy = false },
   },
-  lazy = false,
   keys = {
     { "?", ":<C-u>Kensaku ", mode = { "n" } },
   },
