@@ -8,6 +8,8 @@ return {
   config = function()
     local oil = require("oil")
     oil.setup({
+      delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
       keymaps = {
         ["g?"] = { "actions.show_help", mode = "n" },
         ["<CR>"] = "actions.select",
