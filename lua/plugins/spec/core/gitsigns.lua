@@ -1,6 +1,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPre" },
+  cmd = { "Gitsigns" },
   config = function()
     require("gitsigns").setup({
       current_line_blame_opts = {
@@ -16,5 +17,6 @@ return {
     keymap("n", "zM", ":<C-u>Gitsigns reset_hunk<CR>")
     keymap("n", "z.", ":<C-u>Gitsigns next_hunk<CR>")
     keymap("n", "z,", ":<C-u>Gitsigns prev_hunk<CR>")
+    keymap("ca", "gs", "Gitsigns")
   end,
 }

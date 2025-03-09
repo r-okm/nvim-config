@@ -26,7 +26,5 @@ for _, quote in ipairs({ '"', "'", "`" }) do
   keymap({ "x", "o" }, lhs, rhs)
 end
 
-keymap({ "n" }, "gh", "<C-w>h")
-keymap({ "n" }, "gl", "<C-w>l")
 keymap({ "n" }, "<Space>s", ":<C-u>write<CR>")
 keymap({ "n" }, "<Space>S", ":<C-u>noa write<CR>")

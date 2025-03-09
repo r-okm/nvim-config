@@ -23,6 +23,7 @@ return {
     { "zf", mode = { "n" } },
     { "#", mode = { "n", "x" } },
   },
+  cmd = { "Telescope" },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")

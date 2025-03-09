@@ -28,9 +28,6 @@ return {
     keymap({ "n", "x" }, "H", function()
       bufferline.move(-1)
     end)
-    keymap("ca", "bco", "BufferLineCloseOthers")
-    keymap("ca", "bcr", "BufferLineCloseRight")
-    keymap("ca", "bcl", "BufferLineCloseLeft")
 
     bufferline.setup({
       options = {
