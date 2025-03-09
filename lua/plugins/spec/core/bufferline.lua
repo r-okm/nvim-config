@@ -1,3 +1,8 @@
+local keymap = function(mode, lhs, rhs)
+  local opts = { noremap = true, silent = true }
+  vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 return {
   "akinsho/bufferline.nvim",
   dependencies = {
@@ -9,15 +14,25 @@ return {
     vim.opt.sessionoptions:append("globals")
   end,
   config = function()
-    vim.keymap.set("n", "<C-l>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "<C-h>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "L", ":BufferLineMoveNext<CR>", { noremap = true, silent = true })
-    vim.keymap.set("n", "H", ":BufferLineMovePrev<CR>", { noremap = true, silent = true })
-    vim.keymap.set("ca", "bco", "BufferLineCloseOthers")
-    vim.keymap.set("ca", "bcr", "BufferLineCloseRight")
-    vim.keymap.set("ca", "bcl", "BufferLineCloseLeft")
+    local bufferline = require("bufferline")
 
-    require("bufferline").setup({
+    keymap({ "n", "x" }, "<C-l>", function()
+      bufferline.cycle(1)
+    end)
+    keymap({ "n", "x" }, "<C-h>", function()
+      bufferline.cycle(-1)
+    end)
+    keymap({ "n", "x" }, "L", function()
+      bufferline.move(1)
+    end)
+    keymap({ "n", "x" }, "H", function()
+      bufferline.move(-1)
+    end)
+    keymap("ca", "bco", "BufferLineCloseOthers")
+    keymap("ca", "bcr", "BufferLineCloseRight")
+    keymap("ca", "bcl", "BufferLineCloseLeft")
+
+    bufferline.setup({
       options = {
         middle_mouse_command = "Bdelete %d",
         diagnostics = "nvim_lsp",
