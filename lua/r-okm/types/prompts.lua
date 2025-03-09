@@ -162,7 +162,7 @@ return {
       vim.api.nvim_create_user_command("CopilotChatResetDiagnostics", function()
         vim.diagnostic.reset(ns, source.bufnr)
       end, {
-        desc = "Reset Copilot Chat diagnostics for the current buffer",
+        desc = "CopilotChat: Reset Copilot Chat diagnostics for the current buffer",
       })
     end,
   },
