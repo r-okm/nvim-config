@@ -15,5 +15,28 @@
       "  )",
       "}"
     ]
+  },
+  "Next.js pages": {
+    "prefix": "page",
+    "body": [
+      "\"use client\"",
+      "",
+      "import { LayoutPattern } from \"@/layouts\"",
+      "",
+      "import type { NextPageWithLayout } from \"@/types/components/common\"",
+      "",
+      "const Page: NextPageWithLayout = () => {",
+      "  return (",
+      "    <>",
+      "      <div>a</div>",
+      "      <div>b</div>",
+      "    </>",
+      "  )",
+      "}",
+      "",
+      "Page.getLayout = LayoutPattern.IDLE",
+      "",
+      "export default Page"
+    ]
   }
 }
