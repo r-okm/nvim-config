@@ -86,15 +86,15 @@ When presenting code changes:
 ]]
 
 local PROMPT_COMMIT_STAGED = [[
-Write a commit message for the staged changes.
-Ensure the title is at most 50 characters, and each line of the description does not exceed 72 characters.
-Use a fenced code block with `gitcommit` as the language.
+Write a commit message for the staged changes following these rules:
 
-Follow these guidelines:
-- The summary must start with a component or feature name, followed by a colon (e.g., `script:`, `login:`, `header:`).
-- The title must start with a lowercase letter.
-- Proper nouns (such as function names, filenames, and tools) should be enclosed in backquotes (`).
-- Use bullet points for descriptions.
+- Do not follow the Conventional Commit rules.
+- Avoid formal language and keep the message concise.
+- Use a `gitcommit` code block and write its content in English.
+- Enclose proper nouns (such as function names, filenames, and tools) in backquotes (`).
+- The title must be at most 50 characters, start with a lowercase letter, and begin with a component or feature name followed by a colon (e.g., `script:`, `login:`, `header:`).
+- Use bullet points with `-` for the description.
+- Each line in the description must be 72 characters or fewer.
 ]]
 
 return {
