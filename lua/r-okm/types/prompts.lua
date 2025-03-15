@@ -149,7 +149,7 @@ return {
               end_lnum = end_line - 1,
               col = 0,
               message = message,
-              severity = vim.diagnostic.severity.WARN,
+              severity = vim.diagnostic.severity.INFO,
               source = "Copilot Review",
             })
           end
