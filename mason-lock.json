@@ -1,5 +1,6 @@
 {
   "bash-language-server": "5.4.3",
+  "buf": "v1.50.1",
   "cfn-lint": "1.30.0",
   "cspell": "8.17.5",
   "css-lsp": "4.10.0",
