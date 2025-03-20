@@ -13,7 +13,4 @@ return {
       endfunction
     ]])
   end,
-  config = function()
-    vim.keymap.set({ "n" }, "<c-k><c-v>", ":<c-u>MarkdownPreviewToggle<cr>", { silent = true })
-  end,
 }
