@@ -176,11 +176,11 @@ return {
   },
 
   Docs = {
-    prompt = "> /COPILOT_GENERATE\n\nPlease add documentation comments to the selected code.",
+    prompt = "> /COPILOT_GENERATE\n\nAdd documentation comments to the selected code in ENGLISH.",
   },
 
   Tests = {
-    prompt = "> /COPILOT_GENERATE\n\nPlease generate tests for my code.",
+    prompt = "> /COPILOT_GENERATE\n\nGenerate tests for the selected code.",
   },
 
   Commit = {
