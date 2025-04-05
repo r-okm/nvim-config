@@ -17,7 +17,7 @@ return {
     local telescope = require("CopilotChat.integrations.telescope")
 
     require("CopilotChat").setup({
-      model = "claude-3.7-sonnet",
+      model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
       prompts = require("r-okm.types.prompts"),
       question_header = "#  User ",
       answer_header = "#  Copilot ",
