@@ -6,11 +6,6 @@ return {
     require("copilot").setup({
       panel = {
         enabled = false,
-        auto_refresh = true,
-        layout = {
-          position = "vertical",
-          ratio = 0.5,
-        },
       },
       suggestion = {
         auto_trigger = true,
