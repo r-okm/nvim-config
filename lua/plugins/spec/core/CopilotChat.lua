@@ -8,6 +8,7 @@ return {
   branch = "main",
   build = "make tiktoken",
   event = { "BufReadPost" },
+  cmd = { "CopilotChatModels", "CopilotChatAgents" },
   keys = {
     { "zu", mode = { "n" } },
   },
