@@ -27,6 +27,9 @@ return {
         { name = "vsnip" },
       }, {
         { name = "buffer" },
+      }, {
+        name = "lazydev",
+        group_index = 0,
       }),
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
