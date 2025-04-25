@@ -4,7 +4,7 @@ return {
     { "davidmh/cspell.nvim" },
     { "Joakker/lua-json5", name = "json5", build = "./install.sh" },
   },
-  event = { "BufReadPost" },
+  lazy = false,
   config = function()
     local nls = require("null-ls")
     local formatting = nls.builtins.formatting

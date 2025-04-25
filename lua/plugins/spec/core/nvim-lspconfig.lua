@@ -8,7 +8,4 @@ return {
     { "nanotee/sqls.nvim" },
   },
   lazy = false,
-  config = function()
-    require("r-okm.lsp.handler").setup_nvim_lspconfig()
-  end,
 }
