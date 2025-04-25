@@ -1,17 +1,16 @@
 return {
-  setup_args = {
-    settings = {
-      yaml = {
-        schemaStore = {
-          -- You must disable built-in schemaStore support if you want to use
-          -- this plugin and its advanced options like `ignore`.
-          enable = false,
-          -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-          url = "",
-        },
-        schemas = require("schemastore").yaml.schemas(),
-        -- CloudFormatino CustomTags
-        --[[ customTags = {
+  settings = {
+    yaml = {
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+        -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        url = "",
+      },
+      schemas = require("schemastore").yaml.schemas(),
+      -- CloudFormatino CustomTags
+      --[[ customTags = {
           "!Base64 scalar",
           "!Cidr scalar",
           "!And sequence",
@@ -32,11 +31,6 @@ return {
           "!Transform mapping",
           "!Ref scalar",
         }, ]]
-      },
     },
-  },
-  buffer_config = {
-    format_enable = false,
-    buf_write_pre_enable = false,
   },
 }

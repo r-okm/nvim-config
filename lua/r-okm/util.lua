@@ -24,4 +24,15 @@ function M.getVisualSelection()
   end
 end
 
+--- Splits a string into a table using comma as a delimiter
+--- @param str string The string to be split
+--- @return table result A table containing the split string parts
+function M.split_string(str)
+  local result = {}
+  for word in str:gmatch("[^,]+") do
+    table.insert(result, word)
+  end
+  return result
+end
+
 return M
