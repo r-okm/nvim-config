@@ -1,5 +1,6 @@
 return {
   "shellRaining/hlchunk.nvim",
+  cond = false,
   version = "v1.1.0",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
