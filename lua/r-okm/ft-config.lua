@@ -27,9 +27,13 @@ local M = {
     format_language_server = "lemminx",
     enable_format_on_save = false,
   },
-  ["javascript,javascriptreact,javascript.jsx,typescript,typescriptreact,typescript.tsx,css,json,jsonc,yaml,lua"] = {
+  ["css,javascript,javascriptreact,javascript.jsx,lua,typescript,typescriptreact,typescript.tsx"] = {
     format_language_server = "null-ls",
     enable_format_on_save = true,
+  },
+  ["json,jsonc,markdown,yaml"] = {
+    format_language_server = "null-ls",
+    enable_format_on_save = false,
   },
 }
 
