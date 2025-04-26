@@ -1,4 +1,4 @@
-local getVisualSelection = require("r-okm.util").getVisualSelection
+local util = require("r-okm.util")
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -68,7 +68,7 @@ return {
           "--smart-case",
           "--trim",
           "--ignore-file",
-          ".nvim/.rgignore",
+          util.get_project_nvim_config_dir() .. "/.rgignore",
           "--glob",
           "!.git",
           "--glob",
@@ -91,7 +91,7 @@ return {
             "f",
             "--hidden",
             "--ignore-file",
-            ".nvim/.fdignore",
+            util.get_project_nvim_config_dir() .. "/.fdignore",
             "--exclude",
             "{.git,*.exe,*.png,*.jpg,*.svg}",
           },
@@ -116,7 +116,7 @@ return {
     keymap({ "n" }, "zf", ":<C-u>Telescope kensaku<CR>")
     keymap({ "n" }, "#", builtin.grep_string)
     keymap({ "x" }, "#", function()
-      local text = getVisualSelection()
+      local text = util.get_visual_selection()
       builtin.grep_string({ search = text })
     end)
   end,

@@ -1,3 +1,5 @@
+local util = require("r-okm.util")
+
 return {
   "hrsh7th/nvim-cmp",
   branch = "main",
@@ -75,7 +77,7 @@ return {
 
     vim.keymap.set({ "i", "s" }, "<C-w>", "<Plug>(vsnip-jump-next)", { noremap = true })
     vim.keymap.set({ "i", "s" }, "<C-b>", "<Plug>(vsnip-jump-prev)", { noremap = true })
-    vim.g["vsnip_snippet_dirs"] = { "$HOME/.config/nvim/snippets", vim.fn.getcwd() .. "/.nvim/snippets" }
+    vim.g["vsnip_snippet_dirs"] = { "$HOME/.config/nvim/snippets", util.get_project_nvim_config_dir() .. "/snippets" }
     vim.g["vsnip_filetypes"] = {
       javascriptreact = { "javascript" },
       typescriptreact = { "typescript" },

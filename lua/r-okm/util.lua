@@ -2,7 +2,7 @@ local M = {}
 
 ---通常 visual モード時の選択範囲のテキストを取得する
 ---@return string|nil selected_text 選択範囲のテキスト
-function M.getVisualSelection()
+function M.get_visual_selection()
   -- Visualモードの確認
   local mode = vim.fn.mode()
 
@@ -33,6 +33,14 @@ function M.split_string(str)
     table.insert(result, word)
   end
   return result
+end
+
+--- Gets the path to the project-specific Neovim configuration directory
+--- The project-specific configuration directory is located in the current working directory
+--- @return string dir path to the project-specific Neovim configuration directory
+function M.get_project_nvim_config_dir()
+  local dir_name = ".nvim"
+  return vim.fn.getcwd() .. "/" .. dir_name
 end
 
 return M
