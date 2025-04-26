@@ -75,7 +75,7 @@ return {
 
     vim.keymap.set({ "i", "s" }, "<C-w>", "<Plug>(vsnip-jump-next)", { noremap = true })
     vim.keymap.set({ "i", "s" }, "<C-b>", "<Plug>(vsnip-jump-prev)", { noremap = true })
-    vim.g["vsnip_snippet_dir"] = "$HOME/.config/nvim/snippets"
+    vim.g["vsnip_snippet_dirs"] = { "$HOME/.config/nvim/snippets", vim.fn.getcwd() .. "/.nvim/snippets" }
     vim.g["vsnip_filetypes"] = {
       javascriptreact = { "javascript" },
       typescriptreact = { "typescript" },
