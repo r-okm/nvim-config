@@ -1,5 +1,6 @@
 local vtsls = require("vtsls")
 
+---@type vim.lsp.Config
 return {
   settings = {
     vtsls = {
