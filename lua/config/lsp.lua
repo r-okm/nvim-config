@@ -10,7 +10,7 @@ local _ENALBED_LANGUAGE_SERVERS = {
   "lemminx",
   "lua_ls",
   "pyright",
-  "rust_analyzer",
+  -- "rust_analyzer",
   "sqls",
   "taplo",
   "terraformls",
@@ -24,6 +24,12 @@ vim.lsp.config("*", {
 
 vim.lsp.enable(_ENALBED_LANGUAGE_SERVERS)
 
--- TODO: remove after `eslint` lspconfig is fixed
+-- TODO: remove after lspconfig is fixed
 -- https://github.com/neovim/nvim-lspconfig/issues/3685
-require("lspconfig").eslint.setup({})
+local _LEGACY_CONFIG_SERVERS = {
+  "eslint",
+  "rust_analyzer",
+}
+for _, server in ipairs(_LEGACY_CONFIG_SERVERS) do
+  require("lspconfig")[server].setup({})
+end
