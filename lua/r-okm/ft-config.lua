@@ -8,7 +8,7 @@ local M = {
     enable_format_on_save = false,
   },
   ["rust"] = {
-    format_language_server = "rust-analyzer",
+    format_language_server = "rust_analyzer",
     enable_format_on_save = true,
   },
   ["sh"] = {
