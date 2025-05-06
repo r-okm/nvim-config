@@ -10,7 +10,6 @@ return {
     { "hrsh7th/cmp-path" },
     { "hrsh7th/vim-vsnip" },
     { "hrsh7th/cmp-vsnip" },
-    { "hrsh7th/cmp-nvim-lua" },
     { "zbirenbaum/copilot.lua" },
   },
   event = { "CmdlineEnter", "InsertEnter" },
@@ -24,14 +23,11 @@ return {
         end,
       },
       sources = cmp.config.sources({
-        { name = "nvim_lua" },
+        { name = "lazydev" },
         { name = "nvim_lsp" },
         { name = "vsnip" },
       }, {
         { name = "buffer" },
-      }, {
-        name = "lazydev",
-        group_index = 0,
       }),
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
