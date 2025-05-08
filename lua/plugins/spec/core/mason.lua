@@ -1,5 +1,7 @@
+---@type LazyPluginSpec
 return {
-  "williamboman/mason.nvim",
+  "mason-org/mason.nvim",
+  tag = "v1.11.0",
   lazy = false,
   opts = {
     ui = {
