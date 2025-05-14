@@ -6,6 +6,7 @@ return {
     { "nvim-treesitter/nvim-treesitter" },
   },
   main = "rainbow-delimiters.setup",
+  ---@module 'rainbow-delimiters.types'
   ---@type rainbow_delimiters.config
   opts = {
     query = {
