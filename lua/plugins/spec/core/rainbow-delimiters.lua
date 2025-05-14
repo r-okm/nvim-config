@@ -8,6 +8,9 @@ return {
   main = "rainbow-delimiters.setup",
   ---@type rainbow_delimiters.config
   opts = {
+    query = {
+      ["tsx"] = "rainbow-parens",
+    },
     highlight = {
       "RainbowDelimiterYellow",
       "RainbowDelimiterOrange",
