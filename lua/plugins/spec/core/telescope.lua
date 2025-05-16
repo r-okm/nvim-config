@@ -82,10 +82,11 @@ return {
           "--glob",
           "!*.lock",
         },
-        path_display = function(_, path)
-          local tail = require("telescope.utils").path_tail(path)
-          return string.format("%s (%s)", tail, path)
-        end,
+        path_display = {
+          filename_first = {
+            reverse_directories = false,
+          },
+        },
         set_env = {
           LESS = "",
           DELTA_PAGER = "less",
