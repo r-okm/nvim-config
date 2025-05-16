@@ -117,7 +117,7 @@ return {
 
     telescope.load_extension("fzf")
 
-    -- https://www.reddit.com/r/neovim/comments/101e5lb/using_delta_in_telescope_git_status/
+    -- https://github.com/nvim-telescope/telescope.nvim/issues/605
     local delta_previewer = previewers.new_termopen_previewer({
       get_command = function(entry)
         if entry.status == "??" or "A " then
