@@ -1,5 +1,8 @@
 local util = require("r-okm.util")
 
+local _project_nvim_config_dir = util.get_project_nvim_config_dir()
+
+---@type vim.lsp.Config
 return {
   "nvim-telescope/telescope.nvim",
   branch = "master",
@@ -29,6 +32,7 @@ return {
     local telescope = require("telescope")
     local actions = require("telescope.actions")
     local builtin = require("telescope.builtin")
+    local previewers = require("telescope.previewers")
     local qfs_actions = require("qfscope.actions")
 
     telescope.setup({
@@ -68,7 +72,7 @@ return {
           "--smart-case",
           "--trim",
           "--ignore-file",
-          util.get_project_nvim_config_dir() .. "/.rgignore",
+          _project_nvim_config_dir .. "/.rgignore",
           "--glob",
           "!.git",
           "--glob",
@@ -82,6 +86,10 @@ return {
           local tail = require("telescope.utils").path_tail(path)
           return string.format("%s (%s)", tail, path)
         end,
+        set_env = {
+          LESS = "",
+          DELTA_PAGER = "less",
+        },
       },
       pickers = {
         find_files = {
@@ -91,7 +99,7 @@ return {
             "f",
             "--hidden",
             "--ignore-file",
-            util.get_project_nvim_config_dir() .. "/.fdignore",
+            _project_nvim_config_dir .. "/.fdignore",
             "--exclude",
             "{.git,*.exe,*.png,*.jpg,*.svg}",
           },
@@ -109,10 +117,24 @@ return {
 
     telescope.load_extension("fzf")
 
+    -- https://www.reddit.com/r/neovim/comments/101e5lb/using_delta_in_telescope_git_status/
+    local delta_previewer = previewers.new_termopen_previewer({
+      get_command = function(entry)
+        if entry.status == "??" or "A " then
+          return { "git", "diff", entry.value }
+        end
+
+        return { "git", "diff", entry.value .. "^!" }
+      end,
+    })
+
     local keymap = function(mode, lhs, rhs)
       vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true })
     end
     keymap({ "n" }, "zp", builtin.find_files)
+    keymap({ "n" }, "zo", function()
+      builtin.git_status({ previewer = delta_previewer, layout_strategy = "vertical" })
+    end)
     keymap({ "n" }, "zf", ":<C-u>Telescope kensaku<CR>")
     keymap({ "n" }, "#", builtin.grep_string)
     keymap({ "x" }, "#", function()
