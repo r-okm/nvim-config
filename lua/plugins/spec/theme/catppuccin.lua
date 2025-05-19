@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "catppuccin/nvim",
-  tag = "v1.9.0",
+  version = "~1.9",
   name = "catppuccin",
   cond = true,
   lazy = false,
