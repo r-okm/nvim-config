@@ -31,5 +31,6 @@ local _LEGACY_CONFIG_SERVERS = {
   "rust_analyzer",
 }
 for _, server in ipairs(_LEGACY_CONFIG_SERVERS) do
-  require("lspconfig")[server].setup({})
+  local settings = vim.lsp.config[server].settings
+  require("lspconfig")[server].setup({ settings = settings })
 end
