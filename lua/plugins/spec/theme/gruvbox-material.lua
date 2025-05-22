@@ -1,6 +1,7 @@
+---@type LazyPluginSpec
 return {
   "sainnhe/gruvbox-material",
-  cond = false,
+  enabled = false,
   config = function()
     vim.o.background = "dark"
     vim.g.gruvbox_material_background = "medium"

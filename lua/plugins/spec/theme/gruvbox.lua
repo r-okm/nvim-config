@@ -1,6 +1,7 @@
+---@type LazyPluginSpec
 return {
   "ellisonleao/gruvbox.nvim",
-  cond = false,
+  enabled = false,
   config = function()
     require("gruvbox").setup({
       italic = {

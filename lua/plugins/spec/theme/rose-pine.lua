@@ -1,7 +1,8 @@
+---@type LazyPluginSpec
 return {
   "rose-pine/neovim",
   name = "rose-pine",
-  cond = false,
+  enabled = false,
   config = function()
     require("rose-pine").setup({
       variant = "main",

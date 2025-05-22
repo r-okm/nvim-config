@@ -1,6 +1,7 @@
+---@type LazyPluginSpec
 return {
   "rebelot/kanagawa.nvim",
-  cond = false,
+  enabled = false,
   config = function()
     require("kanagawa").setup({
       commentStyle = { italic = false },

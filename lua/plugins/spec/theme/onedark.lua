@@ -1,6 +1,7 @@
+---@type LazyPluginSpec
 return {
   "navarasu/onedark.nvim",
-  cond = false,
+  enabled = false,
   config = function()
     local onedark = require("onedark")
     local colors = require("onedark.palette").dark
