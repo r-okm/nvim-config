@@ -43,4 +43,19 @@ function M.get_project_nvim_config_dir()
   return vim.fn.getcwd() .. "/" .. dir_name
 end
 
+--- Creates a keymap with default options (noremap=true, silent=true)
+--- This is a wrapper around vim.keymap.set that provides sensible defaults
+--- @param mode string|string[] Mode "short-name" (see |nvim_set_keymap()|), or a list thereof.
+--- @param lhs string           Left-hand side |{lhs}| of the mapping.
+--- @param rhs string|function  Right-hand side |{rhs}| of the mapping, can be a Lua function.
+--- @param opts? vim.keymap.set.Opts Optional keymap options that will be merged with defaults
+function M.keymap(mode, lhs, rhs, opts)
+  local default_opts = {
+    noremap = true,
+    silent = true,
+  }
+  local merged_opts = vim.tbl_deep_extend("force", default_opts, opts or {})
+  vim.keymap.set(mode, lhs, rhs, merged_opts)
+end
+
 return M
