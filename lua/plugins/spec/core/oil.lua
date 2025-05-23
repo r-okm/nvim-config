@@ -23,12 +23,12 @@ return {
         show_hidden = true,
       },
     })
-    vim.keymap.set({ "n" }, "<space>e", function()
+    vim.keymap.set({ "n" }, "<leader>e", function()
       oil.open(nil, {
         preview = { vertical = true },
       })
     end)
-    vim.keymap.set({ "n" }, "<space>E", function()
+    vim.keymap.set({ "n" }, "<leader>E", function()
       oil.open()
     end)
     vim.keymap.set("ca", "os", "e oil-ssh://")

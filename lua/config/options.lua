@@ -18,6 +18,8 @@ vim.opt.signcolumn = "yes"
 vim.opt.splitright = true
 vim.opt.swapfile = false
 
+vim.g.mapleader = " "
+
 -- os のクリップボードと同期
 local yank_command = "clipboard --yank"
 local paste_command = "clipboard --put"
