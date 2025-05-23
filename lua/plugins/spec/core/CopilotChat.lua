@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
   dependencies = {
@@ -7,43 +8,51 @@ return {
   },
   branch = "main",
   build = "make tiktoken",
-  event = { "BufReadPost" },
   cmd = { "CopilotChatModels", "CopilotChatAgents" },
-  keys = {
-    { "zu", mode = { "n" } },
+  opts = {
+    model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
+    prompts = require("r-okm.types.prompts"),
+    question_header = "#  User ",
+    answer_header = "#  Copilot ",
+    error_header = "#  Error ",
+    log_level = "warn",
   },
-  config = function()
-    local select = require("CopilotChat.select")
-    local actions = require("CopilotChat.actions")
-    local telescope = require("CopilotChat.integrations.telescope")
-
-    require("CopilotChat").setup({
-      model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
-      prompts = require("r-okm.types.prompts"),
-      question_header = "#  User ",
-      answer_header = "#  Copilot ",
-      error_header = "#  Error ",
-      mappings = {
-        complete = {
-          detail = "Use @<Tab> or /<Tab> for options.",
-          -- Default <Tab> setting conflicts with cmp and coc-nvim
-          insert = "<S-Tab>",
-        },
-      },
-      log_level = "warn",
-    })
-
-    vim.keymap.set({ "n" }, "zu", function()
-      vim.cmd("CopilotChatOpen")
-    end)
-    vim.keymap.set({ "x" }, "zu", function()
-      vim.cmd("CopilotChat")
-    end)
-    vim.keymap.set({ "n" }, "zi", function()
-      telescope.pick(actions.prompt_actions({ selection = select.buffer }))
-    end)
-    vim.keymap.set({ "x" }, "zi", function()
-      telescope.pick(actions.prompt_actions({ selection = select.visual }))
-    end)
-  end,
+  keys = {
+    {
+      "zu",
+      function()
+        vim.cmd("CopilotChatOpen")
+      end,
+      mode = { "n" },
+      desc = "CopilotChat: Open Copilot Chat",
+    },
+    {
+      "zu",
+      function()
+        vim.cmd("CopilotChat")
+      end,
+      mode = { "x" },
+      desc = "CopilotChat: Open Copilot Chat with selected text",
+    },
+    {
+      "zi",
+      function()
+        require("CopilotChat").select_prompt({
+          selection = require("CopilotChat.select").buffer,
+        })
+      end,
+      mode = { "n" },
+      desc = "CopilotChat: Select Copilot Chat prompt",
+    },
+    {
+      "zi",
+      function()
+        require("CopilotChat").select_prompt({
+          selection = require("CopilotChat.select").visual,
+        })
+      end,
+      mode = { "x" },
+      desc = "CopilotChat: Select Copilot Chat prompt with selected text",
+    },
+  },
 }
