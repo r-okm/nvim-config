@@ -17,7 +17,7 @@ return {
     error_header = "#  Error ",
     log_level = "warn",
   },
-  keys = {
+  --[[ keys = {
     {
       "zu",
       function()
@@ -54,5 +54,5 @@ return {
       mode = { "x" },
       desc = "CopilotChat: Select Copilot Chat prompt with selected text",
     },
-  },
+  }, ]]
 }

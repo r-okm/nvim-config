@@ -184,6 +184,6 @@ return {
   },
 
   Commit = {
-    prompt = "> #git:staged\n\n" .. PROMPT_COMMIT_STAGED,
+    prompt = "> #git:staged\n> #buffers\n\n" .. PROMPT_COMMIT_STAGED,
   },
 }
