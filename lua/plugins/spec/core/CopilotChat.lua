@@ -9,6 +9,23 @@ return {
   branch = "main",
   build = "make tiktoken",
   cmd = { "CopilotChatModels", "CopilotChatAgents" },
+  init = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "gitcommit",
+      callback = function()
+        local ok, _ = pcall(require, "CopilotChat")
+        if ok then
+          vim.schedule(function()
+            vim.cmd.CopilotChatCommit()
+          end)
+          vim.api.nvim_create_autocmd("QuitPre", {
+            command = "CopilotChatClose",
+          })
+          vim.keymap.set("ca", "qq", "execute 'CopilotChatClose' <bar> wqa")
+        end
+      end,
+    })
+  end,
   opts = {
     model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
     prompts = require("r-okm.types.prompts"),
