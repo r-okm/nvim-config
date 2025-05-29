@@ -73,5 +73,8 @@ return {
     hints = {
       enabled = false,
     },
+    windows = {
+      width = 40,
+    },
   },
 }
