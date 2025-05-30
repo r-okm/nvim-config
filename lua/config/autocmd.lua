@@ -96,3 +96,22 @@ for ft_str, config in pairs(require("r-okm.ft-config")) do
     end,
   })
 end
+
+-- Switch relativenumber
+local number_group = vim.api.nvim_create_augroup("r-okm.Number", {})
+vim.api.nvim_create_autocmd({ "WinEnter" }, {
+  group = number_group,
+  callback = function()
+    if vim.wo.number then
+      vim.wo.relativenumber = true
+    end
+  end,
+})
+vim.api.nvim_create_autocmd({ "WinLeave" }, {
+  group = number_group,
+  callback = function()
+    if vim.wo.number then
+      vim.wo.relativenumber = false
+    end
+  end,
+})
