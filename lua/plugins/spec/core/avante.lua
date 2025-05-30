@@ -66,8 +66,13 @@ return {
       provider = "telescope",
     },
     mappings = {
+      ask = "zu",
+      edit = "zi",
       sidebar = {
-        close_from_input = { normal = "<Esc>", insert = "<C-c>" },
+        close_from_input = {
+          normal = "<Esc>",
+          insert = "<C-c>",
+        },
       },
     },
     hints = {
