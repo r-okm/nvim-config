@@ -1,5 +1,7 @@
 -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/blob/0436fe0ab994b61232984795b8a442c2f02ef719/lua/CopilotChat/config/prompts.lua
 
+local M = {}
+
 local base = string.format(
   [[
 When asked for your name, you must respond with "GitHub Copilot".
@@ -97,7 +99,7 @@ Write a commit message for the staged changes following these rules:
 - Each line in the description must be 72 characters or fewer.
 ]]
 
-return {
+M.copilot_chat = {
   COPILOT_INSTRUCTIONS = {
     system_prompt = COPILOT_INSTRUCTIONS,
   },
@@ -187,3 +189,18 @@ return {
     prompt = "> #git:staged\n> #buffers\n\n" .. PROMPT_COMMIT_STAGED,
   },
 }
+
+M.avante = {
+  Base = [[
+    You are a helpful assistant. You will be given a prompt and you should respond with the best possible answer.
+    Please provide a detailed and accurate response to the prompt.
+    If you are unsure about something, please let the user know that you are not sure.
+    If the prompt is not clear, please ask for clarification.
+    Do not provide any personal opinions or beliefs.
+    Do not include any sensitive information in your response.
+    You must respond in Japanese.
+  ]],
+  Commit = "Respond in Japanese.\n\n" .. PROMPT_COMMIT_STAGED,
+}
+
+return M

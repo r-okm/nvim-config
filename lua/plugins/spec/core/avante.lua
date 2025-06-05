@@ -1,3 +1,5 @@
+local prompt = require("r-okm.types.prompts").avante
+
 ---@type LazyPluginSpec
 return {
   "yetone/avante.nvim",
@@ -23,6 +25,23 @@ return {
     },
   },
   event = "BufReadPost",
+  init = function()
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "gitcommit",
+      callback = function()
+        local ok, avante_api = pcall(require, "avante.api")
+        if ok then
+          vim.schedule(function()
+            avante_api.ask({
+              question = prompt.Commit,
+              new_chat = true,
+            })
+          end)
+          vim.keymap.set("ca", "qq", "execute 'AvanteStop' <bar> wqa")
+        end
+      end,
+    })
+  end,
   ---@module 'avante'
   ---@type avante.Config
   opts = {
@@ -31,15 +50,7 @@ return {
       model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
     },
     system_prompt = function()
-      local base_prompt = [[
-        You are a helpful assistant. You will be given a prompt and you should respond with the best possible answer.
-        Please provide a detailed and accurate response to the prompt.
-        If you are unsure about something, please let the user know that you are not sure.
-        If the prompt is not clear, please ask for clarification.
-        Do not provide any personal opinions or beliefs.
-        Do not include any sensitive information in your response.
-        You must respond in Japanese.
-      ]]
+      local base_prompt = prompt.Base
       local hub = require("mcphub").get_hub_instance()
       local additional_prompt = hub and hub:get_active_servers_prompt() or ""
 

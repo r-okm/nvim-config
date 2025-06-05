@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
+  cond = false,
   dependencies = {
     { "nvim-telescope/telescope.nvim" },
     { "nvim-lua/plenary.nvim", branch = "master" },
@@ -28,7 +29,7 @@ return {
   end,
   opts = {
     model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
-    prompts = require("r-okm.types.prompts"),
+    prompts = require("r-okm.types.prompts").copilot_chat,
     question_header = "#  User ",
     answer_header = "#  Copilot ",
     error_header = "#  Error ",
