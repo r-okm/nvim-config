@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
-  cond = false,
+  enabled = false,
   dependencies = {
     { "nvim-telescope/telescope.nvim" },
     { "nvim-lua/plenary.nvim", branch = "master" },

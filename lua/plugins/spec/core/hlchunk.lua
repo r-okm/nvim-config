@@ -1,6 +1,7 @@
+---@type LazyPluginSpec
 return {
   "shellRaining/hlchunk.nvim",
-  cond = false,
+  enabled = false,
   version = "v1.1.0",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
