@@ -200,7 +200,7 @@ M.avante = {
     Do not include any sensitive information in your response.
     You must respond in Japanese.
   ]],
-  Commit = "Respond in Japanese.\n\n" .. PROMPT_COMMIT_STAGED,
+  Commit = PROMPT_COMMIT_STAGED .. "\nRespond in Japanese.",
 }
 
 return M
