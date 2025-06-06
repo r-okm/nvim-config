@@ -46,8 +46,10 @@ return {
   ---@type avante.Config
   opts = {
     provider = "copilot",
-    copilot = {
-      model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
+    providers = {
+      copilot = {
+        model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
+      },
     },
     system_prompt = function()
       local base_prompt = prompt.Base
