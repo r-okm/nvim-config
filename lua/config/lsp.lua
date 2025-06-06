@@ -4,13 +4,13 @@ local _ENALBED_LANGUAGE_SERVERS = {
   "cssls",
   "docker_compose_language_service",
   "dockerls",
-  -- "eslint",
+  "eslint",
   "jdtls",
   "jsonls",
   "lemminx",
   "lua_ls",
   "pyright",
-  -- "rust_analyzer",
+  "rust_analyzer",
   "sqls",
   "taplo",
   "terraformls",
@@ -23,14 +23,3 @@ vim.lsp.config("*", {
 })
 
 vim.lsp.enable(_ENALBED_LANGUAGE_SERVERS)
-
--- TODO: remove after lspconfig is fixed
--- https://github.com/neovim/nvim-lspconfig/issues/3685
-local _LEGACY_CONFIG_SERVERS = {
-  "eslint",
-  "rust_analyzer",
-}
-for _, server in ipairs(_LEGACY_CONFIG_SERVERS) do
-  local settings = vim.lsp.config[server].settings
-  require("lspconfig")[server].setup({ settings = settings })
-end

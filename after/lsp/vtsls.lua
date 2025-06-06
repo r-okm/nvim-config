@@ -23,7 +23,7 @@ return {
       vtsls.commands.organize_imports(bufnr)
     end, { buffer = bufnr })
     vim.keymap.set("n", "ge", function()
-      pcall(vim.cmd, "EslintFixAll")
+      pcall(vim.cmd, "LspEslintFixAll")
       vtsls.commands.add_missing_imports(bufnr)
     end, { buffer = bufnr })
   end,
