@@ -1,5 +1,7 @@
+---@type LazyPluginSpec
 return {
   "iamcco/markdown-preview.nvim",
+  enabled = false,
   build = "cd app && yarn install --frozen-lockfile",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { "markdown" },
