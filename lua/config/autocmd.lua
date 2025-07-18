@@ -61,7 +61,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- FileType format config
 for ft_str, config in pairs(require("r-okm.ft-config")) do
-  local ft_table = require("r-okm.util").split_string(ft_str)
+  local ft_table = require("r-okm.util").split_string(ft_str, ",")
   vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("r-okm.FileType" .. ft_str, {}),
     pattern = ft_table,

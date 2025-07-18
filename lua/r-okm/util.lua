@@ -24,12 +24,14 @@ function M.get_visual_selection()
   end
 end
 
---- Splits a string into a table using comma as a delimiter
+--- Splits a string into a table using the specified delimiter
 --- @param str string The string to be split
+--- @param delimiter string The delimiter to use for splitting
 --- @return table result A table containing the split string parts
-function M.split_string(str)
+function M.split_string(str, delimiter)
   local result = {}
-  for word in str:gmatch("[^,]+") do
+  local pattern = "[^" .. delimiter .. "]+"
+  for word in str:gmatch(pattern) do
     table.insert(result, word)
   end
   return result
