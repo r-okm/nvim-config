@@ -24,7 +24,7 @@ return {
         diagnostic.severity = vim.diagnostic.severity["HINT"] -- ERROR, WARN, INFO, HINT
       end,
       condition = function(utils)
-        return utils.root_has_file(CSPELL_CONFIG_FILES)
+        return utils.has_file(CSPELL_CONFIG_FILES)
       end,
       config = {
         decode_json = require("json5").parse,
@@ -34,7 +34,6 @@ return {
     local cspell = require("cspell")
     nls.setup({
       -- diagnostics_format = "#{m} (#{s}: #{c})",
-      root_dir = require("null-ls.utils").root_pattern(".git"),
       sources = {
         cspell.code_actions.with(cspell_config),
         cspell.diagnostics.with(cspell_config),
