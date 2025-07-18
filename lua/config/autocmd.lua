@@ -45,7 +45,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- hover document
     if client.supports_method("textDocument/hover") then
       set_buf_key("n", "K", function()
-        vim.cmd("Lspsaga hover_doc")
+        vim.lsp.buf.hover({
+          border = "single",
+        })
       end)
     end
     -- symbol rename
