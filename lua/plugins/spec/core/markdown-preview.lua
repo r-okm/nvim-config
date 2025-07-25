@@ -1,10 +1,12 @@
 ---@type LazyPluginSpec
 return {
   "iamcco/markdown-preview.nvim",
-  enabled = false,
   build = "cd app && yarn install --frozen-lockfile",
   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
   ft = { "markdown" },
+  keys = {
+    { "<C-k><C-v>", "<cmd>MarkdownPreviewToggle<cr>", mode = { "n", "x" }, desc = "Markdown Preview Toggle" },
+  },
   init = function()
     vim.g.mkdp_auto_close = 0
     vim.g.mkdp_filetypes = { "markdown" }

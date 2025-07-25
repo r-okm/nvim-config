@@ -15,6 +15,10 @@ return {
           prev = false,
         },
       },
+      filetypes = {
+        markdown = true,
+        gitcommit = true,
+      },
     })
 
     -- disalbe when popup is visible
