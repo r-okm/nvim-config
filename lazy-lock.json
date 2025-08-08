@@ -20,6 +20,7 @@
   "fidget.nvim": { "branch": "main", "commit": "b61e8af9b8b68ee0ec7da5fb7a8c203aae854f2e" },
   "flit.nvim": { "branch": "main", "commit": "7fbf60207cc170be75db3f42e6f6db0d4d887e5d" },
   "fzf": { "branch": "master", "commit": "e5cd7f0a3a73ef598267c1e9f29b0fe9a80925ab" },
+  "general-converter.nvim": { "branch": "master", "commit": "79187f115b80120ec556a96a5db0a93b5b3426fd" },
   "gitsigns.nvim": { "branch": "main", "commit": "7010000889bfb6c26065e0b0f7f1e6aa9163edd9" },
   "hlchunk.nvim": { "branch": "main", "commit": "2f25e09d2d0a2c121225a46e8cfe3ff11225ac79" },
   "indent-blankline.nvim": { "branch": "master", "commit": "005b56001b2cb30bfa61b7986bc50657816ba4ba" },

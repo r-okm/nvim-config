@@ -1,4 +1,4 @@
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = ""
 vim.opt.whichwrap = "b,s,h,l,<,>,~,[,]"
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
@@ -27,11 +27,9 @@ vim.g.clipboard = {
   name = "osClipboard",
   copy = {
     ["+"] = yank_command,
-    ["*"] = yank_command,
   },
   paste = {
     ["+"] = paste_command,
-    ["*"] = paste_command,
   },
   cache_enable = 0,
 }
