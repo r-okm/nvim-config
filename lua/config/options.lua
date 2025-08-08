@@ -20,7 +20,7 @@ vim.opt.swapfile = false
 
 vim.g.mapleader = " "
 
--- os のクリップボードと同期
+-- sync register with system clipboard
 local yank_command = "clipboard --yank"
 local paste_command = "clipboard --put"
 vim.g.clipboard = {
