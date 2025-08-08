@@ -3,7 +3,7 @@ return {
   "catppuccin/nvim",
   version = "~1.9",
   name = "catppuccin",
-  cond = true,
+  enabled = true,
   lazy = false,
   priority = 1000,
   config = function()
