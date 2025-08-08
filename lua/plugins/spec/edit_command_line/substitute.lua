@@ -1,6 +1,6 @@
 local util = require("r-okm.util")
 
----@type vim.lsp.Config
+---@type LazyPluginSpec
 return {
   "gbprod/substitute.nvim",
   keys = {

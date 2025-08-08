@@ -1,6 +1,6 @@
 local util = require("r-okm.util")
 
----@type vim.lsp.Config
+---@type LazyPluginSpec
 return {
   "haya14busa/vim-asterisk",
   keys = {

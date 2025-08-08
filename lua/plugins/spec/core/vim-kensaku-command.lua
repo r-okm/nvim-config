@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "lambdalisue/vim-kensaku-command",
   dependencies = {

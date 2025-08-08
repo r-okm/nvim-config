@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "yutkat/wb-only-current-line.nvim",
   keys = {

@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 local _project_nvim_config_dir = util.get_project_nvim_config_dir()
 
----@type vim.lsp.Config
+---@type LazyPluginSpec
 return {
   "nvim-telescope/telescope.nvim",
   branch = "master",

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "machakann/vim-sandwich",
   keys = {

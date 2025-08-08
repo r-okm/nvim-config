@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "ggandor/flit.nvim",
   dependencies = {

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "unblevable/quick-scope",
   keys = {

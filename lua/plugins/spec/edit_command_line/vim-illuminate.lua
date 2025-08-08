@@ -1,5 +1,6 @@
 local const = require("r-okm.types.const")
 
+---@type LazyPluginSpec
 return {
   "RRethy/vim-illuminate",
   dependencies = {

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "vim-denops/denops-shared-server.vim",
   cmd = { "DenopsSharedServerInstall", "DenopsSharedServerUninstall" },

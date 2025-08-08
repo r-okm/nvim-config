@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
   "nvimdev/lspsaga.nvim",
   cmd = { "Lspsaga" },
