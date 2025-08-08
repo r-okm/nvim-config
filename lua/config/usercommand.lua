@@ -74,6 +74,9 @@ local function openCurrentFileInGitHub(opts)
   if remote_url:match("^git@github.com:") then
     -- git@github.com:user/repo.git -> https://github.com/user/repo
     github_url = remote_url:gsub("^git@github.com:", "https://github.com/"):gsub(".git$", "")
+  elseif remote_url:match("^ssh://git@github.com/") then
+    -- ssh://git@github.com/user/repo.git -> https://github.com/user/repo
+    github_url = remote_url:gsub("^ssh://git@github.com/", "https://github.com/"):gsub(".git$", "")
   elseif remote_url:match("^https://github.com/") then
     -- https://github.com/user/repo.git -> https://github.com/user/repo
     github_url = remote_url:gsub(".git$", "")
