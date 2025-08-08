@@ -17,7 +17,7 @@ util.keymap({ "n", "x" }, "<leader>q", '"_')
 util.keymap({ "n", "x" }, "c", '"_c')
 util.keymap({ "n", "x" }, "C", '"_C')
 
--- yank from clipboard
+-- yank to clipboard
 util.keymap(
   { "n", "x" },
   "gy",
@@ -30,7 +30,7 @@ util.keymap(
   { expr = true }
 )
 
--- paste to clipboard
+-- paste from clipboard
 util.keymap({ "n" }, "gp", '"+p')
 util.keymap({ "x" }, "gp", '"+P')
 
