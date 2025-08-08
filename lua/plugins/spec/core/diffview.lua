@@ -1,3 +1,6 @@
+local util = require("r-okm.util")
+
+---@type LazyPluginSpec
 return {
   "sindrets/diffview.nvim",
   dependencies = {
@@ -10,9 +13,9 @@ return {
   },
   cmd = { "DiffviewFileHistory", "DiffviewOpen" },
   config = function()
-    vim.keymap.set({ "n" }, "zh", ":<C-u>DiffviewFileHistory %<CR>", { silent = true })
-    vim.keymap.set({ "x" }, "zh", ":'<,'>DiffviewFileHistory<CR>", { silent = true })
-    vim.keymap.set({ "n" }, "zl", ":<C-u>DiffviewFileHistory<CR>", { silent = true })
+    util.keymap({ "n" }, "zh", ":<C-u>DiffviewFileHistory %<CR>")
+    util.keymap({ "x" }, "zh", ":'<,'>DiffviewFileHistory<CR>")
+    util.keymap({ "n" }, "zl", ":<C-u>DiffviewFileHistory<CR>")
 
     local actions = require("diffview.config").actions
     require("diffview").setup({

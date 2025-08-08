@@ -1,3 +1,6 @@
+local util = require("r-okm.util")
+
+---@type LazyPluginSpec
 return {
   "famiu/bufdelete.nvim",
   keys = {
@@ -5,6 +8,6 @@ return {
   },
   cmd = { "Bdelete", "Bwipeout" },
   config = function()
-    vim.keymap.set("n", "<leader>w", ":<C-u>Bdelete<CR>", { noremap = true, silent = true })
+    util.keymap("n", "<leader>w", ":<C-u>Bdelete<CR>")
   end,
 }

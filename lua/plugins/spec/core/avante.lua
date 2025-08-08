@@ -1,4 +1,5 @@
 local prompt = require("r-okm.types.prompts").avante
+local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
@@ -37,7 +38,7 @@ return {
               new_chat = true,
             })
           end)
-          vim.keymap.set("ca", "qq", "execute 'AvanteStop' <bar> wqa")
+          util.keymap("ca", "qq", "execute 'AvanteStop' <bar> wqa")
         end
       end,
     })

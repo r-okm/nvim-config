@@ -1,3 +1,6 @@
+local util = require("r-okm.util")
+
+---@type LazyPluginSpec
 return {
   "folke/persistence.nvim",
   event = "BufReadPre",
@@ -7,7 +10,7 @@ return {
       require("persistence").load,
       { desc = "Persistence: Restore previous session" }
     )
-    vim.keymap.set("ca", "ls", "LoadSession")
+    util.keymap("ca", "ls", "LoadSession")
   end,
   opts = {},
 }

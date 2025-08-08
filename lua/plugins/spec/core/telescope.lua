@@ -129,16 +129,13 @@ return {
       end,
     })
 
-    local keymap = function(mode, lhs, rhs)
-      vim.keymap.set(mode, lhs, rhs, { noremap = true, silent = true })
-    end
-    keymap({ "n" }, "zp", builtin.find_files)
-    keymap({ "n" }, "zo", function()
+    util.keymap({ "n" }, "zp", builtin.find_files)
+    util.keymap({ "n" }, "zo", function()
       builtin.git_status({ previewer = delta_previewer, layout_strategy = "vertical" })
     end)
-    keymap({ "n" }, "zf", ":<C-u>Telescope kensaku<CR>")
-    keymap({ "n" }, "#", builtin.grep_string)
-    keymap({ "x" }, "#", function()
+    util.keymap({ "n" }, "zf", ":<C-u>Telescope kensaku<CR>")
+    util.keymap({ "n" }, "#", builtin.grep_string)
+    util.keymap({ "x" }, "#", function()
       local text = util.get_visual_selection()
       builtin.grep_string({ search = text })
     end)

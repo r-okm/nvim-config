@@ -1,4 +1,5 @@
 local vtsls = require("vtsls")
+local util = require("r-okm.util")
 
 ---@type vim.lsp.Config
 return {
@@ -19,10 +20,10 @@ return {
     },
   },
   on_attach = function(_, bufnr)
-    vim.keymap.set("n", "go", function()
+    util.keymap("n", "go", function()
       vtsls.commands.organize_imports(bufnr)
     end, { buffer = bufnr })
-    vim.keymap.set("n", "ge", function()
+    util.keymap("n", "ge", function()
       pcall(vim.cmd, "LspEslintFixAll")
       vtsls.commands.add_missing_imports(bufnr)
     end, { buffer = bufnr })

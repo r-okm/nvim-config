@@ -1,1 +1,3 @@
-vim.keymap.set("n", "q", ":<C-u>quit<CR>", { buffer = 0, noremap = true, silent = true })
+local util = require("r-okm.util")
+
+util.keymap("n", "q", ":<C-u>quit<CR>", { buffer = 0 })

@@ -1,3 +1,5 @@
+local util = require("r-okm.util")
+
 ---@type LazyPluginSpec
 return {
   "CopilotC-Nvim/CopilotChat.nvim",
@@ -22,7 +24,7 @@ return {
           vim.api.nvim_create_autocmd("QuitPre", {
             command = "CopilotChatClose",
           })
-          vim.keymap.set("ca", "qq", "execute 'CopilotChatClose' <bar> wqa")
+          util.keymap("ca", "qq", "execute 'CopilotChatClose' <bar> wqa")
         end
       end,
     })

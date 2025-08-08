@@ -20,4 +20,5 @@ require("lazy").setup({
   },
 })
 
-vim.keymap.set("ca", "lz", "Lazy")
+local util = require("r-okm.util")
+util.keymap("ca", "lz", "Lazy")

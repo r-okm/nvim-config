@@ -1,3 +1,6 @@
+local util = require("r-okm.util")
+
+---@type LazyPluginSpec
 return {
   "stevearc/oil.nvim",
   dependencies = {
@@ -23,14 +26,14 @@ return {
         show_hidden = true,
       },
     })
-    vim.keymap.set({ "n" }, "<leader>e", function()
+    util.keymap({ "n" }, "<leader>e", function()
       oil.open(nil, {
         preview = { vertical = true },
       })
     end)
-    vim.keymap.set({ "n" }, "<leader>E", function()
+    util.keymap({ "n" }, "<leader>E", function()
       oil.open()
     end)
-    vim.keymap.set("ca", "os", "e oil-ssh://")
+    util.keymap("ca", "os", "e oil-ssh://")
   end,
 }

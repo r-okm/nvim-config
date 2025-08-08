@@ -1,3 +1,6 @@
+local util = require("r-okm.util")
+
+---@type LazyPluginSpec
 return {
   "akinsho/toggleterm.nvim",
   keys = {
@@ -14,7 +17,7 @@ return {
     function LazygitToggle()
       lazygit:toggle()
     end
-    vim.keymap.set({ "n" }, "zg", "<cmd>lua LazygitToggle()<CR>")
+    util.keymap({ "n" }, "zg", "<cmd>lua LazygitToggle()<CR>")
 
     require("toggleterm").setup({
       open_mapping = { "<C-k><C-n>" },
@@ -26,13 +29,11 @@ return {
       close_on_exit = true,
       auto_scroll = true,
     })
-    local function set_terminal_keymaps()
-      local opts = { buffer = 0 }
-      vim.keymap.set("t", [[<C-\>]], [[<C-\><C-n>]], opts)
-    end
     vim.api.nvim_create_autocmd("TermOpen", {
       pattern = "term://*",
-      callback = set_terminal_keymaps,
+      callback = function(opts)
+        util.keymap("t", [[<C-\>]], [[<C-\><C-n>]], { buffer = opts.buf })
+      end,
     })
   end,
 }

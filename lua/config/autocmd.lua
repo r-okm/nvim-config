@@ -1,3 +1,5 @@
+local util = require("r-okm.util")
+
 -- LspAttach
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("r-okm.LspAttach", {}),
@@ -11,7 +13,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     -- set keymap to current buffer
     local set_buf_key = function(modes, lhs, rhs)
-      vim.keymap.set(modes, lhs, rhs, { buffer = bufnr })
+      util.keymap(modes, lhs, rhs, { buffer = bufnr })
     end
 
     -- diagnostic
@@ -63,7 +65,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- FileType format config
 for ft_str, config in pairs(require("r-okm.ft-config")) do
-  local ft_table = require("r-okm.util").split_string(ft_str, ",")
+  local ft_table = util.split_string(ft_str, ",")
   vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("r-okm.FileType" .. ft_str, {}),
     pattern = ft_table,
@@ -71,14 +73,14 @@ for ft_str, config in pairs(require("r-okm.ft-config")) do
       local bufnr = args.buf
 
       -- Set keymap to format
-      vim.keymap.set({ "n" }, "gf", function()
+      util.keymap({ "n" }, "gf", function()
         vim.lsp.buf.format({
           async = true,
           filter = function(format_client)
             return format_client.name == config.format_language_server
           end,
         })
-      end, { noremap = true, silent = true, buffer = bufnr })
+      end, { buffer = bufnr })
 
       -- set autocmd BufWritePre to format
       if config.enable_format_on_save then

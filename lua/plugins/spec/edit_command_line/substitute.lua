@@ -1,3 +1,6 @@
+local util = require("r-okm.util")
+
+---@type vim.lsp.Config
 return {
   "gbprod/substitute.nvim",
   keys = {
@@ -10,7 +13,7 @@ return {
         enabled = false,
       },
     })
-    vim.keymap.set({ "n", "x" }, ",", function()
+    util.keymap({ "n", "x" }, ",", function()
       substitute.operator()
     end)
   end,

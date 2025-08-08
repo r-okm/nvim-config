@@ -1,8 +1,6 @@
-local keymap = function(mode, lhs, rhs)
-  local opts = { noremap = true, silent = true }
-  vim.keymap.set(mode, lhs, rhs, opts)
-end
+local util = require("r-okm.util")
 
+---@type LazyPluginSpec
 return {
   "akinsho/bufferline.nvim",
   dependencies = {
@@ -16,16 +14,16 @@ return {
   config = function()
     local bufferline = require("bufferline")
 
-    keymap({ "n", "x" }, "<C-l>", function()
+    util.keymap({ "n", "x" }, "<C-l>", function()
       bufferline.cycle(1)
     end)
-    keymap({ "n", "x" }, "<C-h>", function()
+    util.keymap({ "n", "x" }, "<C-h>", function()
       bufferline.cycle(-1)
     end)
-    keymap({ "n", "x" }, "L", function()
+    util.keymap({ "n", "x" }, "L", function()
       bufferline.move(1)
     end)
-    keymap({ "n", "x" }, "H", function()
+    util.keymap({ "n", "x" }, "H", function()
       bufferline.move(-1)
     end)
 
