@@ -89,7 +89,7 @@ return {
         },
       },
     },
-    hints = {
+    selection = {
       enabled = false,
     },
     windows = {
