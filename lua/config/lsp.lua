@@ -12,6 +12,7 @@ local _ENALBED_LANGUAGE_SERVERS = {
   "pyright",
   "rust_analyzer",
   "sqls",
+  "stylua",
   "taplo",
   "terraformls",
   "vtsls",

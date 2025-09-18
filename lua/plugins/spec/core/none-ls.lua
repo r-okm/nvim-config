@@ -41,7 +41,6 @@ return {
         formatting.prettierd.with({
           prefer_local = "node_modules/.bin",
         }),
-        formatting.stylua,
         diagnostics.cfn_lint,
         diagnostics.hadolint,
         diagnostics.markdownlint,
