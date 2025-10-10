@@ -21,9 +21,24 @@ return {
         require("telescope").load_extension("kensaku") -- :Telescope kensaku
       end,
     },
+    {
+      "ThePrimeagen/harpoon",
+      branch = "harpoon2",
+      dependencies = { "nvim-lua/plenary.nvim" },
+      cmd = { "HarpoonAdd" },
+      config = function()
+        local harpoon = require("harpoon")
+        harpoon.setup({})
+        vim.api.nvim_create_user_command("HarpoonAdd", function()
+          harpoon:list():add()
+        end, {})
+      end,
+    },
   },
   keys = {
     { "zp", mode = { "n" } },
+    { "zo", mode = { "n" } },
+    { "zi", mode = { "n" } },
     { "zf", mode = { "n" } },
     { "#", mode = { "n", "x" } },
   },
@@ -117,6 +132,33 @@ return {
     })
 
     telescope.load_extension("fzf")
+
+    local harpoon = require("harpoon")
+    harpoon:setup({})
+
+    -- basic telescope configuration
+    local conf = require("telescope.config").values
+    local function toggle_telescope(harpoon_files)
+      local file_paths = {}
+      for _, item in ipairs(harpoon_files.items) do
+        table.insert(file_paths, item.value)
+      end
+
+      require("telescope.pickers")
+        .new({}, {
+          prompt_title = "Harpoon",
+          finder = require("telescope.finders").new_table({
+            results = file_paths,
+          }),
+          previewer = conf.file_previewer({}),
+          sorter = conf.generic_sorter({}),
+        })
+        :find()
+    end
+
+    util.keymap("n", "zi", function()
+      toggle_telescope(harpoon:list())
+    end, { desc = "Open harpoon window" })
 
     -- https://github.com/nvim-telescope/telescope.nvim/issues/605
     local delta_previewer = previewers.new_termopen_previewer({
