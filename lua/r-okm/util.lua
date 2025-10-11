@@ -41,7 +41,7 @@ end
 --- The project-specific configuration directory is located in the current working directory
 --- @return string dir path to the project-specific Neovim configuration directory
 function M.get_project_nvim_config_dir()
-  local dir_name = ".nvim"
+  local dir_name = ".ignore/nvim"
   return vim.fn.getcwd() .. "/" .. dir_name
 end
 
