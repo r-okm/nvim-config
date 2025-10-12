@@ -10,6 +10,7 @@ return {
     do
       -- Returns an argument table for `leap()`, tailored for f/t-motions.
       local function as_ft(key_specific_args)
+        local initial_label = require("leap.opts").labels:sub(1, 1)
         local common_args = {
           inputlen = 1,
           inclusive = true,
@@ -18,7 +19,7 @@ return {
             return "\\%.l" .. pat
           end,
           opts = {
-            safe_labels = vim.fn.mode(1):match("o") and "" or nil, -- [1]
+            safe_labels = vim.fn.mode(1):match("o") and initial_label or nil, -- [1]
             case_sensitive = true, -- [2]
           },
         }
