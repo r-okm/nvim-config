@@ -25,21 +25,38 @@ return {
       },
     },
   },
-  event = "BufReadPost",
+  event = { "BufReadPost" },
+  keys = {
+    "zu",
+    mode = { "n" },
+  },
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gitcommit",
       callback = function()
-        local ok, avante_api = pcall(require, "avante.api")
-        if ok then
-          vim.schedule(function()
-            avante_api.ask({
-              question = prompt.Commit,
-              new_chat = true,
-            })
-          end)
-          util.keymap("ca", "qq", "execute 'AvanteStop' <bar> wqa")
+        -- disable while rebasing
+        local rebase_files = {
+          "/.git/rebase-merge",
+          "/.git/rebase-apply",
+        }
+        for _, file in ipairs(rebase_files) do
+          if vim.fn.getcwd():find(file) then
+            return
+          end
         end
+
+        local ok, avante_api = pcall(require, "avante.api")
+        if not ok then
+          return
+        end
+
+        vim.schedule(function()
+          avante_api.ask({
+            question = prompt.Commit,
+            new_chat = true,
+          })
+        end)
+        util.keymap("ca", "qq", "execute 'AvanteStop' <bar> wqa")
       end,
     })
   end,
