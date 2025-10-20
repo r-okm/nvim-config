@@ -138,37 +138,8 @@ vim.api.nvim_create_user_command("GHOpen", openCurrentFileInGitHub, {
   desc = "Open current file in GitHub web interface (optional remote name, defaults to 'origin')",
 })
 
--- Open(or xdg-open) visualy selected text
-vim.api.nvim_create_user_command("OpenSelected", function(opts)
-  if opts.range ~= 2 then
-    vim.notify("Select text in visual mode before running this command.", vim.log.levels.WARN)
-    return
-  end
-
-  local start_pos = vim.fn.getpos("'<")
-  local end_pos = vim.fn.getpos("'>")
-  local start_line = start_pos[2]
-  local end_line = end_pos[2]
-  local start_col = start_pos[3]
-  local end_col = end_pos[3]
-
-  local lines = vim.fn.getline(start_line, end_line)
-  local selected_text = ""
-
-  if #lines == 1 then
-    selected_text = string.sub(lines[1], start_col, end_col)
-  else
-    for index, line in ipairs(lines) do
-      if index == 1 then
-        selected_text = selected_text .. string.sub(line, start_col)
-      elseif index == #lines then
-        selected_text = selected_text .. string.sub(line, 1, end_col)
-      else
-        selected_text = selected_text ..  line
-      end
-    end
-  end
-
-  util.open_in_browser(selected_text)
-end, { nargs = 0, range= true, desc = "Open visually selected text in web browser" })
-
+-- Open url under cursor
+vim.api.nvim_create_user_command("OpenUrl", function()
+  local url = vim.fn.expand("<cfile>")
+  util.open_in_browser(url)
+end, { nargs = 0, desc = "Open URL under cursor in web browser"})
