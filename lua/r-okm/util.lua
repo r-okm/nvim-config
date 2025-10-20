@@ -60,4 +60,23 @@ function M.keymap(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, merged_opts)
 end
 
+--- Opens the given URL in the default web browser
+--- @param url string The URL to open
+function M.open_in_browser(url)
+  local open_cmd
+  if vim.fn.has("mac") == 1 then
+    open_cmd = "open"
+  elseif vim.fn.has("unix") == 1 then
+    open_cmd = "xdg-open"
+  elseif vim.fn.has("win32") == 1 then
+    open_cmd = "start"
+  else
+    vim.notify("Unsupported operating system", vim.log.levels.ERROR)
+    return
+  end
+
+  local browser_cmd = string.format("%s '%s'", open_cmd, url)
+  vim.fn.system(browser_cmd)
+end
+
 return M

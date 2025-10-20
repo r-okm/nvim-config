@@ -1,3 +1,5 @@
+local util = require("r-okm.util")
+
 -- ヘルプコマンドを垂直分割で表示する
 local function openHelpVertically(opts)
   local command = string.format("vertical help %s", opts.args)
@@ -125,20 +127,7 @@ local function openCurrentFileInGitHub(opts)
   local final_url = string.format("%s/blob/%s/%s#%s", github_url, commit_sha, filepath, line_info)
 
   -- URLを開く
-  local open_cmd
-  if vim.fn.has("mac") == 1 then
-    open_cmd = "open"
-  elseif vim.fn.has("unix") == 1 then
-    open_cmd = "xdg-open"
-  elseif vim.fn.has("win32") == 1 then
-    open_cmd = "start"
-  else
-    vim.notify("Unsupported operating system", vim.log.levels.ERROR)
-    return
-  end
-
-  local browser_cmd = string.format("%s '%s'", open_cmd, final_url)
-  vim.fn.system(browser_cmd)
+  util.open_in_browser(final_url)
 
   vim.notify("Opened in GitHub: " .. final_url, vim.log.levels.INFO)
 end
@@ -148,3 +137,38 @@ vim.api.nvim_create_user_command("GHOpen", openCurrentFileInGitHub, {
   range = true,
   desc = "Open current file in GitHub web interface (optional remote name, defaults to 'origin')",
 })
+
+-- Open(or xdg-open) visualy selected text
+vim.api.nvim_create_user_command("OpenSelected", function(opts)
+  if opts.range ~= 2 then
+    vim.notify("Select text in visual mode before running this command.", vim.log.levels.WARN)
+    return
+  end
+
+  local start_pos = vim.fn.getpos("'<")
+  local end_pos = vim.fn.getpos("'>")
+  local start_line = start_pos[2]
+  local end_line = end_pos[2]
+  local start_col = start_pos[3]
+  local end_col = end_pos[3]
+
+  local lines = vim.fn.getline(start_line, end_line)
+  local selected_text = ""
+
+  if #lines == 1 then
+    selected_text = string.sub(lines[1], start_col, end_col)
+  else
+    for index, line in ipairs(lines) do
+      if index == 1 then
+        selected_text = selected_text .. string.sub(line, start_col)
+      elseif index == #lines then
+        selected_text = selected_text .. string.sub(line, 1, end_col)
+      else
+        selected_text = selected_text ..  line
+      end
+    end
+  end
+
+  util.open_in_browser(selected_text)
+end, { nargs = 0, range= true, desc = "Open visually selected text in web browser" })
+
