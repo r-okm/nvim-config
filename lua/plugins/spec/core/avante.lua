@@ -34,12 +34,13 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gitcommit",
       callback = function()
-        -- disable while rebasing
-        local rebase_files = {
+        -- disable while rebasing and merging
+        local rebase_merge_files = {
           "/.git/rebase-merge",
           "/.git/rebase-apply",
+          "/.git/MERGE_HEAD",
         }
-        for _, file in ipairs(rebase_files) do
+        for _, file in ipairs(rebase_merge_files) do
           if vim.fn.getcwd():find(file) then
             return
           end
