@@ -55,3 +55,16 @@ vim.diagnostic.config({
     },
   },
 })
+
+-- filetypes
+vim.filetype.add({
+  pattern = {
+    ["[tj]sconfig*.json"] = "jsonc",
+    ["*/.vscode/*.json"] = "jsonc",
+    ["*/.devcontainer/*.json"] = "jsonc",
+    [".eslintrc.json"] = "jsonc",
+    ["*cspell.json"] = "jsonc",
+    ["compose.*%.ya?ml"] = "yaml.docker-compose",
+    ["docker%-compose.*%.ya?ml"] = "yaml.docker-compose",
+  },
+})
