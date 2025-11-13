@@ -20,12 +20,14 @@ return {
     },
   },
   on_attach = function(_, bufnr)
+    util.keymap("n", "ga", function()
+      vtsls.commands.add_missing_imports(bufnr)
+    end, { buffer = bufnr })
     util.keymap("n", "go", function()
       vtsls.commands.organize_imports(bufnr)
     end, { buffer = bufnr })
     util.keymap("n", "ge", function()
       pcall(vim.cmd, "LspEslintFixAll")
-      vtsls.commands.add_missing_imports(bufnr)
     end, { buffer = bufnr })
   end,
 }
