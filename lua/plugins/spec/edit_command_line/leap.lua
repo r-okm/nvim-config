@@ -1,10 +1,28 @@
+local util = require("r-okm.util")
+
 ---@type LazyPluginSpec
 return {
   "ggandor/leap.nvim",
   dependencies = {
     { "tpope/vim-repeat" },
   },
+  keys = {
+    { "m", desc = "leap" },
+    { "f", mode = { "n", "x", "o" }, desc = "enhanced f motion using leap" },
+    { "F", mode = { "n", "x", "o" }, desc = "enhanced F motion using leap" },
+    { "t", mode = { "n", "x", "o" }, desc = "enhanced t motion using leap" },
+    { "T", mode = { "n", "x", "o" }, desc = "enhanced T motion using leap" },
+  },
   config = function()
+    util.keymap({ "n" }, "m", function()
+      require("leap").leap({
+        windows = { vim.fn.win_getid() },
+        opts = {
+          safe_labels = "",
+        },
+      })
+    end)
+
     -- 1-character search (enhanced f/t motions)
     -- ref: https://github.com/ggandor/leap.nvim/blob/f5fe479e20d809df7b54ad53142c2bdb0624c62a/README.md?plain=1#L695
     do
