@@ -1,6 +1,8 @@
 local prompt = require("r-okm.types.prompts").avante
 local util = require("r-okm.util")
 
+local work_github_org_active = vim.env.WORK_GITHUB_ORG_ACTIVE or "0"
+
 ---@type LazyPluginSpec
 return {
   "yetone/avante.nvim",
@@ -67,7 +69,7 @@ return {
     provider = "copilot",
     providers = {
       copilot = {
-        model = vim.env.GITHUB_COPILOT_MODEL or "claude-3.5-sonnet",
+        model = work_github_org_active == "1" and "claude-opus-4.5" or "claude-3.5-sonnet",
       },
     },
     system_prompt = function()
