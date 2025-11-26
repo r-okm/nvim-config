@@ -1,5 +1,4 @@
 local prompt = require("r-okm.types.prompts").avante
-local util = require("r-okm.util")
 
 local work_github_org_active = vim.env.WORK_GITHUB_ORG_ACTIVE or "0"
 
@@ -28,40 +27,18 @@ return {
     },
   },
   event = { "BufReadPost" },
+  cmd = { "AvanteAsk", "AvanteChat", "AvanteModels", "AvanteHistory" },
   keys = {
     "zu",
     mode = { "n" },
   },
   init = function()
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "gitcommit",
-      callback = function()
-        -- disable while rebasing and merging
-        local rebase_merge_files = {
-          "/.git/rebase-merge",
-          "/.git/rebase-apply",
-          "/.git/MERGE_HEAD",
-        }
-        for _, file in ipairs(rebase_merge_files) do
-          if vim.fn.getcwd():find(file) then
-            return
-          end
-        end
-
-        local ok, avante_api = pcall(require, "avante.api")
-        if not ok then
-          return
-        end
-
-        vim.schedule(function()
-          avante_api.ask({
-            question = prompt.Commit,
-            new_chat = true,
-          })
-        end)
-        util.keymap("ca", "qq", "execute 'AvanteStop' <bar> wqa")
-      end,
-    })
+    vim.api.nvim_create_user_command("CommitWithAi", function()
+      require("avante.api").ask({
+        question = prompt.Commit,
+        new_chat = true,
+      })
+    end, { nargs = 0, desc = "Generate commit message with AI" })
   end,
   ---@module 'avante'
   ---@type avante.Config
