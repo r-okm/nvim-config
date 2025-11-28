@@ -46,7 +46,7 @@ return {
     provider = "copilot",
     providers = {
       copilot = {
-        model = work_github_org_active == "1" and "claude-opus-4.5" or "claude-3.5-sonnet",
+        model = work_github_org_active == "1" and "claude-opus-4.5" or "gpt-4.1",
       },
     },
     system_prompt = function()
