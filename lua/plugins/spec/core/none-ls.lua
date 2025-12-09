@@ -38,6 +38,7 @@ return {
       sources = {
         cspell.code_actions.with(cspell_config),
         cspell.diagnostics.with(cspell_config),
+        formatting.clang_format,
         formatting.prettierd.with({
           prefer_local = "node_modules/.bin",
         }),

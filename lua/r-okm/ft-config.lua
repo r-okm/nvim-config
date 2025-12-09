@@ -35,7 +35,7 @@ local M = {
     format_language_server = "null-ls",
     enable_format_on_save = true,
   },
-  ["json,jsonc,markdown,yaml"] = {
+  ["c,cpp,json,jsonc,markdown,yaml"] = {
     format_language_server = "null-ls",
     enable_format_on_save = false,
   },
