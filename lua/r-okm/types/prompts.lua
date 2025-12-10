@@ -198,7 +198,7 @@ M.avante = {
     If the prompt is not clear, please ask for clarification.
     Do not provide any personal opinions or beliefs.
     Do not include any sensitive information in your response.
-    You must respond in Japanese.
+    Think in English, but respond in Japanese.
   ]],
   Commit = PROMPT_COMMIT_STAGED .. [[
 
