@@ -34,7 +34,9 @@ return {
   },
   init = function()
     vim.api.nvim_create_user_command("CommitWithAi", function()
-      require("avante.api").ask({
+      local avante_api = require("avante.api")
+      avante_api.switch_provider("copilot_light")
+      avante_api.ask({
         question = prompt.Commit,
         new_chat = true,
       })
@@ -47,6 +49,10 @@ return {
     providers = {
       copilot = {
         model = work_github_org_active == "1" and "claude-opus-4.5" or "gpt-4.1",
+      },
+      copilot_light = {
+        __inherited_from = "copilot",
+        model = work_github_org_active == "1" and "claude-haiku-4.5" or "gpt-4.1",
       },
     },
     system_prompt = function()
