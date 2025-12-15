@@ -200,11 +200,12 @@ M.avante = {
     Do not include any sensitive information in your response.
     Think in English, but respond in Japanese.
   ]],
-  Commit = PROMPT_COMMIT_STAGED .. [[
+  Commit = PROMPT_COMMIT_STAGED
+    .. [[
 
 After generating the commit message:
 1. Present the commit message in a `gitcommit` code block (the message itself must be in English)
-2. Use the Neovim MCP server's `write_file` tool to write the commit message to the COMMIT_EDITMSG buffer
+2. Write the commit message to the current buffer
 3. Provide a brief explanation of the changes in Japanese
 
 Note: The commit message content must follow the rules above and be written in English, but your explanatory text should be in Japanese.]],
