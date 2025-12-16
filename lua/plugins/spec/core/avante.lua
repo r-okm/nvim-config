@@ -57,14 +57,14 @@ return {
   ---@module 'avante'
   ---@type avante.Config
   opts = {
-    provider = "copilot",
+    provider = work_github_org_active == "1" and "copilot" or "copilot_light",
     providers = {
       copilot = {
-        model = work_github_org_active == "1" and "claude-opus-4.5" or "gpt-4.1",
+        model = "claude-opus-4.5",
       },
       copilot_light = {
         __inherited_from = "copilot",
-        model = work_github_org_active == "1" and "claude-haiku-4.5" or "gpt-4.1",
+        model = "gpt-4.1",
       },
     },
     system_prompt = function()
