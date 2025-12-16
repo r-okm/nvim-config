@@ -91,12 +91,11 @@ local PROMPT_COMMIT_STAGED = [[
 Write a commit message for the staged changes following these rules:
 
 - Do not follow the Conventional Commit rules.
-- Avoid formal language and keep the message concise.
-- Use a `gitcommit` code block and write its content in English.
 - Enclose proper nouns (such as function names, filenames, and tools) in backquotes (`).
 - The title must be at most 50 characters, start with a lowercase letter, and begin with a component or feature name followed by a colon (e.g., `script:`, `login:`, `header:`).
 - Use bullet points with `-` for the description.
 - Each line in the description must be 72 characters or fewer.
+- Do not use the verb "tweak". Use more specific verbs like "adjust", "modify", "update", or "refine" instead.
 ]]
 
 M.copilot_chat = {
@@ -200,15 +199,37 @@ M.avante = {
     Do not include any sensitive information in your response.
     Think in English, but respond in Japanese.
   ]],
-  Commit = PROMPT_COMMIT_STAGED
-    .. [[
+  Commit = [[
+Write a commit message for the staged changes.
 
-After generating the commit message:
-1. Present the commit message in a `gitcommit` code block (the message itself must be in English)
-2. Write the commit message to the current buffer
-3. Provide a brief explanation of the changes in Japanese
+## Title Rules:
+- At most 50 characters
+- Start with a lowercase letter
+- Begin with a component/feature name followed by a colon (e.g., `auth:`, `api:`, `docs:`)
 
-Note: The commit message content must follow the rules above and be written in English, but your explanatory text should be in Japanese.]],
+## Body Rules:
+- Separate title and body with a blank line
+- Use `-` bullet points
+- Each line must be 72 characters or fewer
+- Wrap identifiers (function names, filenames, variables) in backquotes
+
+## Style Rules:
+- Do NOT follow Conventional Commits format
+- Use specific verbs (avoid "tweak"; prefer "adjust", "modify", "update", "refine")
+
+## Example:
+```gitcommit
+auth: add token refresh logic
+
+- Add `refreshToken()` function in `auth.ts`
+- Update `useAuth` hook to handle token expiration
+- Remove deprecated `legacyAuth` module
+```
+
+## Output Format:
+1. Explain the changes briefly in Japanese
+2. Present the final commit message in a `gitcommit` code block at the end
+]],
 }
 
 return M
