@@ -202,6 +202,10 @@ M.avante = {
   Commit = [[
 Write a commit message for the staged changes.
 
+## Language Rules:
+- The commit message MUST be written in English
+- Explanation of changes can be in Japanese
+
 ## Title Rules:
 - At most 50 characters
 - Start with a lowercase letter
@@ -215,7 +219,6 @@ Write a commit message for the staged changes.
 
 ## Style Rules:
 - Do NOT follow Conventional Commits format
-- Use specific verbs (avoid "tweak"; prefer "adjust", "modify", "update", "refine")
 
 ## Example:
 ```gitcommit
@@ -228,7 +231,7 @@ auth: add token refresh logic
 
 ## Output Format:
 1. Explain the changes briefly in Japanese
-2. Present the final commit message in a `gitcommit` code block at the end
+2. Present the final commit message **in English** in a `gitcommit` code block at the end
 ]],
 }
 
