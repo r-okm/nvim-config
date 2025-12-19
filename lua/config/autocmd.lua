@@ -17,37 +17,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     -- diagnostic
-    local tb = require("telescope.builtin")
-
-    set_buf_key("n", "g.", function()
-      vim.cmd("Lspsaga diagnostic_jump_next")
-    end)
-    set_buf_key("n", "g,", function()
-      vim.cmd("Lspsaga diagnostic_jump_prev")
-    end)
     set_buf_key("n", "gw", function()
-      tb.diagnostics({ bufnr = 0 })
+      require("telescope.builtin").diagnostics({ bufnr = 0 })
     end)
-    set_buf_key("n", "gW", function()
-      vim.cmd("Lspsaga show_workspace_diagnostics")
-    end)
-    -- code navigation
-    set_buf_key("n", "gd", function()
-      tb.lsp_definitions()
-    end)
-    set_buf_key("n", "gD", function()
-      tb.lsp_definitions({ jump_type = "vsplit" })
-    end)
-    set_buf_key("n", "gi", function()
-      tb.lsp_implementations()
-    end)
-    set_buf_key("n", "gt", function()
-      tb.lsp_type_definitions()
-    end)
-    set_buf_key("n", "grr", function()
-      tb.lsp_references()
-    end)
-    -- hover document
     if client.supports_method("textDocument/hover") then
       set_buf_key("n", "K", function()
         vim.lsp.buf.hover({
@@ -55,14 +27,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         })
       end)
     end
-    -- symbol rename
-    set_buf_key("n", "grn", function()
-      vim.cmd("Lspsaga rename")
-    end)
-    -- code action
-    set_buf_key({ "n", "v" }, "ga", function()
-      vim.cmd("Lspsaga code_action")
-    end)
   end,
 })
 

@@ -17,4 +17,27 @@ return {
       border = "rounded",
     },
   },
+  keys = {
+    {
+      "g.",
+      "<cmd>Lspsaga diagnostic_jump_next<CR>",
+      desc = "Lspsaga: Jump to next diagnostic",
+    },
+    {
+      "g,",
+      "<cmd>Lspsaga diagnostic_jump_prev<CR>",
+      desc = "Lspsaga: Jump to previous diagnostic",
+    },
+    {
+      "gW",
+      "<cmd>Lspsaga show_workspace_diagnostics<CR>",
+      desc = "Lspsaga: Show workspace diagnostics",
+      mode = { "n", "v" },
+    },
+    {
+      "grn",
+      "<cmd>Lspsaga rename<CR>",
+      desc = "Lspsaga: Rename symbol",
+    },
+  },
 }
