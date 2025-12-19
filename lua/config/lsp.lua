@@ -1,6 +1,7 @@
 local _ENALBED_LANGUAGE_SERVERS = {
   "bashls",
   "buf_ls",
+  "cspell_ls",
   "cssls",
   "docker_compose_language_service",
   "dockerls",
