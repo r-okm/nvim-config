@@ -42,25 +42,18 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gitcommit",
       callback = function()
-        local ok = pcall(require, "avante")
-        if not ok then
-          vim.notify("Avante.nvim is not installed", vim.log.levels.ERROR)
-          return
-        end
+        pcall(require, "avante")
 
         util.keymap("ca", "qq", "execute 'AvanteStop' <bar> wqa")
         util.keymap("ca", "ai", function()
-          local ok, avante_api = pcall(require, "avante.api")
-          if not ok then
-            vim.notify("Avante.nvim is not installed", vim.log.levels.ERROR)
-            return
-          end
-
-          avante_api.switch_provider("copilot_light")
-          avante_api.ask({
-            question = prompt.Commit,
-            new_chat = true,
-          })
+          vim.schedule(function()
+            local avante_api = require("avante.api")
+            avante_api.switch_provider("copilot_light")
+            avante_api.ask({
+              question = prompt.Commit,
+              new_chat = true,
+            })
+          end)
         end)
       end,
     })
