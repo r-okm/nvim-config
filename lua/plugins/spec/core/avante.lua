@@ -9,8 +9,6 @@ return {
   version = false,
   build = "make",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
-    "stevearc/dressing.nvim",
     "nvim-lua/plenary.nvim",
     "MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
@@ -21,22 +19,35 @@ return {
     "ravitemer/mcphub.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
-      ft = { "markdown", "Avante" },
+      ft = { "Avante", "AvanteInput" },
+      ---@module 'render-markdown'
+      ---@type render.md.UserConfig
       opts = {
-        file_types = { "markdown", "Avante" },
+        file_types = { "Avante" },
       },
     },
   },
-  event = { "BufReadPost" },
   cmd = { "AvanteAsk", "AvanteChat", "AvanteModels", "AvanteHistory" },
   keys = {
-    "zu",
-    mode = { "n" },
+    {
+      "zu",
+      mode = { "n", "x" },
+    },
+    {
+      "zi",
+      mode = { "x" },
+    },
   },
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gitcommit",
       callback = function()
+        local ok = pcall(require, "avante")
+        if not ok then
+          vim.notify("Avante.nvim is not installed", vim.log.levels.ERROR)
+          return
+        end
+
         util.keymap("ca", "qq", "execute 'AvanteStop' <bar> wqa")
         util.keymap("ca", "ai", function()
           local ok, avante_api = pcall(require, "avante.api")
@@ -57,10 +68,10 @@ return {
   ---@module 'avante'
   ---@type avante.Config
   opts = {
-    provider = work_github_org_active == "1" and "copilot" or "copilot_light",
+    provider = "copilot",
     providers = {
       copilot = {
-        model = "claude-opus-4.5",
+        model = work_github_org_active == "1" and "claude-opus-4.5" or "gpt-4.1",
       },
       copilot_light = {
         __inherited_from = "copilot",
