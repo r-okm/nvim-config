@@ -68,14 +68,17 @@ return {
         },
         layout_config = {
           horizontal = {
-            height = 0.9,
-            preview_cutoff = 120,
-            prompt_position = "bottom",
+            height = 0.95,
             width = 0.9,
-            preview_width = 0.7,
+            preview_width = 0.6,
+          },
+          vertical = {
+            height = 0.95,
+            width = 0.9,
+            preview_height = 0.6,
           },
         },
-        layout_strategy = "vertical",
+        layout_strategy = "horizontal",
         vimgrep_arguments = {
           "rg",
           "--color=never",
