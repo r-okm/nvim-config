@@ -20,6 +20,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set_buf_key("n", "gw", function()
       require("telescope.builtin").diagnostics({ bufnr = 0 })
     end)
+    set_buf_key("n", "grr", function()
+      require("telescope.builtin").lsp_references()
+    end)
     if client.supports_method("textDocument/hover") then
       set_buf_key("n", "K", function()
         vim.lsp.buf.hover({
