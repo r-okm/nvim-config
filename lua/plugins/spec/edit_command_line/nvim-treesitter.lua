@@ -1,14 +1,14 @@
 ---@type LazyPluginSpec
 return {
   "nvim-treesitter/nvim-treesitter",
-  -- dependencies = {
-  --   { "nvim-treesitter/nvim-treesitter-textobjects" },
-  -- },
+  branch = "main",
   build = { ":TSUpdate" },
-  event = { "BufReadPost" },
-  config = function()
-    require("nvim-treesitter.configs").setup({
-      ensure_installed = {
+  lazy = false,
+  init = function()
+    vim.treesitter.language.register("bash", { "sh", "zsh" })
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("vim-treesitter-start", {}),
+      pattern = {
         "bash",
         "css",
         "diff",
@@ -40,43 +40,14 @@ return {
         "vimdoc",
         "yaml",
       },
-      highlight = {
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 5000
-        end,
-      },
-      --[[ textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["ap"] = "@parameter.outer",
-            ["ip"] = "@parameter.inner",
-          },
-          selection_modes = {
-            ["@function.outer"] = "V",
-          },
-        },
-        swap = {
-          enable = true,
-          swap_next = {
-            ["<leader>a"] = "@parameter.inner",
-          },
-          swap_previous = {
-            ["<leader>A"] = "@parameter.inner",
-          },
-        },
-      }, ]]
-    })
+      callback = function(ctx)
+        if vim.api.nvim_buf_line_count(ctx.buf) > 5000 then
+          return
+        end
 
-    vim.cmd([[
-      set nofoldenable
-      set foldmethod=expr
-      set foldexpr=nvim_treesitter#foldexpr()
-    ]])
+        pcall(vim.treesitter.start)
+        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
   end,
 }
