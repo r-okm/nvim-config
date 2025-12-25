@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "kevinhwang91/nvim-bqf",
+  branch = "main",
   dependencies = {
     { "junegunn/fzf" },
   },
