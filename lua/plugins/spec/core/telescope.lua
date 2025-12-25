@@ -101,6 +101,7 @@ return {
           "!*.lock",
         },
         path_display = {
+          truncate = 3,
           filename_first = {
             reverse_directories = false,
           },
