@@ -5,8 +5,8 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
-    { "famiu/bufdelete.nvim" },
   },
+  enabled = false,
   event = { "BufReadPre" },
   init = function()
     vim.opt.sessionoptions:append("globals")
