@@ -1,35 +1,50 @@
-local util = require("r-okm.util")
-
 ---@type LazyPluginSpec
 return {
   "akinsho/bufferline.nvim",
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
+    { "catppuccin/nvim", name = "catppuccin" },
   },
   event = { "BufReadPre" },
+  keys = {
+    {
+      "<C-l>",
+      function()
+        require("bufferline").cycle(1)
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "<C-h>",
+      function()
+        require("bufferline").cycle(-1)
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "L",
+      function()
+        require("bufferline").move(1)
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "H",
+      function()
+        require("bufferline").move(-1)
+      end,
+      mode = { "n", "x" },
+    },
+  },
   init = function()
     vim.opt.sessionoptions:append("globals")
   end,
   config = function()
-    local bufferline = require("bufferline")
-
-    util.keymap({ "n", "x" }, "<C-l>", function()
-      bufferline.cycle(1)
-    end)
-    util.keymap({ "n", "x" }, "<C-h>", function()
-      bufferline.cycle(-1)
-    end)
-    util.keymap({ "n", "x" }, "L", function()
-      bufferline.move(1)
-    end)
-    util.keymap({ "n", "x" }, "H", function()
-      bufferline.move(-1)
-    end)
-
-    bufferline.setup({
+    require("bufferline").setup({
       options = {
         middle_mouse_command = "Bdelete %d",
         diagnostics = "nvim_lsp",
+        move_wraps_at_ends = true,
         separator_style = "thick",
         show_buffer_close_icons = false,
         indicator = {
