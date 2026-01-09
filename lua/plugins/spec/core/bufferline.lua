@@ -6,7 +6,6 @@ return {
   dependencies = {
     { "nvim-tree/nvim-web-devicons" },
   },
-  enabled = false,
   event = { "BufReadPre" },
   init = function()
     vim.opt.sessionoptions:append("globals")
