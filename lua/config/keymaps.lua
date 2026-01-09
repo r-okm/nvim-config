@@ -44,3 +44,21 @@ end
 
 util.keymap({ "n" }, "<leader>s", ":<C-u>write<CR>")
 util.keymap({ "n" }, "<leader>S", ":<C-u>noa write<CR>")
+
+-- Buffer Manager
+local buffer_manager = require("r-okm.buffer_manager")
+util.keymap({ "n" }, "<leader>b", function()
+  buffer_manager.toggle_ui()
+end, { desc = "Toggle buffer manager" })
+util.keymap({ "n" }, "[b", function()
+  buffer_manager.cycle(-1)
+end, { desc = "Previous buffer" })
+util.keymap({ "n" }, "]b", function()
+  buffer_manager.cycle(1)
+end, { desc = "Next buffer" })
+util.keymap({ "n" }, "[B", function()
+  buffer_manager.move(-1)
+end, { desc = "Move buffer left" })
+util.keymap({ "n" }, "]B", function()
+  buffer_manager.move(1)
+end, { desc = "Move buffer right" })
