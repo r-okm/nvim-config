@@ -4,7 +4,7 @@ local state = {
   buffers = {},
   win_id = nil,
   buf_id = nil,
-  ns_id = vim.api.nvim_create_namespace("buffer_manager"),
+  ns_id = vim.api.nvim_create_namespace("slip"),
 }
 
 local config = {
@@ -154,6 +154,94 @@ local function render_buffer_list()
   return max_width, #lines
 end
 
+-- Calculate window position
+local function calculate_position(width, height)
+  local ui = vim.api.nvim_list_uis()[1]
+
+  local row = 0
+  local col = ui.width - width + 1
+
+  return row, col
+end
+
+-- Create the transparent floating window
+local function create_window(width, height)
+  local row, col = calculate_position(width, height)
+
+  local bufnr = vim.api.nvim_create_buf(false, true)
+  local win_id = vim.api.nvim_open_win(bufnr, false, {
+    relative = "editor",
+    style = "minimal",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    border = "none",
+    focusable = false,
+  })
+
+  vim.api.nvim_set_option_value("modifiable", false, { buf = bufnr })
+  vim.api.nvim_set_option_value("buftype", "nofile", { buf = bufnr })
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = bufnr })
+  vim.api.nvim_set_option_value("swapfile", false, { buf = bufnr })
+  vim.api.nvim_set_option_value("wrap", false, { win = win_id })
+  vim.api.nvim_set_option_value("winblend", 0, { win = win_id })
+  vim.api.nvim_set_option_value("winhighlight", "Normal:" .. config.highlights.window_bg, { win = win_id })
+
+  return { bufnr = bufnr, win_id = win_id }
+end
+
+-- Update window size dynamically
+local function update_window_size(width, height)
+  if not state.win_id or not vim.api.nvim_win_is_valid(state.win_id) then
+    return
+  end
+
+  local row, col = calculate_position(width, height)
+
+  pcall(vim.api.nvim_win_set_config, state.win_id, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+  })
+end
+
+local function setup_autocmds()
+  local function is_menu_buffer(bufnr)
+    local ok, val = pcall(vim.api.nvim_buf_get_var, bufnr, "slip_menu")
+    return ok and val
+  end
+
+  local augroup = vim.api.nvim_create_augroup("SlipRefresh", { clear = true })
+
+  vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete", "BufWipeout", "BufEnter", "WinEnter" }, {
+    group = augroup,
+    callback = function(args)
+      if is_menu_buffer(args.buf) then
+        return
+      end
+      if vim.bo[args.buf].buftype ~= "" and vim.bo[args.buf].buftype ~= "terminal" then
+        return
+      end
+
+      require("r-okm.slip").refresh_menu()
+    end,
+    desc = "Refresh Slip menu on buffer changes",
+  })
+
+  vim.api.nvim_create_autocmd("VimResized", {
+    group = augroup,
+    callback = function()
+      require("r-okm.slip").refresh_menu()
+    end,
+    desc = "Refresh slip menu on window resize",
+  })
+end
+
+function M.refresh_menu() end
+
 function M.cycle(direction)
   local index = get_current_buffer_index()
   if not index or #state.buffers == 0 then
@@ -276,12 +364,19 @@ local function create_floating_window(content_width, content_height)
   return win, buf
 end
 
-function M.toggle_ui()
-  if state.win_id and vim.api.nvim_win_is_valid(state.win_id) then
-    M.close_ui()
-    return
-  end
+function M.is_open_menu()
+  return state.win_id and vim.api.nvim_win_is_valid(state.win_id)
+end
 
+function M.toggle_menu()
+  if M.is_open_menu() then
+    M.close_menu()
+  else
+    M.open_menu()
+  end
+end
+
+function M.open_menu()
   state.buffers = get_display_names()
 
   local current_buf = vim.api.nvim_get_current_buf()
@@ -308,18 +403,10 @@ function M.toggle_ui()
   end
 
   render_buffer_list()
-
-  vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-    callback = function(ev)
-      if ev.buf ~= state.buf_id and state.win_id and vim.api.nvim_win_is_valid(state.win_id) then
-        render_buffer_list()
-      end
-    end,
-  })
 end
 
-function M.close_ui()
-  if state.win_id and vim.api.nvim_win_is_valid(state.win_id) then
+function M.close_menu()
+  if M.is_open_menu() then
     vim.api.nvim_win_close(state.win_id, true)
   end
   state.win_id = nil
@@ -328,6 +415,9 @@ end
 
 function M.setup(opts)
   config = vim.tbl_deep_extend("force", config, opts or {})
+
+  setup_autocmds()
+  M.open_menu()
 end
 
 return M
