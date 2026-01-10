@@ -44,22 +44,3 @@ end
 
 util.keymap({ "n" }, "<leader>s", ":<C-u>write<CR>")
 util.keymap({ "n" }, "<leader>S", ":<C-u>noa write<CR>")
-
--- Buffer Manager
-local slip = require("r-okm.slip")
-slip.setup()
-util.keymap({ "n" }, "<leader>b", function()
-  slip.toggle_menu()
-end, { desc = "Toggle buffer manager" })
-util.keymap({ "n" }, "[b", function()
-  slip.cycle(-1)
-end, { desc = "Previous buffer" })
-util.keymap({ "n" }, "]b", function()
-  slip.cycle(1)
-end, { desc = "Next buffer" })
-util.keymap({ "n" }, "[B", function()
-  slip.move(-1)
-end, { desc = "Move buffer left" })
-util.keymap({ "n" }, "]B", function()
-  slip.move(1)
-end, { desc = "Move buffer right" })
