@@ -5,6 +5,7 @@ return {
     { "nvim-tree/nvim-web-devicons" },
     { "catppuccin/nvim", name = "catppuccin" },
   },
+  cond = false,
   event = { "BufReadPre" },
   keys = {
     {

@@ -1,48 +1,40 @@
-# Buffer Manager
+# husen.nvim
 
-bufferline.nvimとbento.nvimにインスパイアされたバッファ管理モジュール。
+bufferline.nvimとbento.nvimにインスパイアされたバッファ管理プラグイン。
 
 ## 機能
 
-### API
+- **Floating Window UI**: bento.nvimスタイルのフローティングウィンドウでバッファリストを表示
+- **Buffer Navigation**: bufferline.nvimスタイルのバッファ切り替え/並び替えAPI
+
+## API
 
 - **`cycle(direction)`**: バッファを循環的に切り替え
   - `direction`: 1 で次へ、-1 で前へ
-  - bufferline.nvimの`cycle()`に相当
 
 - **`move(direction)`**: 現在のバッファの順序を移動
   - `direction`: 1 で右へ、-1 で左へ
-  - bufferline.nvimの`move()`に相当
 
 - **`toggle_ui()`**: フローティングウィンドウでバッファリストを表示/非表示
-  - bento.nvimのUIスタイルに相当
-  - フォーカスせずに表示
 
-### デフォルトキーマップ
-
-- `<leader>b`: バッファマネージャーをトグル表示
-- `]b`: 次のバッファへ移動 (cycle)
-- `[b`: 前のバッファへ移動 (cycle)
-- `]B`: バッファを右へ移動 (move)
-- `[B`: バッファを左へ移動 (move)
-
-### フローティングウィンドウの特徴
-
-- フォーカスなしで表示（編集を続けながら確認可能）
-- バッファ切り替え時に自動更新
-- トグル動作（同じキーで開閉）
-
-## カスタマイズ
+## セットアップ
 
 ```lua
-require("r-okm.buffer_manager").setup({
+require("husen").setup({
   ui = {
-    width = 60,        -- ウィンドウの幅
-    height = 15,       -- ウィンドウの高さ
-    border = "none",   -- ボーダースタイル ("none", "rounded", "single", etc.)
-    position = "top-right", -- 位置: "center", "top-right", "top-left", "bottom-right", "bottom-left"
+    width = nil,           -- nil で自動幅、数値で固定幅
+    position = "top-right", -- "top-right", "top-left", "bottom-right", "bottom-left", "center"
+    offset_x = 0,
+    offset_y = 0,
   },
-  wrap_at_ends = true,  -- 端で折り返すか
+  wrap_at_ends = true,     -- 端で折り返すか
+  keymaps = {
+    toggle = "<leader>b",  -- false で無効化、文字列でカスタムキー
+    cycle_next = "]b",
+    cycle_prev = "[b",
+    move_next = "]B",
+    move_prev = "[B",
+  },
 })
 ```
 

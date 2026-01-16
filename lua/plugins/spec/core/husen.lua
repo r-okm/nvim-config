@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 return {
   dir = "~/.config/nvim/lua/r-okm/husen",
-  cond = false,
   event = { "BufReadPre" },
   keys = {
     {
@@ -12,28 +11,28 @@ return {
       desc = "Toggle buffer manager",
     },
     {
-      "[b",
+      "<C-h>",
       function()
         require("husen.commands").cycle(-1)
       end,
       desc = "Previous buffer",
     },
     {
-      "]b",
+      "<C-l>",
       function()
         require("husen.commands").cycle(1)
       end,
       desc = "Next buffer",
     },
     {
-      "[B",
+      "H",
       function()
         require("husen.commands").move(-1)
       end,
       desc = "Move buffer left",
     },
     {
-      "]B",
+      "L",
       function()
         require("husen.commands").move(1)
       end,
