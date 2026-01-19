@@ -14,6 +14,7 @@ local markers = {
 
 local disabled_filetypes = {
   "toggleterm",
+  "DiffviewFileHistory",
 }
 
 ---@type vim.lsp.Config
