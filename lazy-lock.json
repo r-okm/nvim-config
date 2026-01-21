@@ -31,7 +31,6 @@
   "markview.nvim": { "branch": "main", "commit": "b8465d5993e173bec7c2d103949bc54bb526214c" },
   "mason-lock.nvim": { "branch": "main", "commit": "0e771d2b13ad051ffd199d56275644b27d8eb282" },
   "mason.nvim": { "branch": "main", "commit": "fc98833b6da5de5a9c5b1446ac541577059555be" },
-  "mcphub.nvim": { "branch": "main", "commit": "163b3ad0caa3987e04e5b1d89bb89d230686d17b" },
   "none-ls.nvim": { "branch": "main", "commit": "1fcf9cbf9acf893455c6cee792537aa709de62cb" },
   "nui.nvim": { "branch": "main", "commit": "f535005e6ad1016383f24e39559833759453564e" },
   "nvim-autopairs": { "branch": "master", "commit": "23320e75953ac82e559c610bec5a90d9c6dfa743" },

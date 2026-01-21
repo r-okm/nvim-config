@@ -16,7 +16,6 @@ return {
     "hrsh7th/nvim-cmp",
     "nvim-tree/nvim-web-devicons",
     "zbirenbaum/copilot.lua",
-    "ravitemer/mcphub.nvim",
     {
       "MeanderingProgrammer/render-markdown.nvim",
       ft = { "Avante", "AvanteInput" },
@@ -28,16 +27,6 @@ return {
     },
   },
   cmd = { "AvanteAsk", "AvanteChat", "AvanteModels", "AvanteHistory" },
-  keys = {
-    {
-      "zu",
-      mode = { "n", "x" },
-    },
-    {
-      "zi",
-      mode = { "x" },
-    },
-  },
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gitcommit",
@@ -72,35 +61,14 @@ return {
       },
     },
     system_prompt = function()
-      local base_prompt = prompt.Base
-      local hub = require("mcphub").get_hub_instance()
-      local additional_prompt = hub and hub:get_active_servers_prompt() or ""
-
-      return base_prompt .. additional_prompt
+      return prompt.Base
     end,
-    custom_tools = function()
-      return {
-        require("mcphub.extensions.avante").mcp_tool(),
-      }
-    end,
-    disabled_tools = {
-      "list_files",
-      "search_files",
-      "read_file",
-      "create_file",
-      "rename_file",
-      "delete_file",
-      "create_dir",
-      "rename_dir",
-      "delete_dir",
-      "bash",
-    },
     selector = {
       provider = "telescope",
     },
     mappings = {
-      ask = "zu",
-      edit = "zi",
+      ask = nil,
+      edit = nil,
       sidebar = {
         close_from_input = {
           normal = "<Esc>",

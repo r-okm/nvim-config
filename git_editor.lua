@@ -7,7 +7,6 @@ require("lazy").setup({
     { import = "plugins.spec.edit_command_line" },
     { import = "plugins.spec.theme" },
     { import = "plugins.spec.core.avante" },
-    { import = "plugins.spec.core.mcphub" },
     { import = "plugins.spec.core.diffview" },
   },
 })
