@@ -6,16 +6,12 @@ if not uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local spec = {
-  { import = "plugins.spec.edit_command_line" },
-  { import = "plugins.spec.theme" },
-}
-if vim.env.EDITPROMPT ~= "1" then
-  table.insert(spec, 1, { import = "plugins.spec.core" })
-end
-
 require("lazy").setup({
-  spec = spec,
+  spec = {
+    { import = "plugins.spec.core" },
+    { import = "plugins.spec.edit_command_line" },
+    { import = "plugins.spec.theme" },
+  },
   defaults = {
     version = "*",
   },
@@ -26,9 +22,3 @@ require("lazy").setup({
 
 local util = require("r-okm.util")
 util.keymap("ca", "lz", "Lazy")
-
--- When started via editprompt
-if vim.env.EDITPROMPT == "1" then
-  vim.opt_local.autowriteall = true
-  vim.cmd("startinsert")
-end
