@@ -9,6 +9,25 @@ return {
   branch = "master",
   lazy = false,
   config = function()
+    -- 削除されたファイルのバッファを自動的に閉じる
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "OilActionsPost",
+      callback = function(args)
+        if args.data.err then
+          return
+        end
+        for _, action in ipairs(args.data.actions) do
+          if action.type == "delete" then
+            local path = action.url:gsub("^oil://", "")
+            local bufnr = vim.fn.bufnr(path)
+            if bufnr ~= -1 then
+              vim.api.nvim_buf_delete(bufnr, { force = true })
+            end
+          end
+        end
+      end,
+    })
+
     local oil = require("oil")
     oil.setup({
       delete_to_trash = true,
