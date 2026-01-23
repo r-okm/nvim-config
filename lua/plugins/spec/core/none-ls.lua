@@ -16,7 +16,6 @@ return {
         }),
         diagnostics.cfn_lint,
         diagnostics.hadolint,
-        diagnostics.markdownlint,
       },
     })
   end,
