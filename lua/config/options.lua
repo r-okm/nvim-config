@@ -21,8 +21,8 @@ vim.opt.swapfile = false
 vim.g.mapleader = " "
 
 -- sync register with system clipboard
-local yank_command = "wl-copy --type text/plain --trim-newline"
-local paste_command = "wl-paste --no-newline"
+local yank_command = "clipboard --yank"
+local paste_command = "clipboard --put"
 vim.g.clipboard = {
   name = "system_clipboard",
   copy = {
