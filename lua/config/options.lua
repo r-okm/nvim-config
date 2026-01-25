@@ -21,10 +21,10 @@ vim.opt.swapfile = false
 vim.g.mapleader = " "
 
 -- sync register with system clipboard
-local yank_command = "clipboard --yank"
-local paste_command = "clipboard --put"
+local yank_command = "wl-copy --type text/plain --trim-newline"
+local paste_command = "wl-paste --no-newline"
 vim.g.clipboard = {
-  name = "osClipboard",
+  name = "system_clipboard",
   copy = {
     ["+"] = yank_command,
   },

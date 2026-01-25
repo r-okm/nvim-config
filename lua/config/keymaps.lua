@@ -17,20 +17,10 @@ util.keymap({ "n", "x" }, "<leader>q", '"_')
 util.keymap({ "n", "x" }, "c", '"_c')
 util.keymap({ "n", "x" }, "C", '"_C')
 
--- yank to clipboard
-util.keymap(
-  { "n", "x" },
-  "gy",
-  require("general_converter").operator_convert(function(text)
-    local current_reg = vim.fn.getreg("+")
-    vim.fn.setreg("+", text)
-    vim.fn.setreg("", current_reg)
-    return text
-  end),
-  { expr = true }
-)
-
--- paste from clipboard
+-- copy to system clipboard
+util.keymap({ "n" }, "gy", '"+y')
+util.keymap({ "x" }, "gy", 'mz"+y`z')
+-- paste from system clipboard
 util.keymap({ "n" }, "gp", '"+p')
 util.keymap({ "x" }, "gp", '"+P')
 
