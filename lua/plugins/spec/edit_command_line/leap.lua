@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "ggandor/leap.nvim",
+  "https://codeberg.org/andyg/leap.nvim",
   dependencies = {
     { "tpope/vim-repeat" },
   },
