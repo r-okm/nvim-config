@@ -12,7 +12,7 @@ return {
         auto_trigger = true,
         keymap = {
           accept = false,
-          next = "<C-k>",
+          next = false,
           prev = false,
         },
       },
