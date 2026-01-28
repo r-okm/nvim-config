@@ -23,10 +23,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set_buf_key("n", "grr", function()
       require("telescope.builtin").lsp_references()
     end)
-    if client.supports_method("textDocument/hover") then
+
+    if client:supports_method("textDocument/hover") then
       set_buf_key("n", "K", function()
         vim.lsp.buf.hover({
           border = "single",
+        })
+      end)
+    end
+
+    if client:supports_method("textDocument/signatureHelp") then
+      set_buf_key("i", "<C-k>", function()
+        vim.lsp.buf.signature_help({
+          close_events = { "ModeChanged", "CursorMovedI" },
+          border = "single",
+          silent = true,
+          focusable = false,
         })
       end)
     end
