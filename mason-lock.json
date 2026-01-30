@@ -16,7 +16,7 @@
   "markdownlint": "0.47.0",
   "prettierd": "0.26.2",
   "pyright": "1.1.408",
-  "rust-analyzer": "2026-01-19",
+  "rust-analyzer": "2026-01-26",
   "shellcheck": "v0.11.0",
   "shfmt": "v3.12.0",
   "sqls": "v0.2.45",
