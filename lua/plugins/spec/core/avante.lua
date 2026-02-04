@@ -27,6 +27,14 @@ return {
     },
   },
   cmd = { "AvanteAsk", "AvanteChat", "AvanteModels", "AvanteHistory" },
+  event = { "BufReadPost" },
+  keys = {
+    {
+      "zu",
+      desc = "Avante: Ask AI",
+      mode = { "n", "x" },
+    },
+  },
   init = function()
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gitcommit",
@@ -53,11 +61,10 @@ return {
     provider = "copilot",
     providers = {
       copilot = {
-        model = work_github_org_active == "1" and "claude-opus-4.5" or "gpt-4.1",
+        model = work_github_org_active == "1" and "claude-haiku-4.5" or "gpt-4.1",
       },
       copilot_light = {
         __inherited_from = "copilot",
-        -- model = work_github_org_active == "1" and "claude-haiku-4.5" or "gpt-4.1",
         model = "gpt-4.1",
       },
     },
@@ -68,7 +75,7 @@ return {
       provider = "telescope",
     },
     mappings = {
-      ask = nil,
+      ask = "zu",
       edit = nil,
       sidebar = {
         close_from_input = {
