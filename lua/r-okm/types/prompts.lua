@@ -208,26 +208,14 @@ Write a commit message for the staged changes.
 
 ## Title Rules:
 - At most 50 characters
-- Start with a lowercase letter
-- Begin with a component/feature name followed by a colon (e.g., `auth:`, `api:`, `docs:`)
 
 ## Body Rules:
 - Separate title and body with a blank line
-- Use `-` bullet points
 - Each line must be 72 characters or fewer
-- Wrap identifiers (function names, filenames, variables) in backquotes
 
-## Style Rules:
-- Do NOT follow Conventional Commits format
-
-## Example:
-```gitcommit
-auth: add token refresh logic
-
-- Add `refreshToken()` function in `auth.ts`
-- Update `useAuth` hook to handle token expiration
-- Remove deprecated `legacyAuth` module
-```
+## Style Reference:
+- Refer to the past commit history to match the existing style and conventions of this repository
+- Maintain consistency with previous commit messages in tone, format, and wording
 
 ## Output Format:
 1. Explain the changes briefly in Japanese
