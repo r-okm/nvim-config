@@ -211,6 +211,7 @@ Write a commit message for the staged changes.
 
 ## Body Rules:
 - Separate title and body with a blank line
+- Use `-` bullet points
 - Each line must be 72 characters or fewer
 
 ## Style Reference:

@@ -61,11 +61,11 @@ return {
     provider = "copilot",
     providers = {
       copilot = {
-        model = work_github_org_active == "1" and "claude-haiku-4.5" or "gpt-4.1",
+        model = work_github_org_active == "1" and "claude-opus-4.6" or "gpt-4.1",
       },
       copilot_light = {
         __inherited_from = "copilot",
-        model = "gpt-4.1",
+        model = work_github_org_active == "1" and "claude-haiku-4.5" or "gpt-4.1",
       },
     },
     system_prompt = function()
