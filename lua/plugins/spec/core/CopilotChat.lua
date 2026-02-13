@@ -2,12 +2,12 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "CopilotC-Nvim/CopilotChat.nvim",
+  "https://github.com/CopilotC-Nvim/CopilotChat.nvim",
   enabled = false,
   dependencies = {
-    { "nvim-telescope/telescope.nvim" },
-    { "nvim-lua/plenary.nvim", branch = "master" },
-    { "zbirenbaum/copilot.lua" },
+    { "https://github.com/nvim-telescope/telescope.nvim" },
+    { "https://github.com/nvim-lua/plenary.nvim", branch = "master" },
+    { "https://github.com/zbirenbaum/copilot.lua" },
   },
   branch = "main",
   build = "make tiktoken",

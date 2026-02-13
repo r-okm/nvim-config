@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "catppuccin/nvim",
+  "https://github.com/catppuccin/nvim",
   version = "~1.9",
   name = "catppuccin",
   enabled = true,

@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "vim-denops/denops-shared-server.vim",
+  "https://github.com/vim-denops/denops-shared-server.vim",
   cmd = { "DenopsSharedServerInstall", "DenopsSharedServerUninstall" },
   config = function()
     local function install()

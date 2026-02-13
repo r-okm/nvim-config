@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "norcalli/nvim-colorizer.lua",
+  "https://github.com/norcalli/nvim-colorizer.lua",
   event = { "BufReadPost" },
   config = function()
     local filetype_opts = { "*", "!toggleterm", css = { names = true } }

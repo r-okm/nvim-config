@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "akinsho/toggleterm.nvim",
+  "https://github.com/akinsho/toggleterm.nvim",
   keys = {
     { "zg", mode = { "n" } },
     { "zy", mode = { "n" } },

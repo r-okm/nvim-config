@@ -3,7 +3,7 @@ return {
   "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
   event = { "BufReadPost" },
   dependencies = {
-    { "nvim-treesitter/nvim-treesitter" },
+    { "https://github.com/nvim-treesitter/nvim-treesitter" },
   },
   main = "rainbow-delimiters.setup",
   ---@module 'rainbow-delimiters.types'

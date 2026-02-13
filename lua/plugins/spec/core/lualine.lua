@@ -1,8 +1,8 @@
 ---@type LazyPluginSpec
 return {
-  "nvim-lualine/lualine.nvim",
+  "https://github.com/nvim-lualine/lualine.nvim",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
+    { "https://github.com/nvim-tree/nvim-web-devicons" },
   },
   lazy = false,
   priority = 500,

@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "j-hui/fidget.nvim",
+  "https://github.com/j-hui/fidget.nvim",
   event = { "BufReadPost" },
   opts = {
     progress = {

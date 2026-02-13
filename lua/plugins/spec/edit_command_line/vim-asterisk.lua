@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "haya14busa/vim-asterisk",
+  "https://github.com/haya14busa/vim-asterisk",
   keys = {
     { "*", mode = { "n", "x" } },
   },

@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "unblevable/quick-scope",
+  "https://github.com/unblevable/quick-scope",
   keys = {
     { "f", mode = { "n", "x", "o" } },
     { "t", mode = { "n", "x", "o" } },

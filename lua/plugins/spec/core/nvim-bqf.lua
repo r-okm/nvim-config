@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "kevinhwang91/nvim-bqf",
+  "https://github.com/kevinhwang91/nvim-bqf",
   branch = "main",
   dependencies = {
-    { "junegunn/fzf" },
+    { "https://github.com/junegunn/fzf" },
   },
   ft = { "qf" },
   config = function()

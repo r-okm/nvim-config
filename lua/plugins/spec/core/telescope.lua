@@ -4,27 +4,27 @@ local _project_nvim_config_dir = util.get_project_nvim_config_dir()
 
 ---@type LazyPluginSpec
 return {
-  "nvim-telescope/telescope.nvim",
+  "https://github.com/nvim-telescope/telescope.nvim",
   branch = "master",
   dependencies = {
-    { "nvim-lua/plenary.nvim", branch = "master" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    { "nvim-tree/nvim-web-devicons" },
-    { "atusy/qfscope.nvim" },
+    { "https://github.com/nvim-lua/plenary.nvim", branch = "master" },
+    { "https://github.com/nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    { "https://github.com/nvim-tree/nvim-web-devicons" },
+    { "https://github.com/atusy/qfscope.nvim" },
     {
-      "Allianaab2m/telescope-kensaku.nvim",
+      "https://github.com/Allianaab2m/telescope-kensaku.nvim",
       dependencies = {
-        { "vim-denops/denops.vim", lazy = false },
-        { "lambdalisue/vim-kensaku", lazy = false },
+        { "https://github.com/vim-denops/denops.vim", lazy = false },
+        { "https://github.com/lambdalisue/vim-kensaku", lazy = false },
       },
       config = function()
         require("telescope").load_extension("kensaku") -- :Telescope kensaku
       end,
     },
     {
-      "ThePrimeagen/harpoon",
+      "https://github.com/ThePrimeagen/harpoon",
       branch = "harpoon2",
-      dependencies = { "nvim-lua/plenary.nvim" },
+      dependencies = { "https://github.com/nvim-lua/plenary.nvim" },
       cmd = { "HarpoonAdd" },
       config = function()
         local harpoon = require("harpoon")

@@ -1,8 +1,8 @@
 ---@type LazyPluginSpec
 return {
-  "numToStr/Comment.nvim",
+  "https://github.com/numToStr/Comment.nvim",
   dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring",
+    "https://github.com/JoosepAlviste/nvim-ts-context-commentstring",
   },
   event = { "BufReadPost" },
   config = function()

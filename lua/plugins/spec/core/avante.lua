@@ -5,19 +5,19 @@ local work_github_org_active = vim.env.WORK_GITHUB_ORG_ACTIVE or "0"
 
 ---@type LazyPluginSpec
 return {
-  "yetone/avante.nvim",
+  "https://github.com/yetone/avante.nvim",
   version = false,
   build = "make",
   dependencies = {
-    "nvim-lua/plenary.nvim",
-    "MunifTanjim/nui.nvim",
+    "https://github.com/nvim-lua/plenary.nvim",
+    "https://github.com/MunifTanjim/nui.nvim",
     --- The below dependencies are optional,
-    "nvim-telescope/telescope.nvim",
-    "hrsh7th/nvim-cmp",
-    "nvim-tree/nvim-web-devicons",
-    "zbirenbaum/copilot.lua",
+    "https://github.com/nvim-telescope/telescope.nvim",
+    "https://github.com/hrsh7th/nvim-cmp",
+    "https://github.com/nvim-tree/nvim-web-devicons",
+    "https://github.com/zbirenbaum/copilot.lua",
     {
-      "MeanderingProgrammer/render-markdown.nvim",
+      "https://github.com/MeanderingProgrammer/render-markdown.nvim",
       ft = { "Avante", "AvanteInput" },
       ---@module 'render-markdown'
       ---@type render.md.UserConfig

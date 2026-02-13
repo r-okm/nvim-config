@@ -1,10 +1,10 @@
 ---@type LazyPluginSpec
 return {
-  "shellRaining/hlchunk.nvim",
+  "https://github.com/shellRaining/hlchunk.nvim",
   enabled = false,
   version = "v1.1.0",
   dependencies = {
-    "nvim-treesitter/nvim-treesitter",
+    "https://github.com/nvim-treesitter/nvim-treesitter",
   },
   event = { "BufReadPre" },
   config = function()

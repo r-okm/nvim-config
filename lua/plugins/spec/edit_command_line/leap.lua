@@ -4,7 +4,7 @@ local util = require("r-okm.util")
 return {
   "https://codeberg.org/andyg/leap.nvim",
   dependencies = {
-    { "tpope/vim-repeat" },
+    { "https://github.com/tpope/vim-repeat" },
   },
   event = { "BufReadPost" },
   config = function()

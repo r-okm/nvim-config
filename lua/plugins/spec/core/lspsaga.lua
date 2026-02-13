@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "nvimdev/lspsaga.nvim",
+  "https://github.com/nvimdev/lspsaga.nvim",
   cmd = { "Lspsaga" },
   opts = {
     breadcrumbs = { enable = false },

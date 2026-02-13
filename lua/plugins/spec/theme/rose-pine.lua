@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "rose-pine/neovim",
+  "https://github.com/rose-pine/neovim",
   name = "rose-pine",
   enabled = false,
   config = function()

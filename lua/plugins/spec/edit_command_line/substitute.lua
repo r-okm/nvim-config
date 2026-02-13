@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "gbprod/substitute.nvim",
+  "https://github.com/gbprod/substitute.nvim",
   keys = {
     { ",", mode = { "n", "x" } },
   },

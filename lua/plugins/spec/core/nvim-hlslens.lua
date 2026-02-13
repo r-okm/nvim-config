@@ -2,8 +2,8 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "kevinhwang91/nvim-hlslens",
-  dependencies = { "haya14busa/vim-asterisk" },
+  "https://github.com/kevinhwang91/nvim-hlslens",
+  dependencies = { "https://github.com/haya14busa/vim-asterisk" },
   keys = {
     { "*", mode = { "n", "x" } },
     { "n", mode = { "n" } },

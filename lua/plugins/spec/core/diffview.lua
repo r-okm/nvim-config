@@ -2,9 +2,9 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "sindrets/diffview.nvim",
+  "https://github.com/sindrets/diffview.nvim",
   dependencies = {
-    "nvim-tree/nvim-web-devicons",
+    "https://github.com/nvim-tree/nvim-web-devicons",
   },
   keys = {
     { "zh", mode = { "n" } },

@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "lewis6991/gitsigns.nvim",
+  "https://github.com/lewis6991/gitsigns.nvim",
   event = { "BufReadPre" },
   cmd = { "Gitsigns" },
   init = function()

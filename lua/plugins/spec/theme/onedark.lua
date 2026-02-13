@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "navarasu/onedark.nvim",
+  "https://github.com/navarasu/onedark.nvim",
   enabled = false,
   config = function()
     local onedark = require("onedark")

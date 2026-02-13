@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "rebelot/kanagawa.nvim",
+  "https://github.com/rebelot/kanagawa.nvim",
   enabled = false,
   config = function()
     require("kanagawa").setup({

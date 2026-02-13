@@ -2,7 +2,7 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "folke/persistence.nvim",
+  "https://github.com/folke/persistence.nvim",
   event = "BufReadPre",
   init = function()
     vim.api.nvim_create_user_command(

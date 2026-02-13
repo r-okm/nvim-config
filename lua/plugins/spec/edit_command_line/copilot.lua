@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "zbirenbaum/copilot.lua",
+  "https://github.com/zbirenbaum/copilot.lua",
   cmd = { "Copilot" },
   event = { "InsertEnter" },
   config = function()

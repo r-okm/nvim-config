@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "WilliamHsieh/overlook.nvim",
+  "https://github.com/WilliamHsieh/overlook.nvim",
   opts = {
     ui = {
       border = "single",

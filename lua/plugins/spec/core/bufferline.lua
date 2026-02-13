@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "akinsho/bufferline.nvim",
+  "https://github.com/akinsho/bufferline.nvim",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
-    { "catppuccin/nvim", name = "catppuccin" },
+    { "https://github.com/nvim-tree/nvim-web-devicons" },
+    { "https://github.com/catppuccin/nvim", name = "catppuccin" },
   },
   event = { "BufReadPre" },
   keys = {

@@ -2,9 +2,9 @@ local util = require("r-okm.util")
 
 ---@type LazyPluginSpec
 return {
-  "stevearc/oil.nvim",
+  "https://github.com/stevearc/oil.nvim",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
+    { "https://github.com/nvim-tree/nvim-web-devicons" },
   },
   branch = "master",
   lazy = false,

@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "ellisonleao/gruvbox.nvim",
+  "https://github.com/ellisonleao/gruvbox.nvim",
   enabled = false,
   config = function()
     require("gruvbox").setup({

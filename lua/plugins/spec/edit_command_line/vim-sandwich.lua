@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "machakann/vim-sandwich",
+  "https://github.com/machakann/vim-sandwich",
   keys = {
     { "sa", mode = { "n", "x" } },
     { "sd", mode = { "n", "x" } },

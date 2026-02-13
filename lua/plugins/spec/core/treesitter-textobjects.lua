@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "nvim-treesitter/nvim-treesitter-textobjects",
+  "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
   branch = "main",
   dependencies = {
-    { "nvim-treesitter/nvim-treesitter" },
+    { "https://github.com/nvim-treesitter/nvim-treesitter" },
   },
   init = function()
     vim.g.no_plugin_maps = true

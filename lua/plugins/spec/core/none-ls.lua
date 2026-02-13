@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  "nvimtools/none-ls.nvim",
+  "https://github.com/nvimtools/none-ls.nvim",
   lazy = false,
   config = function()
     local nls = require("null-ls")

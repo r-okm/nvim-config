@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "OXY2DEV/markview.nvim",
+  "https://github.com/OXY2DEV/markview.nvim",
   enabled = false,
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
+    { "https://github.com/nvim-tree/nvim-web-devicons" },
   },
   lazy = false,
   config = function()

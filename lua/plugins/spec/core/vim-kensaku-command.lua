@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
-  "lambdalisue/vim-kensaku-command",
+  "https://github.com/lambdalisue/vim-kensaku-command",
   dependencies = {
-    { "vim-denops/denops.vim", lazy = false },
-    { "lambdalisue/vim-kensaku", lazy = false },
+    { "https://github.com/vim-denops/denops.vim", lazy = false },
+    { "https://github.com/lambdalisue/vim-kensaku", lazy = false },
   },
   keys = {
     { "?", ":<C-u>Kensaku ", mode = { "n" } },
