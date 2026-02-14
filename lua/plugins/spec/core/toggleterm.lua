@@ -13,6 +13,7 @@ return {
     vim.api.nvim_create_autocmd("TermOpen", {
       pattern = "term://*",
       callback = function(opts)
+        util.keymap("n", "<CR>", "i", { buffer = opts.buf })
         util.keymap("t", [[<C-\>]], [[<C-\><C-n>]], { buffer = opts.buf })
         util.keymap("t", "<C-w><C-w>", [[<Cmd>wincmd w<CR>]], { buffer = opts.buf })
         util.keymap("t", "<C-w>w", [[<Cmd>wincmd w<CR>]], { buffer = opts.buf })
