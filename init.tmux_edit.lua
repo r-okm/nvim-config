@@ -13,9 +13,9 @@ require("config.keymaps")
 require("config.usercommand")
 require("config.autocmd")
 
-local util = require("r-okm.util")
-
--- Set abbreviation for quitting all and saving
-util.keymap("ca", "qq", "execute 'wqa'")
--- Set filetype to zsh
-vim.bo.filetype = "zsh"
+-- Set autowriteall option locally
+vim.opt_local.autowriteall = true
+-- Set filetype to markdown
+vim.bo.filetype = "markdown"
+-- Start in insert mode
+vim.cmd("startinsert")
