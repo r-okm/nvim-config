@@ -12,14 +12,26 @@ vim.api.nvim_create_user_command(
 )
 
 -- カレントバッファのファイルパスをレジスタにヤンクする
-local function yankCurrentBufferPathToClipboard()
-  local path = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
-  vim.fn.setreg("+", path)
+local function yankCurrentBufferPathToClipboard(opts)
+  local result = ""
+  local filepath = vim.fn.fnamemodify(vim.fn.expand("%"), ":.")
+
+  -- 範囲選択時は、選択範囲もコードブロックとしてレジスタにヤンクする
+  if opts.range == 2 then
+    local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
+    local selection = table.concat(lines, "\n")
+    local ft = vim.bo.filetype or ""
+    result = "@" .. filepath .. "\n```" .. ft .. "\n" .. selection .. "\n```"
+  else
+    result = filepath
+  end
+
+  vim.fn.setreg("+", result)
 end
 vim.api.nvim_create_user_command(
   "YankPath",
   yankCurrentBufferPathToClipboard,
-  { nargs = 0, desc = "Copy current buffer filepath to register" }
+  { nargs = "*", range = true, desc = "Copy current buffer filepath to register" }
 )
 
 --- 現在のファイルをGitHub WebのURLで開く
@@ -142,4 +154,4 @@ vim.api.nvim_create_user_command("GHOpen", openCurrentFileInGitHub, {
 vim.api.nvim_create_user_command("OpenUrl", function()
   local url = vim.fn.expand("<cfile>")
   util.open_in_browser(url)
-end, { nargs = 0, desc = "Open URL under cursor in web browser"})
+end, { nargs = 0, desc = "Open URL under cursor in web browser" })
