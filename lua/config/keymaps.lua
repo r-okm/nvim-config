@@ -34,3 +34,6 @@ end
 
 util.keymap({ "n" }, "<leader>s", ":<C-u>write<CR>")
 util.keymap({ "n" }, "<leader>S", ":<C-u>noa write<CR>")
+
+-- abbr
+util.keymap("ca", "H", "vertical help")
