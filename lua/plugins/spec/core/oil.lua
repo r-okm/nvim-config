@@ -46,13 +46,10 @@ return {
       },
     })
     util.keymap({ "n" }, "<leader>e", function()
-      oil.open(nil, {
-        preview = { vertical = true },
-      })
-    end)
-    util.keymap({ "n" }, "<leader>E", function()
       oil.open()
     end)
-    util.keymap("ca", "os", "e oil-ssh://")
+    util.keymap({ "n" }, "<leader>c", function()
+      oil.open(vim.fn.getcwd())
+    end)
   end,
 }
