@@ -14,13 +14,13 @@
   "lua-language-server": "3.17.1",
   "prettierd": "0.27.0",
   "pyright": "1.1.408",
-  "rust-analyzer": "2026-03-09",
+  "rust-analyzer": "2026-03-23",
   "shellcheck": "v0.11.0",
   "shfmt": "v3.13.0",
   "sqls": "v0.2.46",
   "stylua": "v2.4.0",
   "taplo": "0.10.0",
-  "terraform-ls": "v0.38.5",
+  "terraform-ls": "v0.38.6",
   "vtsls": "0.3.0",
   "yaml-language-server": "1.21.0"
 }
