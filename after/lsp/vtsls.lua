@@ -6,6 +6,15 @@ return {
   settings = {
     vtsls = {
       autoUseWorkspaceTsdk = true,
+      tsserver = {
+        globalPlugins = {
+          {
+            name = "@css-modules-kit/ts-plugin",
+            location = "",
+            enableForWorkspaceTypeScriptVersions = true,
+          },
+        },
+      },
       experimental = {
         completion = {
           enableServerSideFuzzyMatch = true,
