@@ -28,8 +28,8 @@ return {
     -- Only enable LSP when cspell config file exists
     local fname = vim.api.nvim_buf_get_name(bufnr)
     local root = vim.fs.root(fname, markers)
-    -- If no config file found, don't call on_dir to disable LSP
-    if root then
+    -- If no config file found or root is not absolute, don't call on_dir to disable LSP
+    if root and vim.startswith(root, "/") then
       on_dir(root)
     end
   end,
