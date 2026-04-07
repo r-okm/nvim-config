@@ -32,7 +32,7 @@ return {
           end,
           opts = {
             safe_labels = vim.fn.mode(1):match("o") and initial_label or nil, -- [1]
-            case_sensitive = true, -- [2]
+            vim_opts = { ["go.ignorecase"] = false }, -- [2]
           },
         }
         return vim.tbl_deep_extend("keep", common_args, key_specific_args)
