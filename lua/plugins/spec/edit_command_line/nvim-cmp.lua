@@ -48,11 +48,11 @@ return {
       }),
       window = {
         completion = {
-          border = "rounded",
+          border = "single",
           winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
         },
         documentation = {
-          border = "rounded",
+          border = "single",
         },
       },
     })

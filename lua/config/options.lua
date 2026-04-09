@@ -40,6 +40,11 @@ vim.diagnostic.config({
   severity_sort = true,
   underline = true,
   update_in_insert = false,
+  jump = {
+    on_jump = function()
+      vim.diagnostic.open_float({ scope = "cursor", focus = false, border = "single" })
+    end,
+  },
   signs = {
     numhl = {
       [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",

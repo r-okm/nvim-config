@@ -17,12 +17,22 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
 
     -- diagnostic
+    set_buf_key("n", "g.", function()
+      vim.diagnostic.jump({ count = 1 })
+    end)
+    set_buf_key("n", "g,", function()
+      vim.diagnostic.jump({ count = -1 })
+    end)
     set_buf_key("n", "gw", function()
       require("telescope.builtin").diagnostics({ bufnr = 0 })
+    end)
+    set_buf_key({ "n", "v" }, "gW", function()
+      require("telescope.builtin").diagnostics()
     end)
     set_buf_key("n", "grr", function()
       require("telescope.builtin").lsp_references()
     end)
+    set_buf_key("n", "grn", vim.lsp.buf.rename)
 
     if client:supports_method("textDocument/hover") then
       set_buf_key("n", "K", function()
