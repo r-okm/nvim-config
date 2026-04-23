@@ -10,7 +10,13 @@ local function yankCurrentBufferPathToClipboard(opts)
     local lines = vim.api.nvim_buf_get_lines(0, opts.line1 - 1, opts.line2, false)
     local selection = table.concat(lines, "\n")
     local ft = vim.bo.filetype or ""
-    result = "@" .. filepath .. "\n```" .. ft .. "\n" .. selection .. "\n```"
+    local line_info
+    if opts.line1 == opts.line2 then
+      line_info = tostring(opts.line1)
+    else
+      line_info = string.format("%d-%d", opts.line1, opts.line2)
+    end
+    result = filepath .. ":" .. line_info .. "\n```" .. ft .. "\n" .. selection .. "\n```"
   else
     result = filepath
   end
