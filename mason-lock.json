@@ -22,5 +22,5 @@
   "taplo": "0.10.0",
   "terraform-ls": "v0.38.6",
   "vtsls": "0.3.0",
-  "yaml-language-server": "1.22.0"
+  "yaml-language-server": "1.23.0"
 }
