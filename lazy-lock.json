@@ -32,7 +32,7 @@
   "nvim-colorizer.lua": { "branch": "master", "commit": "5cfe7fffbd01e17b3c1e14af85d5febdef88bd8c" },
   "nvim-hlslens": { "branch": "main", "commit": "e22f8448b571b56d6140427e27e02406bcf4e059" },
   "nvim-jdtls": { "branch": "master", "commit": "a5c6f38f8151d7b4f5b32c005a95022fa66f4c9d" },
-  "nvim-lspconfig": { "branch": "master", "commit": "f9349d4d99e7d66403ae8bf4fbd357b154dca7a7" },
+  "nvim-lspconfig": { "branch": "master", "commit": "dfbada1a311c4bf3369f8d5421369c9b6e8b888f" },
   "nvim-treesitter": { "branch": "main", "commit": "4916d6592ede8c07973490d9322f187e07dfefac" },
   "nvim-treesitter-context": { "branch": "master", "commit": "ed1cf48d5af252248c55f50b9427e8ce883a2c6b" },
   "nvim-treesitter-textobjects": { "branch": "main", "commit": "851e865342e5a4cb1ae23d31caf6e991e1c99f1e" },
@@ -49,7 +49,7 @@
   "quicker.nvim": { "branch": "master", "commit": "1c9322b7e2967472548ba9bccd1ccd40e49d0a49" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "b81d594e82b6ca1530797bdcfd16a1219250a2d8" },
   "render-markdown.nvim": { "branch": "main", "commit": "e3c18ddd27a853f85a6f513a864cf4f2982b9f26" },
-  "schemastore.nvim": { "branch": "main", "commit": "b0d5f4876c84f7c5c808ae4be4e05dd8207102d0" },
+  "schemastore.nvim": { "branch": "main", "commit": "1f00d77909a88e5e228f3bc5ddbfac9b80fc5b9e" },
   "sqls.nvim": { "branch": "main", "commit": "dfc304f10fe364611ffdb3efc488ae260b0dca78" },
   "substitute.nvim": { "branch": "main", "commit": "17ffaeb5a1dc2dbef39cf0865d8a4b6000836714" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "b25b749b9db64d375d782094e2b9dce53ad53a40" },
@@ -63,6 +63,6 @@
   "vim-repeat": { "branch": "master", "commit": "8106e142dfdc278ff3eaaadd7b362ad7949d4357" },
   "vim-sandwich": { "branch": "master", "commit": "785fb39d79bb843b545f1d8a9265bd8f2e2285f8" },
   "vim-vsnip": { "branch": "master", "commit": "9bcfabea653abdcdac584283b5097c3f8760abaa" },
-  "vimdoc-ja": { "branch": "master", "commit": "daec182473773298baf08cddb71451b7ed5c639a" },
+  "vimdoc-ja": { "branch": "master", "commit": "b6ebc39c47faa1d1905e0793466b8895b085037f" },
   "wb-only-current-line.nvim": { "branch": "main", "commit": "93ebd5eadfee2b0cb911806ce30dc8a798a6a17b" }
 }
