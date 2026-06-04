@@ -150,3 +150,22 @@ vim.api.nvim_create_user_command("OpenUrl", function()
   local url = vim.fn.expand("<cfile>")
   util.open_in_browser(url)
 end, { nargs = 0, desc = "Open URL under cursor in web browser" })
+
+-- カレントバッファのディレクトリをファイラーで開く
+vim.api.nvim_create_user_command("Explorer", function()
+  if vim.fn.executable("explorer") ~= 1 then
+    vim.notify("'explorer' command not found", vim.log.levels.ERROR)
+    return
+  end
+
+  local cmd = { "explorer" }
+  local bufname = vim.api.nvim_buf_get_name(0)
+  -- term:// や oil:// などの特殊バッファ・実在しないパスは CWD にフォールバック
+  if bufname ~= "" and not bufname:match("^%a+://") then
+    local dir = vim.fn.fnamemodify(bufname, ":p:h")
+    if vim.fn.isdirectory(dir) == 1 then
+      table.insert(cmd, dir)
+    end
+  end
+  vim.system(cmd, { detach = true })
+end, { nargs = 0, desc = "Open current buffer directory in explorer" })
