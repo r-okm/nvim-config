@@ -35,5 +35,26 @@ end
 util.keymap({ "n" }, "<leader>s", ":<C-u>write<CR>")
 util.keymap({ "n" }, "<leader>S", ":<C-u>noa write<CR>")
 
+-- AI ローマ字→日本語変換: テキストオブジェクト/モーションを対象とするオペレータ
+-- 例: <leader>jiw, <leader>jip, <leader>j$ / <leader>jj で現在行
+util.keymap({ "n" }, "<leader>j", function()
+  vim.o.operatorfunc = "v:lua.require'r-okm.ai_henkan'.op"
+  return "g@"
+end, { expr = true, desc = "AI henkan: operator (text object/motion)" })
+util.keymap({ "n" }, "<leader>jj", function()
+  require("r-okm.ai_henkan").convert_current_line()
+end, { desc = "AI henkan: convert current line" })
+-- ビジュアル選択範囲を変換
+util.keymap(
+  { "x" },
+  "<leader>j",
+  ":<C-u>lua require('r-okm.ai_henkan').convert_visual()<CR>",
+  { desc = "AI henkan: convert selection" }
+)
+-- 挿入モード: 現在行を変換(挿入継続)
+util.keymap({ "i" }, "<C-j>", function()
+  require("r-okm.ai_henkan").convert_insert()
+end, { desc = "AI henkan: convert current line (insert)" })
+
 -- abbr
 util.keymap("ca", "H", "vertical help")
