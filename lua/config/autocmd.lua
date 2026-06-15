@@ -100,15 +100,6 @@ for ft_str, config in pairs(require("r-okm.ft-config")) do
   })
 end
 
--- AI henkan: 初回 InsertEnter で常駐 claude を先行起動し、初回変換の起動待ちを短縮
-vim.api.nvim_create_autocmd("InsertEnter", {
-  group = vim.api.nvim_create_augroup("r-okm.AIHenkanPrewarm", {}),
-  once = true,
-  callback = function()
-    require("r-okm.ai_henkan").prewarm()
-  end,
-})
-
 -- Switch relativenumber
 local number_group = vim.api.nvim_create_augroup("r-okm.Number", {})
 vim.api.nvim_create_autocmd({ "WinEnter" }, {
