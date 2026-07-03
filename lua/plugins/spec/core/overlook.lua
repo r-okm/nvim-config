@@ -9,21 +9,21 @@ return {
   },
   keys = {
     {
-      "gd",
+      "goo",
       function()
         require("overlook.api").peek_definition()
       end,
       desc = "Overlook: Peek definition",
     },
     {
-      "grw",
+      "gow",
       function()
         require("overlook.api").open_in_original_window()
       end,
       desc = "Overlook: Open in original window",
     },
     {
-      "grs",
+      "gos",
       function()
         require("overlook.api").open_in_vsplit()
       end,

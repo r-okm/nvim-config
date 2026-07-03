@@ -29,9 +29,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set_buf_key({ "n", "v" }, "gW", function()
       require("telescope.builtin").diagnostics()
     end)
+
+    -- peek
+    set_buf_key("n", "gd", function()
+      require("telescope.builtin").lsp_definitions()
+    end)
     set_buf_key("n", "grr", function()
       require("telescope.builtin").lsp_references()
     end)
+
     set_buf_key("n", "grn", vim.lsp.buf.rename)
     set_buf_key({ "n", "v" }, "gra", function()
       vim.lsp.buf.code_action({
