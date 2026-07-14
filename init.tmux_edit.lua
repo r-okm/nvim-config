@@ -15,6 +15,11 @@ require("config.autocmd")
 
 -- Set autowriteall option locally
 vim.opt_local.autowriteall = true
+-- Flush the buffer to disk on every change so a cancelled (:cq) or crashed
+-- edit keeps its content
+vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "InsertLeave" }, {
+  command = "silent! write",
+})
 -- Set filetype to markdown
 vim.bo.filetype = "markdown"
 -- Start in insert mode
