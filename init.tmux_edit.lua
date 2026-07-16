@@ -15,10 +15,22 @@ require("config.autocmd")
 
 -- Set autowriteall option locally
 vim.opt_local.autowriteall = true
--- Flush the buffer to disk on every change so a cancelled (:cq) or crashed
--- edit keeps its content
-vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI", "InsertLeave" }, {
-  command = "silent! write",
+-- Flush the buffer to disk so a cancelled (:cq) or crashed edit keeps its
+-- content. Writes are debounced to avoid a synchronous disk write per
+-- keystroke; InsertLeave and VimLeavePre flush immediately.
+local uv = vim.uv or vim.loop
+local write_timer = assert(uv.new_timer())
+local function write_buf()
+  write_timer:stop()
+  vim.cmd("silent! update")
+end
+vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+  callback = function()
+    write_timer:start(500, 0, vim.schedule_wrap(write_buf))
+  end,
+})
+vim.api.nvim_create_autocmd({ "InsertLeave", "VimLeavePre" }, {
+  callback = write_buf,
 })
 -- Set filetype to markdown
 vim.bo.filetype = "markdown"
