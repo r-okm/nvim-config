@@ -32,10 +32,13 @@ git clone https://github.com/r-okm/nvim-config ~/.config/nvim
 │   │       ├── edit_command_line/ # Plugins enabled in EDIT_COMMAND_LINE mode
 │   │       └── theme/             # Theme plugins
 │   └── r-okm/
+│       ├── bufmenu/               # Local plugin: manually-ordered buffer menu
 │       ├── types/                 # Type definitions
 │       ├── ft-config.lua          # File type specific configurations
 │       └── util.lua               # Utility functions
 ├── snippets/                      # Custom snippet definitions
+├── tests/
+│   └── bufmenu/                   # E2E tests for bufmenu (nvim --headless -S tests/bufmenu/run.lua)
 ├── lazy-lock.json                 # Plugin version lock file
 └── mason-lock.json                # Mason package lock file
 ```
