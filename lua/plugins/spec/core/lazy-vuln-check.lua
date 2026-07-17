@@ -1,6 +1,6 @@
 ---@type LazyPluginSpec
 return {
-  dir = vim.fn.stdpath("config"),
+  dir = vim.fn.stdpath("config") .. "/lua/r-okm/lazy_vuln_check",
   name = "lazy-vuln-check",
   lazy = false,
   config = function()
