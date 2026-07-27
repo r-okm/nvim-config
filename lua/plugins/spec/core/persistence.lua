@@ -11,6 +11,15 @@ return {
       { desc = "Persistence: Restore previous session" }
     )
     util.keymap("ca", "ls", "LoadSession")
+
+    -- mksession は arglist を無条件に保存し、復元時の $argadd が :Bdelete 済み
+    -- バッファを listed として復活させてしまうため、保存前に arglist を空にする
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "PersistenceSavePre",
+      callback = function()
+        vim.cmd("silent! %argdelete")
+      end,
+    })
   end,
   opts = {},
 }
