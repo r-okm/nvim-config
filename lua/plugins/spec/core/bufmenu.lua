@@ -2,6 +2,7 @@
 return {
   dir = vim.fn.stdpath("config") .. "/lua/r-okm/bufmenu",
   name = "bufmenu",
+  enabled = false,
   -- BufReadPre は新規 (未作成) ファイルでは発火しないため BufNewFile も必要
   event = { "BufReadPre", "BufNewFile" },
   -- bufmenu はグローバルキーマップを登録しない。キー割当はここで行う

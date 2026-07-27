@@ -1,0 +1,59 @@
+---@type LazyPluginSpec
+return {
+  "https://github.com/akinsho/bufferline.nvim",
+  dependencies = {
+    { "https://github.com/nvim-tree/nvim-web-devicons" },
+    { "https://github.com/catppuccin/nvim", name = "catppuccin" },
+    -- middle_mouse_command の :Bdelete で使用 (cmd スタブ経由でも動くが依存を明示)
+    { "https://github.com/famiu/bufdelete.nvim" },
+  },
+  event = { "BufReadPre" },
+  keys = {
+    {
+      "<C-l>",
+      function()
+        require("bufferline").cycle(1)
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "<C-h>",
+      function()
+        require("bufferline").cycle(-1)
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "L",
+      function()
+        require("bufferline").move(1)
+      end,
+      mode = { "n", "x" },
+    },
+    {
+      "H",
+      function()
+        require("bufferline").move(-1)
+      end,
+      mode = { "n", "x" },
+    },
+  },
+  init = function()
+    vim.opt.sessionoptions:append("globals")
+  end,
+  config = function()
+    require("bufferline").setup({
+      options = {
+        middle_mouse_command = "Bdelete %d",
+        diagnostics = "nvim_lsp",
+        move_wraps_at_ends = true,
+        separator_style = "thick",
+        show_buffer_close_icons = false,
+        indicator = {
+          style = "underline",
+        },
+      },
+      highlights = require("catppuccin.groups.integrations.bufferline").get(),
+    })
+  end,
+}
