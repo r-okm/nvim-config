@@ -6,7 +6,7 @@ return {
   event = { "BufReadPre" },
   cmd = { "Gitsigns" },
   init = function()
-    util.keymap("ca", "gs", "Gitsigns")
+    util.keymap("ca", "gs", "Gitsigns", { silent = false })
   end,
   opts = {
     signcolumn = true,

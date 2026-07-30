@@ -21,4 +21,4 @@ require("lazy").setup({
 })
 
 local util = require("r-okm.util")
-util.keymap("ca", "lz", "Lazy")
+util.keymap("ca", "lz", "Lazy", { silent = false })
