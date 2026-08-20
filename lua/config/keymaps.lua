@@ -23,6 +23,9 @@ util.keymap({ "x" }, "gy", 'mz"+y`z')
 -- paste from system clipboard
 util.keymap({ "n" }, "gp", '"+p')
 util.keymap({ "x" }, "gp", '"+P')
+-- copy current file path (and selection as a code block) to system clipboard
+util.keymap({ "n" }, "gY", ":<C-u>YankPath<CR>")
+util.keymap({ "x" }, "gY", ":YankPath<CR>")
 
 -- Map `a"` to `2i"`
 -- Ref: https://zenn.dev/vim_jp/articles/2024-06-05-vim-middle-class-features#%E5%BC%95%E7%94%A8%E7%AC%A6%E3%81%A7%E5%9B%B2%E3%81%BE%E3%82%8C%E3%81%9F%E7%AE%87%E6%89%80%E5%85%A8%E4%BD%93%E3%82%92%E9%81%B8%E6%8A%9E%E3%81%99%E3%82%8B
