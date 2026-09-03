@@ -1,7 +1,16 @@
 local util = require("r-okm.util")
 
--- Disable keymap
-util.keymap({ "n" }, "gh", "")
+-- Disable a key's builtin behavior, unless a plugin spec already claims it.
+-- Plugins are loaded before this file (see init.lua), so mapping unconditionally
+-- here would silently shadow theirs.
+local function disable_unless_mapped(lhs)
+  if vim.tbl_isempty(vim.fn.maparg(lhs, "n", false, true)) then
+    util.keymap({ "n" }, lhs, "")
+  end
+end
+
+-- gh starts Select mode, where a printable key replaces the selection
+disable_unless_mapped("gh")
 
 -- Add newline with Enter in Normal Mode
 util.keymap({ "n" }, "<CR>", "o<ESC>")
