@@ -11,6 +11,7 @@ return {
     vim.g.mkdp_auto_close = 0
     vim.g.mkdp_filetypes = { "markdown" }
     vim.g.mkdp_browserfunc = "OpenMarkdownPreview"
+    vim.g.mkdp_preview_options = { disable_sync_scroll = 1 }
     vim.cmd([[
       function OpenMarkdownPreview(url)
         execute 'silent !xdg-open' a:url
