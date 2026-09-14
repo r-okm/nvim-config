@@ -158,14 +158,17 @@ return {
       toggle_telescope(harpoon:list())
     end, { desc = "Open harpoon window" })
 
-    -- https://github.com/nvim-telescope/telescope.nvim/issues/605
+    -- termopen so git's pager (delta) renders; telescope's buffer previewers can't show pager output
     local delta_previewer = previewers.new_termopen_previewer({
       get_command = function(entry)
-        if entry.status == "??" or "A " then
-          return { "git", "diff", entry.value }
+        if entry.status == "??" then
+          if vim.fn.isdirectory(entry.path) == 1 then
+            return { "git", "ls-files", "--others", "--exclude-standard", "--", entry.value }
+          end
+          return { "git", "diff", "--no-index", "--", "/dev/null", entry.value }
         end
-
-        return { "git", "diff", entry.value .. "^!" }
+        -- Against HEAD so staged-only, unstaged-only and mixed entries all show their change
+        return { "git", "diff", "HEAD", "--", entry.value }
       end,
     })
 
