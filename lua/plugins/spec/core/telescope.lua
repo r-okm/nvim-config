@@ -12,16 +12,6 @@ return {
     { "https://github.com/nvim-tree/nvim-web-devicons" },
     { "https://github.com/atusy/qfscope.nvim" },
     {
-      "https://github.com/Allianaab2m/telescope-kensaku.nvim",
-      dependencies = {
-        { "https://github.com/vim-denops/denops.vim", lazy = false },
-        { "https://github.com/lambdalisue/vim-kensaku", lazy = false },
-      },
-      config = function()
-        require("telescope").load_extension("kensaku") -- :Telescope kensaku
-      end,
-    },
-    {
       "https://github.com/ThePrimeagen/harpoon",
       branch = "harpoon2",
       dependencies = { "https://github.com/nvim-lua/plenary.nvim" },
@@ -183,7 +173,7 @@ return {
     util.keymap({ "n" }, "zo", function()
       builtin.git_status({ previewer = delta_previewer, layout_strategy = "vertical" })
     end)
-    util.keymap({ "n" }, "zf", ":<C-u>Telescope kensaku<CR>")
+    util.keymap({ "n" }, "zf", builtin.live_grep)
     util.keymap({ "n" }, "#", builtin.grep_string)
     util.keymap({ "x" }, "#", function()
       local text = util.get_visual_selection()
