@@ -1,5 +1,6 @@
 local _ENALBED_LANGUAGE_SERVERS = {
   "bashls",
+  "biome",
   "buf_ls",
   "cspell_ls",
   "cssls",

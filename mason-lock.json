@@ -1,5 +1,6 @@
 {
   "bash-language-server": "5.8.1",
+  "biome": "2.5.15",
   "buf": "v1.73.0",
   "clang-format": "23.1.1",
   "cspell-lsp": "1.1.5",

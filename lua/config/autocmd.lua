@@ -69,6 +69,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- FileType format config
+-- format_language_server is a server name or a priority list of them; format with the first one attached.
+local function format_buffer(bufnr, servers, async)
+  servers = type(servers) == "table" and servers or { servers }
+  for _, name in ipairs(servers) do
+    if #vim.lsp.get_clients({ bufnr = bufnr, name = name, method = "textDocument/formatting" }) > 0 then
+      vim.lsp.buf.format({ bufnr = bufnr, async = async, name = name })
+      return
+    end
+  end
+end
+
 for ft_str, config in pairs(require("r-okm.ft-config")) do
   local ft_table = util.split_string(ft_str, ",")
   vim.api.nvim_create_autocmd("FileType", {
@@ -79,12 +90,7 @@ for ft_str, config in pairs(require("r-okm.ft-config")) do
 
       -- Set keymap to format
       util.keymap({ "n" }, "gf", function()
-        vim.lsp.buf.format({
-          async = true,
-          filter = function(format_client)
-            return format_client.name == config.format_language_server
-          end,
-        })
+        format_buffer(bufnr, config.format_language_server, true)
       end, { buffer = bufnr })
 
       -- set autocmd BufWritePre to format
@@ -93,12 +99,7 @@ for ft_str, config in pairs(require("r-okm.ft-config")) do
           group = vim.api.nvim_create_augroup("r-okm.BufWritePre" .. bufnr, {}),
           buffer = bufnr,
           callback = function()
-            vim.lsp.buf.format({
-              async = false,
-              filter = function(format_client)
-                return format_client.name == config.format_language_server
-              end,
-            })
+            format_buffer(bufnr, config.format_language_server, false)
           end,
         })
       end

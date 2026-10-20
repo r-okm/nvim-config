@@ -32,10 +32,14 @@ local M = {
     enable_format_on_save = false,
   },
   ["css,javascript,javascriptreact,javascript.jsx,typescript,typescriptreact,typescript.tsx"] = {
-    format_language_server = "null-ls",
+    format_language_server = { "biome", "null-ls" },
     enable_format_on_save = true,
   },
-  ["c,cpp,json,jsonc,markdown,yaml"] = {
+  ["json,jsonc"] = {
+    format_language_server = { "biome", "null-ls" },
+    enable_format_on_save = false,
+  },
+  ["c,cpp,markdown,yaml"] = {
     format_language_server = "null-ls",
     enable_format_on_save = false,
   },
