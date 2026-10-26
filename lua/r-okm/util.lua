@@ -1,5 +1,8 @@
 local M = {}
 
+--- Buffers with more lines than this skip treesitter highlight/indent and vim-matchup's treesitter backend
+M.large_buffer_line_threshold = 5000
+
 ---通常 visual モード時の選択範囲のテキストを取得する
 ---@return string|nil selected_text 選択範囲のテキスト
 function M.get_visual_selection()
@@ -77,6 +80,13 @@ function M.open_in_browser(url)
 
   local browser_cmd = string.format("%s '%s'", open_cmd, url)
   vim.fn.system(browser_cmd)
+end
+
+--- Returns whether the buffer exceeds large_buffer_line_threshold
+--- @param bufnr integer The buffer number
+--- @return boolean
+function M.is_large_buffer(bufnr)
+  return vim.api.nvim_buf_line_count(bufnr) > M.large_buffer_line_threshold
 end
 
 return M

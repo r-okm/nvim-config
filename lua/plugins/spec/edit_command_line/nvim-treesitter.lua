@@ -1,3 +1,5 @@
+local util = require("r-okm.util")
+
 ---@type LazyPluginSpec
 return {
   "https://github.com/nvim-treesitter/nvim-treesitter",
@@ -41,7 +43,7 @@ return {
         "yaml",
       },
       callback = function(ctx)
-        if vim.api.nvim_buf_line_count(ctx.buf) > 5000 then
+        if util.is_large_buffer(ctx.buf) then
           return
         end
 
