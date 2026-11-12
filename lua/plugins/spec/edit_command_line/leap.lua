@@ -6,7 +6,13 @@ return {
   dependencies = {
     { "https://github.com/tpope/vim-repeat" },
   },
-  event = { "BufReadPost" },
+  keys = {
+    { "m", desc = "leap" },
+    { "f", mode = { "n", "x", "o" }, desc = "enhanced f motion using leap" },
+    { "F", mode = { "n", "x", "o" }, desc = "enhanced F motion using leap" },
+    { "t", mode = { "n", "x", "o" }, desc = "enhanced t motion using leap" },
+    { "T", mode = { "n", "x", "o" }, desc = "enhanced T motion using leap" },
+  },
   config = function()
     util.keymap({ "n" }, "m", function()
       require("leap").leap({
