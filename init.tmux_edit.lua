@@ -34,7 +34,5 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "VimLeavePre" }, {
 })
 -- Quit (and thereby send the draft) without typing :wq
 vim.keymap.set({ "n", "i" }, "<C-CR>", "<Cmd>xall<CR>")
--- Set filetype to markdown
-vim.bo.filetype = "markdown"
 -- Start in insert mode
 vim.cmd("startinsert")

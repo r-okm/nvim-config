@@ -4,7 +4,7 @@ return {
   dependencies = {
     "https://github.com/nvim-treesitter/nvim-treesitter",
   },
-  event = { "BufReadPre" },
+  event = { "BufReadPost", "BufNewFile", "VeryLazy" },
   config = function()
     require("illuminate").configure({
       filetypes_denylist = { "help", "lazy", "man" },

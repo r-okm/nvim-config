@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
   "https://github.com/catgoose/nvim-colorizer.lua",
-  event = { "BufReadPost" },
+  event = { "BufReadPost", "BufNewFile", "VeryLazy" },
   config = function()
     require("colorizer").setup({
       filetypes = {
