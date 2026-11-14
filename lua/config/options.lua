@@ -20,6 +20,40 @@ vim.opt.swapfile = false
 
 vim.g.mapleader = " "
 
+-- On Windows, run :! and system() through Git Bash instead of cmd.exe.
+-- Resolve bash from the Git for Windows install: a bare "bash" can hit System32\bash.exe (the WSL launcher).
+local function git_bash()
+  local git = vim.fn.exepath("git")
+  if git == "" then
+    return nil
+  end
+  -- A scoop shim is a launcher next to a .shim file that names the real binary
+  local shim = git:gsub("%.[eE][xX][eE]$", ".shim")
+  if vim.uv.fs_stat(shim) then
+    git = (vim.fn.readfile(shim)[1] or ""):match('^path%s*=%s*"?([^"]+)"?') or git
+  end
+  -- git.exe sits in cmd\ or <mingw>\bin\ depending on PATH; the install root holds git-bash.exe and bin\bash.exe
+  for dir in vim.fs.parents(git) do
+    local bash = vim.fs.joinpath(dir, "bin", "bash.exe")
+    if vim.uv.fs_stat(vim.fs.joinpath(dir, "git-bash.exe")) and vim.fn.executable(bash) == 1 then
+      return bash
+    end
+  end
+end
+
+if vim.fn.has("win32") == 1 then
+  local bash = git_bash()
+  if bash then
+    vim.o.shell = bash
+    vim.o.shellcmdflag = "-c"
+    -- The Windows defaults wrap the command in literal quotes, which bash would treat as part of the command name.
+    vim.o.shellquote = ""
+    vim.o.shellxquote = ""
+    vim.o.shellpipe = "2>&1 | tee"
+    vim.o.shellredir = ">%s 2>&1"
+  end
+end
+
 -- sync register with system clipboard
 local yank_command = "clipboard --yank"
 local paste_command = "clipboard --put"
