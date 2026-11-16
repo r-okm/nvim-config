@@ -18,7 +18,7 @@ local config = {
   save_to_file = false, -- true なら stdpath("state") にも Markdown 保存
 }
 
--- claude 本体プロンプトを置換する(append だと指示文が会話応答に化けるため。ai_henkan の教訓)
+-- claude 本体プロンプトを置換する(append だと指示文が会話応答に化けるため)
 local SYSTEM_PROMPT = table.concat({
   "あなたは Neovim プラグインの更新差分を監査するセキュリティ専門家です。",
   "標準入力に git diff が与えられます。これはプラグインがバージョン更新で取り込んだ変更です。",
