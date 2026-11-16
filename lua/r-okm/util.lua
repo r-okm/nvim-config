@@ -63,23 +63,26 @@ function M.keymap(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, merged_opts)
 end
 
---- Opens the given URL in the default web browser
+--- Opens the given URL in the default web browser without blocking
 --- @param url string The URL to open
 function M.open_in_browser(url)
-  local open_cmd
+  local cmd
   if vim.fn.has("mac") == 1 then
-    open_cmd = "open"
+    cmd = { "open", url }
   elseif vim.fn.has("unix") == 1 then
-    open_cmd = "xdg-open"
+    cmd = { "xdg-open", url }
   elseif vim.fn.has("win32") == 1 then
-    open_cmd = "start"
+    -- start は cmd.exe の組み込みコマンド。最初の "" はウィンドウタイトル
+    cmd = { "cmd.exe", "/c", "start", "", url }
   else
     vim.notify("Unsupported operating system", vim.log.levels.ERROR)
     return
   end
 
-  local browser_cmd = string.format("%s '%s'", open_cmd, url)
-  vim.fn.system(browser_cmd)
+  local ok, err = pcall(vim.system, cmd, { detach = true })
+  if not ok then
+    vim.notify("ブラウザを開けませんでした: " .. tostring(err), vim.log.levels.ERROR)
+  end
 end
 
 --- Returns whether the buffer exceeds large_buffer_line_threshold
