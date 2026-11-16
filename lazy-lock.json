@@ -21,7 +21,6 @@
   "leap.nvim": { "branch": "main", "commit": "277e04fad21e3af05a55cc414757b09a704f2a92" },
   "lualine.nvim": { "branch": "master", "commit": "221ce6b2d999187044529f49da6554a92f740a96" },
   "luamigemo": { "branch": "main", "commit": "137392e925254b49095121f67223386844882077" },
-  "markdown-preview.nvim": { "branch": "master", "commit": "9becceee5740b7db6914da87358a183ad11b2049" },
   "mason-lock.nvim": { "branch": "main", "commit": "0e771d2b13ad051ffd199d56275644b27d8eb282" },
   "mason.nvim": { "branch": "main", "commit": "fc98833b6da5de5a9c5b1446ac541577059555be" },
   "migemo-compact-dict-latest": { "branch": "master", "commit": "043c04bf2c0be8a730c25c9ecfb08265dd0d340c" },
