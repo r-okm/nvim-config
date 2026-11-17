@@ -11,7 +11,6 @@ return {
     { "https://github.com/hrsh7th/cmp-path" },
     { "https://github.com/hrsh7th/vim-vsnip" },
     { "https://github.com/hrsh7th/cmp-vsnip" },
-    { "https://github.com/andersevenrud/cmp-tmux" },
   },
   event = { "CmdlineEnter", "InsertEnter" },
   config = function()
@@ -29,7 +28,6 @@ return {
         { name = "vsnip" },
       }, {
         { name = "buffer" },
-        { name = "tmux" },
       }),
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
