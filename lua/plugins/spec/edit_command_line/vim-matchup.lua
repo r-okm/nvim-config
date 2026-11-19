@@ -3,6 +3,8 @@ local util = require("r-okm.util")
 ---@type LazyPluginSpec
 return {
   "https://github.com/andymass/vim-matchup",
+  -- v0.8.0 (latest tag) ships a go query that fails on the current tree-sitter-go grammar
+  version = false,
   init = function()
     vim.g.matchup_treesitter_stopline = 500
     vim.g.matchup_treesitter_enable_quotes = true
